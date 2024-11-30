@@ -1,0 +1,85 @@
+.add-dish-popup{
+    position: absolute;
+    z-index: 10000;
+    display: grid;
+    width: 70%;
+
+}
+
+.add {
+    width: 40%;
+    margin-right: 50px;
+    color: #6d6d6d;
+    font-size: 16px;
+    z-index: 1000;
+    place-self: center;
+}
+
+.add form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.add-img-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-img-upload img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.add-product-name, .add-product-description {
+    width: 100%;
+}
+
+.add-product-name input, .add-product-description textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-category-price {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.add-category-price select, .add-category-price input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-btn {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #333;
+}
+
+.close-button{
+    align-self: self-end;
+    cursor: pointer;
+
+}

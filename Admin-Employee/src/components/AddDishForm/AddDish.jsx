@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { assets } from "../../assets/admin_assets/assets";
 import axios from "axios";
-import "./AddDish.css";
+import './AddDish.css'
 import { toast } from "react-toastify";
-const AddDish = () => {
-  const url = "http://localhost:4000";
+const AddDish = ({onDishAdded}) => {
+  const url = "http://localhost:3056";
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -44,12 +44,14 @@ const AddDish = () => {
   };
 
   return (
-    <div className="add">
-      <form className="flex-col" onSubmit={onSubmitHandler}>
+    <div className="add-dish-popup">
+      <div className="add ">
+      <form className="flex-col " onSubmit={onSubmitHandler}>
+        <p onClick={onDishAdded} className='close-button' >X</p>
         <div className="add-img-upload flex-col">
           <p>Upload Image</p>
           <label htmlFor="image">
-            <img
+            <img 
               src={image ? URL.createObjectURL(image) : assets.upload_area}
               alt=""
             />
@@ -112,6 +114,7 @@ const AddDish = () => {
           Add
         </button>
       </form>
+    </div>
     </div>
   );
 };

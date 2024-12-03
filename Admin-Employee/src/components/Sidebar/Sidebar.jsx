@@ -1,20 +1,33 @@
 import "./Sidebar.css";
 import "../../assets/admin_assets/assets";
 import { assets } from "../../assets/admin_assets/assets";
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+
 const Sidebar = () => {
+  const { role } = useAuth();
+
+  const links = {
+    admin: [
+      { to: '/list', label: 'Dishes', icon: assets.order_icon },
+      { to: '/ingredients', label: 'Ingredients', icon: assets.ingredient_icon },
+      { to: '/employees', label: 'employee', icon: assets.order_icon },
+      {to: '/purchases', label: 'Purchases', icon: assets.order_icon},
+    ],
+    employee: [
+      { to: '/orders', label: 'Orders', icon: assets.order_icon },
+    ],
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar-options">
-       
-        <NavLink to='/list' className="sidebar-option">
-          <img src={assets.order_icon} alt="" />
-          <p>Dishes</p>
-        </NavLink>
-        <NavLink to='/orders' className="sidebar-option">
-          <img src={assets.order_icon} alt="" />
-          <p>Orders </p>
-        </NavLink>
+        {links[role]?.map((link, index) => (
+          <NavLink key={index} to={link.to} className="sidebar-option">
+            <img src={link.icon} alt="" />
+            <p>{link.label}</p>
+          </NavLink>
+        ))}
       </div>
     </div>
   );

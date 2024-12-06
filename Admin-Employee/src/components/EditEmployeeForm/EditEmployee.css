@@ -1,0 +1,56 @@
+.add-employee-popup {
+    position: absolute;
+    z-index: 10000;
+    display: grid;
+    width: 70%;
+}
+
+.add {
+    width: 40%;
+    margin-right: 50px;
+    color: #6d6d6d;
+    font-size: 16px;
+    z-index: 1000;
+    place-self: center;
+}
+
+.add form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.add-employee-name, .add-employee-phone, .add-employee-address, .add-employee-role, .add-employee-socialId, .add-employee-username, .add-employee-password {
+    width: 100%;
+}
+
+.add-employee-name input, .add-employee-phone input, .add-employee-address input, .add-employee-role select, .add-employee-socialId input, .add-employee-username input, .add-employee-password input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-btn {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #333;
+}
+
+.close-button {
+    align-self: flex-end;
+    cursor: pointer;
+}

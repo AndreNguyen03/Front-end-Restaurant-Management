@@ -1,0 +1,97 @@
+.table-list-container {
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Căn trái các phần tử */
+}
+
+.actions {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start; /* Căn trái nút */
+  width: 100%;
+  padding-left: 20px; /* Thụt vào từ bên trái */
+}
+
+.add-table {
+  border: none;
+  padding: 10px 30px;
+  color: white;
+  background-color: tomato;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.table-cards {
+  display: flex; /* Hiển thị theo chiều ngang */
+  flex-wrap: nowrap; /* Không cho các item xuống dòng, luôn xếp hàng */
+  gap: 20px;
+  justify-content: flex-start; /* Căn trái các card */
+  width: 100%;
+  padding-left: 20px; /* Thụt vào từ bên trái */
+  overflow-x: auto; /* Thêm thanh cuộn ngang nếu có nhiều card */
+}
+
+.table-card {
+  background-color: #f87e00; /* Màu nền cam */
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 170px; /* Đảm bảo các card có chiều rộng cố định */
+  min-width: 100px; /* Đảm bảo các card không quá nhỏ */
+}
+
+.table-header {
+  margin-bottom: 10px; /* Khoảng cách giữa tên và capacity */
+}
+
+.table-card h3 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.table-card p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.divider {
+  border-bottom: 2px solid #fff; /* Đường kẻ ngăn cách */
+  margin: 10px 0; /* Khoảng cách từ capacity đến các nút */
+}
+
+.table-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.edit-icon {
+  font-size: 1.5rem;
+}
+
+.delete-icon {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .table-card {
+    padding: 15px;
+  }
+
+  .icon {
+    font-size: 1.2rem;
+  }
+}

@@ -12,14 +12,16 @@ const FoodDisplay = ({ category, setCategory }) => {
     const isCategoryMatch = category === "All" || category === item.category;
     const isSearchMatch = item.name
       .toLowerCase()
-      .startsWith(searchQuery.toLowerCase());
+      .includes(searchQuery.toLowerCase());
     return isCategoryMatch && isSearchMatch;
   });
 
   return (
     <div className="food-display" id="food-display">
-      <h2>Top dishes near you</h2>
-      <SearchBar setSearchQuery={setSearchQuery} />{" "}
+      <div className="food-display-header">
+        <h2>Top dishes near you</h2>
+        <SearchBar setSearchQuery={setSearchQuery} />
+      </div>
       <div className="food-display-list">
         {filteredFoodList.map((item, index) => (
           <FoodItem

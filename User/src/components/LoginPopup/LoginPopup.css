@@ -73,3 +73,37 @@
     font-weight: 500;
     cursor: pointer;
 }
+.error{
+    font-size: 0.8rem;
+    color: red;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.user-icon{
+    cursor: pointer;
+}
+
+/* LoginPopup.css */
+.input-with-button {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust the gap as needed */
+  }
+  
+  .input-with-button input {
+    flex: 1;
+  }
+  
+  .otp-button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .otp-button:hover {
+    background-color: #0056b3;
+  }

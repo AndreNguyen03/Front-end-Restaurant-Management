@@ -1,11 +1,32 @@
 import React, { useState, useContext } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/frontend_assets/assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
+import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
+
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("contact-us");
-  const {getTotalCartAmount} = useContext(StoreContext)
+  const { getTotalCartAmount } = useContext(StoreContext);
+  const { isAuthenticated } = useContext(AuthContext);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    if (isAuthenticated) {
+      navigate(path);
+    } else {
+      toast.error("You must be logged in to access this page.");
+      setShowLogin(true);
+    }
+  };
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
   return (
     <div className="navbar">
       <Link to="/">
@@ -20,18 +41,18 @@ const Navbar = ({ setShowLogin }) => {
           home
         </Link>
         <a
-          href="#explore-menu"
-          onClick={() => setMenu("menu")}
-          className={menu === "menu" ? "active" : ""}
+          href="#"
+          onClick={() => handleNavigation("/comment")}
+          className={menu === "comment" ? "active" : ""}
         >
-          menu
+          comment
         </a>
         <a
-          href="#footer"
-          onClick={() => setMenu("contact-us")}
-          className={menu === "contact-us" ? "active" : ""}
+          href="#"
+          onClick={() => handleNavigation("/reservation")}
+          className={menu === "reservation" ? "active" : ""}
         >
-          contact us
+          reservation
         </a>
       </ul>
 
@@ -41,11 +62,21 @@ const Navbar = ({ setShowLogin }) => {
           <Link to="/cart">
             <img src={assets.basket_icon} alt="" />
           </Link>
-          <div className={getTotalCartAmount() === 0 ?  '' 
-            : 'dot'
-          }></div>
+          <div className={getTotalCartAmount() === 0 ? '' : 'dot'}></div>
         </div>
-        <button onClick={() => setShowLogin(true)}>sign in</button>
+        {isAuthenticated ? (
+          <div className="profile-container">
+            <img
+              src={assets.profile_icon}
+              alt="User"
+              className="user-icon"
+              onClick={toggleDropdown}
+            />
+            {showDropdown && <ProfileDropdown setShowLogin={setShowLogin} />}
+          </div>
+        ) : (
+          <button onClick={() => setShowLogin(true)}>sign in</button>
+        )}
       </div>
     </div>
   );

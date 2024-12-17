@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
+import Comment from "./pages/Comment/Comment";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import { useState, useEffect } from "react";
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/order" element={<PlaceOrder />} />
+            <Route path="/comment" element={<Comment />} />
             <Route
               path="/change-password"
               element={

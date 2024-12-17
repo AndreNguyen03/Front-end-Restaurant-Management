@@ -8,11 +8,12 @@ const AuthContextProvider = (props) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Check if the user is authenticated by verifying the cookie
     const checkAuth = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.get("http://localhost:3056/api/cAuth/checkAuth");
+        const response = await axios.get(
+          "http://localhost:3056/api/cAuth/checkAuth"
+        );
         if (response.data.isAuthenticated) {
           setIsAuthenticated(true);
           setUser(response.data.user);
@@ -21,36 +22,55 @@ const AuthContextProvider = (props) => {
           setUser(null);
         }
       } catch (error) {
+        console.error("Error in checkAuth:", error);
         setIsAuthenticated(false);
         setUser(null);
       }
     };
 
     checkAuth();
-  }, []);
+  }, [isAuthenticated]);
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post("http://localhost:3056/api/cAuth/login", {
-        username,
-        password,
-      }, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        "http://localhost:3056/api/cAuth/login",
+        { username, password },
+        { withCredentials: true }
+      );
       if (response.data.success) {
         setIsAuthenticated(true);
         setUser(response.data.user);
       }
       return response.data;
     } catch (error) {
-      return { success: false, message: error.response?.data?.message || "An error occurred" };
+      console.error("Login error:", error);
+      if (error.response) {
+        console.error("Error response:", error.response);
+        return {
+          success: false,
+          message:
+            error.response?.data?.message || "An error occurred during login",
+        };
+      } else if (error.request) {
+        console.error("Error request:", error.request);
+        return {
+          success: false,
+          message: "No response from server. Please try again later.",
+        };
+      } else {
+        console.error("General error:", error.message);
+        return {
+          success: false,
+          message: "An unexpected error occurred.",
+        };
+      }
     }
   };
 
   const logout = async () => {
     try {
-      await axios.get("http://localhost:3056/api/cAuth/logout", {}, {
-      });
+      await axios.get("http://localhost:3056/api/cAuth/logout", {}, {});
       setIsAuthenticated(false);
       setUser(null);
       window.location.reload();

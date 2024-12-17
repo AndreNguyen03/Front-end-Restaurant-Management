@@ -15,7 +15,9 @@ const Navbar = ({ setShowLogin }) => {
   const navigate = useNavigate();
 
   const handleNavigation = (path) => {
-    if (isAuthenticated) {
+    if (path === "/comment") {
+      navigate(path);
+    } else if (isAuthenticated) {
       navigate(path);
     } else {
       toast.error("You must be logged in to access this page.");
@@ -62,7 +64,7 @@ const Navbar = ({ setShowLogin }) => {
           <Link to="/cart">
             <img src={assets.basket_icon} alt="" />
           </Link>
-          <div className={getTotalCartAmount() === 0 ? '' : 'dot'}></div>
+          <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
         </div>
         {isAuthenticated ? (
           <div className="profile-container">

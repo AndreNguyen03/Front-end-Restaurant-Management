@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './pages/Login/Login'
 import Employees from './pages/Employees/Employees'
 import Purchases from './pages/Purchases/Purchases'
+import Ingredients from './pages/Ingredients/Ingredients'
 
 const App = () => {
   const backend_url = 'http://localhost:3056';
@@ -55,6 +56,15 @@ const App = () => {
                           </ProtectedRoute>
                         }
                       />
+                      <Route
+                        path='/ingredients'
+                        element={
+                          <ProtectedRoute allowedRoles={['admin']}>
+                            <Ingredients url={backend_url} />
+                          </ProtectedRoute>
+                        }
+                      />
+                  
                       <Route
                         path='/employees'
                         element={

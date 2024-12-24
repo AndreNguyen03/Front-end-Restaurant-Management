@@ -11,6 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './pages/Login/Login'
 import Employees from './pages/Employees/Employees'
 import Purchases from './pages/Purchases/Purchases'
+import TableLayout from './pages/Table/TableLayout'
+import { TableProvider } from './context/TableContext'
+import Invoice from './pages/Invoice/Invoice'
 
 const App = () => {
   const backend_url = 'http://localhost:3056';
@@ -45,7 +48,24 @@ const App = () => {
                             <Orders url={backend_url} />
                           </ProtectedRoute>
                         }
-                        
+                      />
+                      <Route
+                        path="/table"
+                        element={
+                          <ProtectedRoute allowedRoles={['employee']}>
+                            <TableProvider>
+                              <TableLayout />
+                            </TableProvider>
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/invoice"
+                        element={
+                          <ProtectedRoute allowedRoles={['employee']}>
+                            <Invoice />
+                          </ProtectedRoute>
+                        }
                       />
                       <Route
                         path='/purchases'

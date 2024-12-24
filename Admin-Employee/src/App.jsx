@@ -11,12 +11,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './pages/Login/Login'
 import Employees from './pages/Employees/Employees'
 import Purchases from './pages/Purchases/Purchases'
+import TableList from "./pages/TableList/Table";
+import Ingredients from './pages/Ingredients/Ingredients'
 import TableLayout from './pages/Table/TableLayout'
 import { TableProvider } from './context/TableContext'
 import Invoice from './pages/Invoice/Invoice'
 
 const App = () => {
-  const backend_url = 'http://localhost:3056';
+  const backend_url = "http://localhost:3056";
   return (
     <AuthProvider>
       <div>
@@ -36,15 +38,23 @@ const App = () => {
                       <Route
                         path="/list"
                         element={
-                          <ProtectedRoute allowedRoles={['admin']}>
+                          <ProtectedRoute allowedRoles={["admin"]}>
                             <DishList url={backend_url} />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/table"
+                        element={
+                          <ProtectedRoute allowedRoles={["admin"]}>
+                            <TableList url={backend_url} />
                           </ProtectedRoute>
                         }
                       />
                       <Route
                         path="/orders"
                         element={
-                          <ProtectedRoute allowedRoles={['employee']}>
+                          <ProtectedRoute allowedRoles={["employee"]}>
                             <Orders url={backend_url} />
                           </ProtectedRoute>
                         }
@@ -68,17 +78,17 @@ const App = () => {
                         }
                       />
                       <Route
-                        path='/purchases'
+                        path="/purchases"
                         element={
-                          <ProtectedRoute allowedRoles={['admin']}>
+                          <ProtectedRoute allowedRoles={["admin"]}>
                             <Purchases url={backend_url} />
                           </ProtectedRoute>
                         }
                       />
                       <Route
-                        path='/employees'
+                        path="/employees"
                         element={
-                          <ProtectedRoute allowedRoles={['admin']}>
+                          <ProtectedRoute allowedRoles={["admin"]}>
                             <Employees url={backend_url} />
                           </ProtectedRoute>
                         }

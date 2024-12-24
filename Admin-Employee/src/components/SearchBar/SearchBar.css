@@ -1,13 +1,12 @@
 .search-bar {
-  margin-bottom: 20px;
   text-align: right;
   border: 2px solid tomato;
   border-radius: 15px;
   padding: 5px;
   width: 100%;
   max-width: 400px;
-  margin-left: auto;
-  margin-right: 0;
+  /* margin-left: auto;
+  margin-right: 0; */
 }
 
 .search-bar input {

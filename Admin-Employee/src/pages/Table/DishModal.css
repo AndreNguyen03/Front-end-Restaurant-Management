@@ -1,0 +1,333 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1600px;
+    height: 900px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-body {
+    display: flex;
+    gap: 20px;
+    overflow-y: auto;
+    /* Thêm thanh cuộn dọc */
+    padding-right: 10px;
+    /* Thêm khoảng trống cho thanh cuộn */
+}
+
+.dishes-list {
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    overflow-y: auto;
+    /* Thêm thanh cuộn dọc */
+    padding-right: 10px;
+    /* Khoảng trống cho thanh cuộn */
+    scrollbar-width: none;
+    /* Tùy chọn (nếu cần): Định kiểu thanh cuộn */
+}
+
+.dish-card {
+    background: #f9f9f9;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.cart {
+    flex: 3;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+    height: auto;
+    /* Thay đổi chiều cao tự động */
+    /* Giới hạn chiều cao tối đa */
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.cart-container {
+    flex: 3;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 750px;
+    overflow-y: auto;
+}
+
+.button-component {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    position: sticky;
+    bottom: 0;
+    /* Dính sát phía dưới */
+    background-color: #f4f4f4;
+    /* Màu nền để không bị trùng lẫn */
+    padding: 10px 10px;
+    text-align: right;
+    /* Căn phải */
+    z-index: 10;
+    /* Đảm bảo luôn nổi trên các phần khác */
+}
+
+.button {
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 30px;
+    font-size: 16px;
+    /* Kích thước chữ */
+    font-weight: bold;
+    /* Chữ đậm */
+    cursor: pointer;
+    /* Con trỏ hình bàn tay khi hover */
+    display: flex;
+    /* Để căn giữa nội dung */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* Khoảng cách giữa icon và chữ */
+    transition: 0.3s;
+    /* Hiệu ứng chuyển động khi hover */
+}
+
+.button:hover {
+    background-color: #e69500;
+    /* Màu nền khi hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    /* Hiệu ứng bóng */
+}
+
+.button:active {
+    transform: scale(0.95);
+    /* Hiệu ứng thu nhỏ khi nhấn */
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.total {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.quantity-input {
+    width: 70px;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.separate-cart-header {
+    margin: 15px 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartdish-img {
+    height: 20px;
+    width: 30px;
+    border-radius: 4px;
+}
+
+.dish-card-img {
+    height: 150px;
+    width: 150px;
+    border-radius: 4px;
+}
+
+
+/* Căn chỉnh tổng thể bảng */
+table {
+    width: 100%;
+    /* Chiếm toàn bộ chiều ngang */
+    border-collapse: collapse;
+    /* Loại bỏ khoảng cách giữa các ô */
+    margin: 20px 0;
+    /* Khoảng cách phía trên và dưới bảng */
+    font-size: 16px;
+    text-align: left;
+    /* Căn chữ sang trái */
+}
+
+/* Header của bảng */
+table thead th {
+    background-color: #f4f4f4;
+    /* Màu nền header */
+    color: #333;
+    /* Màu chữ header */
+    font-weight: bold;
+    padding: 12px 10px;
+    /* Khoảng cách trong ô */
+    border-bottom: 2px solid #ddd;
+    /* Đường viền dưới header */
+}
+
+/* Dòng trong bảng */
+table tbody td {
+    padding: 10px;
+    /* Khoảng cách trong ô */
+    border-bottom: 1px solid #ddd;
+    /* Đường viền dưới các dòng */
+    vertical-align: middle;
+    /* Căn giữa theo chiều dọc */
+}
+
+/* Hình ảnh trong bảng */
+table tbody td img {
+    width: 50px;
+    /* Kích thước ảnh */
+    height: 50px;
+    border-radius: 5px;
+    /* Bo góc ảnh */
+    object-fit: cover;
+    /* Giữ tỷ lệ ảnh */
+}
+
+/* Nút bấm */
+table tbody td button {
+    background-color: #ff9800;
+    /* Màu cam */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    /* Bo góc nút */
+    cursor: pointer;
+    font-size: 14px;
+}
+
+table tbody td button:hover {
+    background-color: #e68900;
+    /* Màu khi hover */
+}
+
+/* Nút giảm kích thước nhỏ */
+table tbody td button:first-of-type,
+table tbody td button:last-of-type {
+    width: 30px;
+    /* Chiều rộng nút + và - */
+    height: 30px;
+    padding: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Đổi màu nền dòng khi hover */
+table tbody tr:hover {
+    background-color: #f9f9f9;
+    /* Màu nền khi hover */
+}
+
+
+.close-button {
+    background-color: transparent;
+    color: #ff4d4d;
+    /* Đỏ nhạt */
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #ffe6e6;
+    /* Nền đỏ nhạt khi hover */
+    color: #ff1a1a;
+    /* Màu đỏ đậm hơn */
+}
+
+.total-amount {
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.btn-save-to-table {
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 30px;
+    font-size: 16px;
+    /* Kích thước chữ */
+    font-weight: bold;
+    /* Chữ đậm */
+    cursor: pointer;
+    /* Con trỏ hình bàn tay khi hover */
+    display: flex;
+    /* Để căn giữa nội dung */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* Khoảng cách giữa icon và chữ */
+    transition: 0.3s;
+    /* Hiệu ứng chuyển động khi hover */
+}
+
+.save-to-table-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-save-to-table {
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 30px; /* Đường bo tròn lớn hơn */
+    padding: 15px 50px; /* Tăng kích thước nút */
+    font-size: 20px; /* Tăng kích thước font */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-save-to-table:hover {
+    background-color: #e69500;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-save-to-table:active {
+    transform: scale(0.95);
+}

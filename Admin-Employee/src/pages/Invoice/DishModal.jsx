@@ -5,7 +5,7 @@ import DishItem from "./DishItem";
 import SearchBar from '../../components/SearchBar/SearchBar'
 import InvoiceModal from "./InvoiceModal";
 
-function DishModal({ onClose }) {
+function DishModal({ onClose,updateInvoices }) {
     const url = 'http://localhost:3056';
     const [dishes, setDishes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -35,7 +35,9 @@ function DishModal({ onClose }) {
             const response = await axios.post(`${url}/api/invoices`, invoicePayload);
             setInvoiceData(response.data); // Lưu thông tin hóa đơn trả về
             console.log(`invoice data response: `,response.data);
+            updateInvoices(response.data.metadata)
             setIsModalOpen(true); // Mở modal hóa đơn
+            resetCart();
         } catch (err) {
             setError(err.response?.data?.message || err.message);
         }

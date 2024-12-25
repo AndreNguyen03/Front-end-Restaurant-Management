@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import DishModal from './DishModal';
 import './Table.css'
+import axios from 'axios';
 
 function TableLayout() {
-    const mock_table = [
-        { id: 1, name: "table 1" },
-        { id: 2, name: "table 2" },
-        { id: 3, name: "table 3" },
-        { id: 4, name: "table 4" },
-        { id: 5, name: "table 5" },
-        { id: 6, name: "table 6" },
-        { id: 7, name: "table 7" },
-        { id: 8, name: "table 8" },
-        { id: 9, name: "table 9" },
-        { id: 10, name: "table 10" },
-        { id: 11, name: "table 11" },
-        { id: 12, name: "table 12" },
-    ]
-
+    const url = "http://localhost:3056";
+    const [tables,setTables] = useState([]);
     const [selectedTable, setSelectedTable] = useState(null);
+    const [selectedTableName, setSelectedTableName] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        
+        async function fetchTables() {
+            try {
+                
+                const response = await axios.get(`${url}/api/table/list`);
+                setTables(response.data.data);
+
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
+
+        fetchTables();
     },[])
 
-    const handleTableClick = (tableId) => {
+    const handleTableClick = (tableId,tableName) => {
         setSelectedTable(tableId);
+        setSelectedTableName(tableName)
         setIsModalOpen(true);
     };
 
@@ -36,9 +37,9 @@ function TableLayout() {
 
     return (
         <div className='table-container'>
-            {mock_table.map((table) => (
-                <div key={table.id}>
-                    <button className='table-btn' onClick={() => handleTableClick(table.id)}>
+            {tables.map((table) => (
+                <div key={table._id}>
+                    <button className='table-btn' onClick={() => handleTableClick(table._id,table.name)}>
                         {table.name}
                     </button>
                 </div>
@@ -47,6 +48,7 @@ function TableLayout() {
             {isModalOpen && (
                 <DishModal
                     tableId={selectedTable}
+                    tableName={selectedTableName}
                     onClose={closeModal}
                 />
             )}

@@ -6,7 +6,7 @@ import SearchBar from '../../components/SearchBar/SearchBar'
 import { useTableCart } from "../../context/TableContext";
 import InvoiceModal from "./InvoiceModal";
 
-function DishModal({ tableId, onClose }) {
+function DishModal({ tableId, onClose,tableName }) {
     const url = 'http://localhost:3056';
     const { cartData, addToCart, updateQuantity, removeFromCart, resetCart } = useTableCart();
     const [dishes, setDishes] = useState([]);
@@ -28,7 +28,7 @@ function DishModal({ tableId, onClose }) {
         try {
             // Lấy dữ liệu giỏ hàng và tổng số tiền để gửi lên server
             const invoicePayload = {
-                tableId,
+                tableName,
                 cartData: cartData[tableId],
                 totalAmount: totalAmount
             };
@@ -38,6 +38,7 @@ function DishModal({ tableId, onClose }) {
             setInvoiceData(response.data); // Lưu thông tin hóa đơn trả về
             console.log(`invoice data response: `,response.data);
             setIsModalOpen(true); // Mở modal hóa đơn
+            resetCart(tableId);
         } catch (err) {
             setError(err.response?.data?.message || err.message);
         }
@@ -45,6 +46,7 @@ function DishModal({ tableId, onClose }) {
 
     const closeModal = () => {
         setIsModalOpen(false);
+        resetCart(tableId);
     };
 
     useEffect(() => {
@@ -138,8 +140,7 @@ function DishModal({ tableId, onClose }) {
             {isModalOpen && (
                 <InvoiceModal
                     onClose={closeModal}
-                    cartData={cartData[tableId]}  
-                    totalAmount={totalAmount}
+                    invoiceData={invoiceData}
                 />
             )}
         </>

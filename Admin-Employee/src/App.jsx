@@ -60,7 +60,7 @@ const App = () => {
                         }
                       />
                       <Route
-                        path="/table"
+                        path="/tableservice"
                         element={
                           <ProtectedRoute allowedRoles={['employee']}>
                             <TableProvider>

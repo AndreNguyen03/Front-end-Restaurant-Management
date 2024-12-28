@@ -23,6 +23,7 @@ const Sidebar = () => {
       { to: '/orders', label: 'Orders', icon: assets.order_icon },
       { to: '/tableservice', label: 'Table', icon: assets.order_icon },
       { to: '/invoice', label: 'Invoice', icon: assets.order_icon },
+      { to: '/reservation', label: 'Reservation', icon: assets.order_icon },
     ],
   };
 

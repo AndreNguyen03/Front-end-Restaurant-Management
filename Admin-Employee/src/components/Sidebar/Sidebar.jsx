@@ -19,7 +19,12 @@ const Sidebar = () => {
       { to: "/employees", label: "employee", icon: assets.order_icon },
       { to: "/purchases", label: "Purchases", icon: assets.purchase_icon },
     ],
-    employee: [{ to: "/orders", label: "Orders", icon: assets.order_icon }],
+    employee: [
+      { to: '/orders', label: 'Orders', icon: assets.order_icon },
+      { to: '/tableservice', label: 'Table', icon: assets.order_icon },
+      { to: '/invoice', label: 'Invoice', icon: assets.order_icon },
+      { to: '/reservation', label: 'Reservation', icon: assets.order_icon },
+    ],
   };
 
   return (

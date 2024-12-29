@@ -1,0 +1,53 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn.active {
+    background-color: orange;
+    color: white;
+}
+
+
+.date-picker {
+    height: 35px;
+    text-align: center;
+    font-size: 1.25rem;
+    box-sizing: border-box;
+    width: 150px;
+    
+  }
+  
+  .react-datepicker__input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .date-picker:focus {
+    outline: none;
+  }
+  
+  /* Tìm kiếm */
+  .search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+    font-size: 14px;
+  }

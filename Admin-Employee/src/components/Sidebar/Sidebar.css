@@ -1,12 +1,14 @@
-.sidebar{
+.sidebar {
     width: 18%;
     min-height: 100vh;
     border: 1.5px solid #a9a9a9;
     border-top: 0;
     font-size: max(1vw,10px);
+    min-width: 250px;
+    max-width: 250px;
 }
 
-.sidebar-options{
+.sidebar-options {
     padding-top: 50px;
     padding-left: 20px;
     display: flex;
@@ -15,7 +17,7 @@
 }
 
 
-.sidebar-option{
+.sidebar-option {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -26,15 +28,15 @@
     cursor: pointer;
 }
 
-@media (max-width: 900px){
+@media (max-width: 900px) {
 
-    .sidebar-option p{
+    .sidebar-option p {
         display: none;
     }
 }
 
 
-.sidebar-option.active{
+.sidebar-option.active {
     background-color: #fff0ed;
     border-color: tomato;
 }

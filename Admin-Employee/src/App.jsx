@@ -1,3 +1,16 @@
+import React from 'react'
+import Navbar from './components/Navbar/Navbar'
+import Sidebar from './components/Sidebar/Sidebar'
+import {Route, Routes} from 'react-router-dom'
+import DishList from './pages/DishList/DishList'
+import Orders from './pages/Orders/Orders'
+import { AuthProvider } from './context/AuthContext'
+import ProtectedRoute from './components/ProtecedRoute/ProtectedRoute'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Login from './pages/Login/Login'
+import Employees from './pages/Employees/Employees'
+import Purchases from './pages/Purchases/Purchases'
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -12,6 +25,10 @@ import Login from "./pages/Login/Login";
 import Employees from "./pages/Employees/Employees";
 import TableList from "./pages/TableList/Table";
 import Ingredients from './pages/Ingredients/Ingredients'
+import TableLayout from './pages/Table/TableLayout'
+import { TableProvider } from './context/TableContext'
+import Invoice from './pages/Invoice/Invoice'
+import Reservation from './pages/Reservation/Reservation'
 import PurchasePage from "./pages/Purchases/PurchasePage";
 
 const App = () => {
@@ -53,6 +70,32 @@ const App = () => {
                         element={
                           <ProtectedRoute allowedRoles={["employee"]}>
                             <Orders url={backend_url} />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/tableservice"
+                        element={
+                          <ProtectedRoute allowedRoles={['employee']}>
+                            <TableProvider>
+                              <TableLayout />
+                            </TableProvider>
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/invoice"
+                        element={
+                          <ProtectedRoute allowedRoles={['employee']}>
+                            <Invoice />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/reservation"
+                        element={
+                          <ProtectedRoute allowedRoles={['employee']}>
+                            <Reservation />
                           </ProtectedRoute>
                         }
                       />

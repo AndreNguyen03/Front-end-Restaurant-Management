@@ -1,0 +1,87 @@
+.add-purchase-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 500px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.ingredient-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.ingredient-row select,
+.ingredient-row input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.remove-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.remove-button:hover {
+  background-color: darkred;
+}
+
+.add-ingredient-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.add-ingredient-button:hover {
+  background-color: darkgreen;
+}
+
+.total {
+  font-size: 1.2rem;
+  text-align: right;
+}
+
+.submit-button,
+.close-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background-color: #333;
+}
+
+.close-button:hover {
+  background-color: #555;
+}

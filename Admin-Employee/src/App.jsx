@@ -10,9 +10,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login/Login";
 import Employees from "./pages/Employees/Employees";
-import Purchases from "./pages/Purchases/Purchases";
 import TableList from "./pages/TableList/Table";
 import Ingredients from './pages/Ingredients/Ingredients'
+import PurchasePage from "./pages/Purchases/PurchasePage";
 
 const App = () => {
   const backend_url = "http://localhost:3056";
@@ -60,7 +60,7 @@ const App = () => {
                         path="/purchases"
                         element={
                           <ProtectedRoute allowedRoles={["admin"]}>
-                            <Purchases url={backend_url} />
+                            <PurchasePage url={backend_url} />
                           </ProtectedRoute>
                         }
                       />
@@ -72,7 +72,14 @@ const App = () => {
                           </ProtectedRoute>
                         }
                       />
-                    </Routes>
+                      <Route path="/ingredients" 
+                    element={
+                      <ProtectedRoute allowedRoles={["admin"]}>
+                    <Ingredients url={backend_url} />
+                      </ProtectedRoute>
+                    }
+                  />
+                    </Routes>                  
                   </div>
                 </div>
               </ProtectedRoute>

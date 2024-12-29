@@ -17,7 +17,7 @@ const Sidebar = () => {
         icon: assets.ingredient_icon,
       },
       { to: "/employees", label: "employee", icon: assets.order_icon },
-      { to: "/purchases", label: "Purchases", icon: assets.order_icon },
+      { to: "/purchases", label: "Purchases", icon: assets.purchase_icon },
     ],
     employee: [{ to: "/orders", label: "Orders", icon: assets.order_icon }],
   };

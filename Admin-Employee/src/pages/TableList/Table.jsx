@@ -76,7 +76,7 @@ const TableList = ({ url }) => {
                   setShowEditTable(true);
                   setSelectedTableId(table._id);
                 }}
-                className="icon edit-icon"
+                className="icon-table edit-icon"
                 icon={faEdit}
               />
               <FontAwesomeIcon
@@ -84,7 +84,7 @@ const TableList = ({ url }) => {
                   setShowConfirmationForm(true);
                   setSelectedTableId(table._id);
                 }}
-                className="icon delete-icon"
+                className="icon-table delete-icon"
                 icon={faTrash}
               />
             </div>

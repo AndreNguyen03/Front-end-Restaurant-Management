@@ -1,32 +1,148 @@
-.list-view table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+.edit-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  width: 400px;
+  z-index: 1000;
+  text-align: center;
 }
-
-.list-view th,
-.list-view td {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 10px;
+.edit-form label {
+  display: block;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 100%;
 }
-
-.list-view th {
-    background-color: #f8f8f8;
-    font-weight: bold;
-}
-
-.edit-btn {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
 .edit-btn:hover {
-    background-color: #0056b3;
+  background-color: skyblue;
+}
+
+select {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+.edit-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: tomato;
+  font-weight: bold;
+}
+
+.edit-form label,
+.edit-form select,
+.edit-form option {
+  color: #e67e22;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.edit-form label[for="duration"] {
+  color: #e67e22;
+}
+
+.edit-form select#duration {
+  color: #e67e22;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.edit-form select#duration option {
+  color: #e67e22;
+}
+
+.edit-form
+  select#duration
+  option:not([value="1"]):not([value="2"]):not([value="3"]):not([value="4"]) {
+  display: none;
+}
+
+.edit-form .button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.edit-form button {
+  padding: 10px 20px;
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.edit-form button:hover {
+  background-color: goldenrod;
+}
+
+.edit-form .cancel-btn {
+  background-color: #e67e22;
+}
+
+.edit-form .cancel-btn:hover {
+  background-color: darkgoldenrod;
+}
+.close-icon {
+  color: red;
+  font-size: 24px;
+  font-weight: thin;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+.close-icon:hover {
+  color: darkred;
+}
+
+.tomato-input {
+  color: #e67e22;
+  border: 1px solid #e67e22;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  outline: none;
+  caret-color: transparent;
+  appearance: none;
+}
+
+.tomato-input::-ms-clear {
+  display: none;
+}
+
+.edit-form label input[type="number"] {
+  width: 20%;
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.edit-form .edit-form-actions button {
+  margin: 0 10px;
+}
+
+.edit-form label select {
+  width: 40%;
+  margin: 0 auto;
+  display: block;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #e67e22;
 }

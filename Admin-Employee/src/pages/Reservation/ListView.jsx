@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Pagination from "./Pagination";
 import "./ListView.css";
+import axios from "axios";
 
 function ListView() {
   const [reservations, setReservations] = useState([]);
@@ -67,9 +68,12 @@ function ListView() {
 
   const handleEditClick = (reservation) => {
     setEditingReservation(reservation);
+    console.log(reservation);
     setSelectedTable("");
     setDuration(1);
   };
+
+
 
   const handleConfirmEdit = async () => {
     if (selectedTable === "") {
@@ -85,7 +89,7 @@ function ListView() {
         duration: duration,
       };
 
-      await apiFetch("http://localhost:3056/api/reservations/assign-table", {
+      const assignResponse = await apiFetch("http://localhost:3056/api/reservations/assign-table", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -93,16 +97,32 @@ function ListView() {
         body: JSON.stringify(requestBody),
       });
 
+      const mailOptions = {
+        to: assignResponse.metadata.email,
+        subject: "Xác nhận đặt bàn",
+        text: `Xin chào,
+Bạn đã đặt bàn thành công,
+Thông tin đặt bàn của bạn : ${formatTime(assignResponse.metadata.startTime)} - ${formatTime(assignResponse.metadata.endTime)} . ${assignResponse.metadata.tableAssigned.name}.
+Khi đến nhà hàng, hãy đến quầy tiếp tân và đọc thông tin ${assignResponse.metadata.name} và ${assignResponse.metadata.phone} để được nhân viên sắp xếp bàn cho bạn.
+Trân trọng,
+Nhà hàng Cà Chua`,
+      };
+
+
+
       toast.success("Table assigned successfully!");
       await fetchReservations();
 
       setEditingReservation(null);
       setSelectedTable("");
-    } catch (error) {
-      toast.error(
-        `Failed to assign table: ${error.message || "Unknown error"}`
-      );
+      setIsSubmitting(false);
+      await axios.post('http://localhost:3056/api/send-mail', {
+        to: mailOptions.to,
+        subject: mailOptions.subject,
+        text: mailOptions.text,
+      });
     } finally {
+      console.log("Setting isSubmitting to false");
       setIsSubmitting(false);
     }
   };
@@ -251,7 +271,7 @@ function ListView() {
       )}
 
       <div className="pagination-container">
-        <Pagination currentPage={1} totalPages={1} setCurrentPage={() => {}} />
+        <Pagination currentPage={1} totalPages={1} setCurrentPage={() => { }} />
       </div>
       <ToastContainer />
     </div>

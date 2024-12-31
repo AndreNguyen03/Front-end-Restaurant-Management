@@ -19,6 +19,8 @@ td {
     padding: 10px;
     text-align: center;
     border: 1px solid #ddd;
+    width: 120px; /* Cố định chiều rộng */
+    height: 50px
 }
 
 th {

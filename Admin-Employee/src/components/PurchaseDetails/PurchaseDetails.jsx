@@ -34,15 +34,15 @@ const PurchaseDetails = ({ purchase, onClose }) => {
                 <td>{item.name}</td>
                 <td>{item.quantity}</td>
                 <td>{item.unit}</td>
-                <td>${item.unitPrice.toFixed(2)}</td>
-                <td>${item.totalPrice.toFixed(2)}</td>
+                <td>{item.unitPrice.toFixed(0)} vnđ</td>
+                <td>{item.totalPrice.toFixed(0)} vnđ</td>
               </tr>
             ))}
           </tbody>
         </table>
 
         <div className="total-amount">
-          <h3>Total Amount: ${purchase.totalAmount.toFixed(2)}</h3>
+          <h3>Total Amount: {purchase.totalAmount.toFixed(0)} vnđ</h3>
         </div>
       </div>
     </div>

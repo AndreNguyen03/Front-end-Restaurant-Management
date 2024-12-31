@@ -17,6 +17,7 @@ import { TableProvider } from './context/TableContext'
 import Invoice from './pages/Invoice/Invoice'
 import Reservation from './pages/Reservation/Reservation'
 import PurchasePage from "./pages/Purchases/PurchasePage";
+import Revenue from "./pages/Revenue/Revenue";
 
 const App = () => {
   const backend_url = "http://localhost:3056";
@@ -109,6 +110,13 @@ const App = () => {
                       </ProtectedRoute>
                     }
                   />
+                    <Route path= "/revenue" 
+                    element={
+                      <ProtectedRoute allowedRoles={["admin"]}>
+                        <Revenue url={backend_url} />
+                      </ProtectedRoute>
+                    }
+                    />
                     </Routes>                  
                   </div>
                 </div>

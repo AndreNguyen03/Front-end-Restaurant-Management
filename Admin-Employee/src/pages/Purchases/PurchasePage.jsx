@@ -83,10 +83,9 @@ const PurchasePage = ({ url }) => {
                   : "N/A"}
               </p>
               <p>
-                $
                 {Number.isFinite(purchase.totalAmount)
-                  ? purchase.totalAmount.toFixed(2)
-                  : "0.00"}
+                  ? purchase.totalAmount.toFixed(0)
+                  : "0"} vnđ
               </p>
               <div className="action">
                 <FontAwesomeIcon

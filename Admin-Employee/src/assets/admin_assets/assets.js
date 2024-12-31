@@ -7,6 +7,7 @@ import parcel_icon from "./parcel_icon.png";
 import table_icon from "./table.png";
 import ingredient_icon from './ingredient_icon.png'
 import purchase_icon from './purchase_icon.png'
+import revenue_icon from './revenue_icon.png'
 
 export const assets = {
   logo,
@@ -17,7 +18,8 @@ export const assets = {
   upload_area,
   parcel_icon,
   table_icon,
-  purchase_icon
+  purchase_icon,
+  revenue_icon
 };
 
 export const url = "http://localhost:4000";

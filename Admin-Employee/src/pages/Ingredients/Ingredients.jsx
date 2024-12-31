@@ -82,7 +82,7 @@ const IngredientList = ({ url }) => {
         {list.map((item, index) => (
           <div key={index} className="list-table-format">
             <p>{item.name}</p>
-            <p>{item.unitprice}</p>
+            <p>{item.unitprice} vnđ</p>
             <p>{item.quantity}</p>
             <p>{item.unit}</p>
             <div className="action">

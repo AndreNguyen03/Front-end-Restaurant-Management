@@ -9,6 +9,7 @@ const Sidebar = () => {
 
   const links = {
     admin: [
+      { to: "/revenue", label: "Revenue", icon: assets.revenue_icon },
       { to: "/list", label: "Dishes", icon: assets.order_icon },
       { to: "/table", label: "Tables", icon: assets.table_icon },
       {

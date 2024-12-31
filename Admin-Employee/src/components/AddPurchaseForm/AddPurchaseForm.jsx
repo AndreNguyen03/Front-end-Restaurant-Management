@@ -143,7 +143,7 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
               {ingredients.map((ingredient) => (
                 <tr key={ingredient._id}>
                   <td><p>{ingredient.name}</p></td>
-                  <td><p>${ingredient.unitprice.toFixed(2)}</p></td>
+                  <td><p>{ingredient.unitprice.toFixed(0)} vnđ</p></td>
                   <td>
                     <button onClick={() => handleAddIngredient(ingredient)}>
                       Add
@@ -184,7 +184,7 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
                       min="0"
                     />
                   </td>
-                  <td><p>${detail.totalPrice.toFixed(2)}</p></td>
+                  <td><p>{detail.totalPrice.toFixed(0)} vnđ</p></td>
                   <td>
                     <button onClick={() => handleRemoveIngredient(detail.ingredient)}>
                       X
@@ -195,7 +195,7 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
             </tbody>
           </table>
           <div className="total-amount">
-            <h3>Total Amount: ${totalAmount.toFixed(2)}</h3>
+            <h3>Total Amount: {totalAmount.toFixed(0)} vnđ</h3>
           </div>
           <div className="form-actions">
             <button onClick={handleSubmit} className="submit-btn">

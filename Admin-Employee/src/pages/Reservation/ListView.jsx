@@ -120,18 +120,19 @@ function ListView() {
         subject: "Xác nhận đặt bàn",
         text: `Xin chào,
 Bạn đã đặt bàn thành công,
-Thông tin đặt bàn của bạn : ${formatTime(
+Thông tin đặt bàn của bạn: Vào lúc ${formatTime(
           assignResponse.metadata.startTime
-        )} - ${formatTime(assignResponse.metadata.endTime)} . ${
-          assignResponse.metadata.tableAssigned.name
-        }.
-Khi đến nhà hàng, hãy đến quầy tiếp tân và đọc thông tin ${
+        )} - ${formatTime(assignResponse.metadata.endTime)}. Ngày: ${formatDate(
+          assignResponse.metadata.date
+        )}. Tại bàn ${assignResponse.metadata.tableAssigned.name}. 
+        
+Khi đến nhà hàng, hãy đến quầy tiếp tân và đọc tên: ${
           assignResponse.metadata.name
-        } và ${
+        } và số điện thoại: ${
           assignResponse.metadata.phone
         } để được nhân viên sắp xếp bàn cho bạn.
 Trân trọng,
-Nhà hàng Cà Chua`,
+Nhà hàng Tomato`,
       };
 
       toast.success("Table assigned successfully!");
@@ -192,6 +193,14 @@ Nhà hàng Cà Chua`,
       .getMinutes()
       .toString()
       .padStart(2, "0")}`;
+  };
+  const formatDate = (dateInput) => {
+    const date = new Date(dateInput);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
   };
 
   return (

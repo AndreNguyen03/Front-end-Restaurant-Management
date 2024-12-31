@@ -17,7 +17,7 @@ function convertUTCToGMT7InHours(utcDate) {
   return gmt7TimeInHours >= 24 ? gmt7TimeInHours - 24 : gmt7TimeInHours;
 }
 
-function TableView({ currentPage, totalPages, setCurrentPage, selectedDate }) {
+function TableView({ selectedDate }) {
   const url = 'http://localhost:3056';
   const [reservations, setReservations] = useState([])
   const [tables, setTables] = useState([]);
@@ -127,11 +127,6 @@ function TableView({ currentPage, totalPages, setCurrentPage, selectedDate }) {
           })}
         </tbody>
       </table>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-      />
     </div>
   );
 }

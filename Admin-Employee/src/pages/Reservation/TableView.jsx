@@ -1,39 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import "./TableView.css";
-
-function generateRandomReservations(tables, startHour, endHour) {
-  const reservations = {};
-  const phonePrefixes = ["091", "098", "090", "093", "094"];
-
-  tables.forEach((table) => {
-    reservations[table.name] = [];
-
-    while (
-      reservations[table.name].length <
-      Math.floor(Math.random() * 3) + 1
-    ) {
-      const start =
-        Math.floor(Math.random() * ((endHour - startHour) * 2)) / 2 + startHour; // Thời gian bắt đầu
-      const duration = Math.floor(Math.random() * 3) + 1; // Thời lượng đặt chỗ (1-3 giờ)
-      const end = Math.min(start + duration, endHour);
-
-      // Kiểm tra trùng lặp thời gian
-      const isOverlap = reservations[table.name].some(
-        (res) => !(end <= res.start || start >= res.end) // Không có khoảng giao nhau
-      );
-
-      if (!isOverlap) {
-        const phoneNumber = `${
-          phonePrefixes[Math.floor(Math.random() * phonePrefixes.length)]
-        }${Math.floor(1000000 + Math.random() * 9000000)}`;
-        reservations[table.name].push({ phoneNumber, start, end });
-      }
-    }
-  });
-
-  return reservations;
-}
+import axios from 'axios';
 
 function formatTime(time) {
   const hour = Math.floor(time);
@@ -41,12 +9,51 @@ function formatTime(time) {
   return `${hour}:${minutes}`;
 }
 
-function TableView({ currentTables, currentPage, totalPages, setCurrentPage }) {
-  const reservations = generateRandomReservations(currentTables, 9, 21);
+function convertUTCToGMT7InHours(utcDate) {
+  const utcHours = utcDate.getUTCHours();
+  const utcMinutes = utcDate.getUTCMinutes();
+  const utcTimeInHours = utcHours + utcMinutes / 60;
+  const gmt7TimeInHours = utcTimeInHours + 7;
+  return gmt7TimeInHours >= 24 ? gmt7TimeInHours - 24 : gmt7TimeInHours;
+}
 
-  console.log(`current Tables`, currentTables);
+function TableView({ selectedDate }) {
+  const url = 'http://localhost:3056';
+  const [reservations, setReservations] = useState([])
+  const [tables, setTables] = useState([]);
 
-  const validTables = currentTables.filter((table) => table.name); // Bỏ qua bàn không có tên
+  useEffect(() => {
+    async function fetchReservations(date) {
+      try {
+
+        const response = await axios.get(`${url}/api/reservations/by-date`, {
+          params: { date: date }
+        })
+        console.log(response.data.metadata);
+        setReservations(response.data.metadata);
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    async function fetchTable() {
+      try {
+
+        const response = await axios.get(`${url}/api/table/list`)
+        console.log(response.data.data);
+        setTables(response.data.data);
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchReservations(selectedDate)
+    fetchTable();
+  }, [selectedDate])
+
+  
 
   return (
     <div className="table-view">
@@ -54,7 +61,7 @@ function TableView({ currentTables, currentPage, totalPages, setCurrentPage }) {
         <thead>
           <tr>
             <th>Time</th>
-            {validTables.map((table, index) => (
+            {tables.map((table, index) => (
               <th key={`${index}-${table.name}`}>{table.name}</th>
             ))}
           </tr>
@@ -65,29 +72,48 @@ function TableView({ currentTables, currentPage, totalPages, setCurrentPage }) {
             return (
               <tr key={rowIndex}>
                 <td>{formatTime(time)}</td>
-                {validTables.map((table, tableIndex) => {
-                  const reservation = reservations[table.name].find(
-                    (res) => res.start === time
+                {tables.map((table, tableIndex) => {
+                  const reservation = reservations.find((res) => {
+                    const startDate = new Date(res.startTime);
+                    const startInHoursFormatted = convertUTCToGMT7InHours(startDate);
+                    return startInHoursFormatted === time && res.status === "confirm" && table.name === res.tableAssigned.name;
+                  }
                   );
 
                   if (reservation) {
                     return (
                       <td
                         key={`${tableIndex}`}
-                        rowSpan={(reservation.end - reservation.start) * 2}
+                        rowSpan={(() => {
+                          const startDate = new Date(reservation.startTime);
+                          const endDate = new Date(reservation.endTime);
+                          const startInHoursFormatted = convertUTCToGMT7InHours(startDate);
+                          const endInHoursFormatted = convertUTCToGMT7InHours(endDate);
+                          console.log(`start, end`, startInHoursFormatted, endInHoursFormatted)
+                          const diffHours = (endInHoursFormatted - startInHoursFormatted) + 0.5;
+                          console.log(diffHours)
+                          return diffHours * 2;
+                        })()}
                         style={{
                           backgroundColor: "#FFFACD",
                           textAlign: "center",
                           verticalAlign: "middle",
                         }}
                       >
-                        {reservation.phoneNumber}
+                        {reservation.phone} - {reservation.name}
                       </td>
                     );
                   }
 
-                  const isPartOfSpan = reservations[table.name].some(
-                    (res) => time > res.start && time < res.end
+                  const isPartOfSpan = reservations.some(
+                    (res) => {
+                      const startDate = new Date(res.startTime);
+                      const endDate = new Date(res.endTime);
+                      const startInHoursFormatted = convertUTCToGMT7InHours(startDate);
+                      const endInHoursFormatted = convertUTCToGMT7InHours(endDate);
+                      return time >= startInHoursFormatted && time <= endInHoursFormatted &&
+                        table.name === res.tableAssigned.name
+                    }
                   );
 
                   if (!isPartOfSpan) {
@@ -101,11 +127,6 @@ function TableView({ currentTables, currentPage, totalPages, setCurrentPage }) {
           })}
         </tbody>
       </table>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-      />
     </div>
   );
 }

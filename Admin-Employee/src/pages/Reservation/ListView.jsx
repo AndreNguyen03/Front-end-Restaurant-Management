@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Pagination from "./Pagination";
 import "./ListView.css";
+import axios from "axios";
 
 function ListView() {
   const [reservations, setReservations] = useState([]);
@@ -12,6 +13,15 @@ function ListView() {
   const [selectedTable, setSelectedTable] = useState("");
   const [duration, setDuration] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState(""); // Thêm state tìm kiếm
+  const recordsPerPage = 8;
+
+  const totalPages = Math.ceil(reservations.length / recordsPerPage);
+  const currentReservations = reservations.slice(
+    (currentPage - 1) * recordsPerPage,
+    currentPage * recordsPerPage
+  );
 
   const apiFetch = useCallback(async (url, options = {}) => {
     try {
@@ -31,11 +41,19 @@ function ListView() {
     try {
       const data = await apiFetch("http://localhost:3056/api/reservations/all");
       const sortedReservations =
-        data.metadata?.sort((a, b) => {
-          const dateA = new Date(a.startTime).getTime();
-          const dateB = new Date(b.startTime).getTime();
-          return dateB - dateA;
-        }) || [];
+        data.metadata
+          ?.filter((reservation) => {
+            const queryLowerCase = searchQuery.toLowerCase();
+            return (
+              reservation.name.toLowerCase().includes(queryLowerCase) ||
+              reservation.phone.includes(searchQuery)
+            );
+          })
+          .sort((a, b) => {
+            const dateA = new Date(a.startTime).getTime();
+            const dateB = new Date(b.startTime).getTime();
+            return dateB - dateA;
+          }) || [];
 
       setReservations(sortedReservations);
     } catch (err) {
@@ -43,7 +61,7 @@ function ListView() {
     } finally {
       setLoading(false);
     }
-  }, [apiFetch]);
+  }, [apiFetch, searchQuery]);
 
   const fetchTables = useCallback(async () => {
     try {
@@ -67,6 +85,7 @@ function ListView() {
 
   const handleEditClick = (reservation) => {
     setEditingReservation(reservation);
+    console.log(reservation);
     setSelectedTable("");
     setDuration(1);
   };
@@ -85,27 +104,52 @@ function ListView() {
         duration: duration,
       };
 
-      await apiFetch("http://localhost:3056/api/reservations/assign-table", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const assignResponse = await apiFetch(
+        "http://localhost:3056/api/reservations/assign-table",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      const mailOptions = {
+        to: assignResponse.metadata.email,
+        subject: "Xác nhận đặt bàn",
+        text: `Xin chào,
+Bạn đã đặt bàn thành công,
+Thông tin đặt bàn của bạn: Vào lúc ${formatTime(
+          assignResponse.metadata.startTime
+        )} - ${formatTime(assignResponse.metadata.endTime)}. Ngày: ${formatDate(
+          assignResponse.metadata.date
+        )}. Tại bàn ${assignResponse.metadata.tableAssigned.name}. 
+        
+Khi đến nhà hàng, hãy đến quầy tiếp tân và đọc tên: ${assignResponse.metadata.name
+          } và số điện thoại: ${assignResponse.metadata.phone
+          } để được nhân viên sắp xếp bàn cho bạn.
+Trân trọng,
+Nhà hàng Tomato`,
+      };
 
       toast.success("Table assigned successfully!");
       await fetchReservations();
 
       setEditingReservation(null);
       setSelectedTable("");
-    } catch (error) {
-      toast.error(
-        `Failed to assign table: ${error.message || "Unknown error"}`
-      );
+      setIsSubmitting(false);
+      await axios.post("http://localhost:3056/api/send-mail", {
+        to: mailOptions.to,
+        subject: mailOptions.subject,
+        text: mailOptions.text,
+      });
     } finally {
+      console.log("Setting isSubmitting to false");
       setIsSubmitting(false);
     }
   };
+
   const handleCancelEdit = async () => {
     if (!editingReservation) {
       toast.error("No reservation selected.");
@@ -141,6 +185,25 @@ function ListView() {
     }
   };
 
+  const handleDeleteReservation = async (reservationId) => {
+    if (window.confirm("Bạn có chắc muốn xóa đặt bàn này?")) {
+      try {
+        setLoading(true);
+        await apiFetch(`http://localhost:3056/api/reservations/${reservationId}`, {
+          method: "DELETE",
+        });
+        toast.success("Xóa đặt bàn thành công!");
+        setReservations((prev) =>
+          prev.filter((reservation) => reservation._id !== reservationId)
+        );
+      } catch (err) {
+        toast.error("Không thể xóa đặt bàn: " + err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   const formatTime = (time) => {
     const date = new Date(time);
     return `${date.getHours().toString().padStart(2, "0")}:${date
@@ -148,9 +211,26 @@ function ListView() {
       .toString()
       .padStart(2, "0")}`;
   };
+  const formatDate = (dateInput) => {
+    const date = new Date(dateInput);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  };
 
   return (
     <div className="list-view">
+      <div className="custom-search-container">
+        <input
+          type="text"
+          placeholder="Search by name or phone number..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="custom-search-input"
+        />
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
@@ -166,14 +246,14 @@ function ListView() {
               <th>Name</th>
               <th>Phone</th>
               <th>Status</th>
-              <th>Edit</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {reservations.length > 0 ? (
-              reservations.map((reservation, index) => (
+            {currentReservations.length > 0 ? (
+              currentReservations.map((reservation, index) => (
                 <tr key={reservation._id}>
-                  <td>{index + 1}</td>
+                  <td>{index + 1 + (currentPage - 1) * recordsPerPage}</td>
                   <td>{new Date(reservation.date).toLocaleDateString()}</td>
                   <td>{formatTime(reservation.startTime) || "N/A"}</td>
                   <td>{reservation.tableAssigned?.name || "N/A"}</td>
@@ -187,14 +267,19 @@ function ListView() {
                     >
                       ✏️
                     </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDeleteReservation(reservation._id)}
+                      style={{ marginLeft: "8px" }}
+                    >
+                      ❌
+                    </button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="8">
-                  No reservations found for the selected date.
-                </td>
+                <td colSpan="8">No reservations found.</td>
               </tr>
             )}
           </tbody>
@@ -251,7 +336,11 @@ function ListView() {
       )}
 
       <div className="pagination-container">
-        <Pagination currentPage={1} totalPages={1} setCurrentPage={() => {}} />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
       <ToastContainer />
     </div>

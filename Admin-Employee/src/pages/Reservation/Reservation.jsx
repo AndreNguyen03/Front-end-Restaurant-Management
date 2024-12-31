@@ -52,6 +52,7 @@ function Reservation() {
                     currentPage={currentPage}
                     totalPages={totalPages}
                     setCurrentPage={setCurrentPage}
+                    selectedDate={selectedDate}
                 />
             ) : (
                 <ListView

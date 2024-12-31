@@ -62,6 +62,31 @@ const Reservation = () => {
     }
   };
 
+  const timeOptions = [
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "12:00",
+    "12:30",
+    "13:00",
+    "13:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
+    "17:00",
+    "17:30",
+    "18:00",
+    "18:30",
+    "19:00",
+    "19:30",
+  ];
+
   return (
     <div className="reservation-container">
       <h1 className="reservation-title">Table Reservation</h1>
@@ -113,15 +138,21 @@ const Reservation = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="form-group-container">
             <label htmlFor="time">Time</label>
-            <input
-              type="time"
+            <select
               id="time"
               value={formData.time}
               onChange={handleChange}
               required
-            />
+            >
+              <option value="">Select a time</option>
+              {timeOptions.map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <button type="submit" className="reservation-button" disabled={loading}>

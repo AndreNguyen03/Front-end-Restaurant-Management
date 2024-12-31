@@ -36,20 +36,16 @@ function Header({
         </button>
       </div>
 
-      <input
-        type="text"
-        placeholder="Search by ID or Table..."
-        className="search-input"
-        value={searchQuery}
-        onChange={(e) => handleSearchChange(e)}
-      />
-      <DatePicker
-        selected={selectedDate}
-        onChange={(date) => handleDateChange(date)}
-        dateFormat="yyyy-MM-dd"
-        className="date-picker"
-        popperPlacement="bottom-start"
-      />
+
+      {viewMode === "table" && (
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => handleDateChange(date)}
+          dateFormat="yyyy-MM-dd"
+          className="date-picker"
+          popperPlacement="bottom-start"
+        />
+      )}
     </div>
   );
 }

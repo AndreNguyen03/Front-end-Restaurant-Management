@@ -126,11 +126,9 @@ Thông tin đặt bàn của bạn: Vào lúc ${formatTime(
           assignResponse.metadata.date
         )}. Tại bàn ${assignResponse.metadata.tableAssigned.name}. 
         
-Khi đến nhà hàng, hãy đến quầy tiếp tân và đọc tên: ${
-          assignResponse.metadata.name
-        } và số điện thoại: ${
-          assignResponse.metadata.phone
-        } để được nhân viên sắp xếp bàn cho bạn.
+Khi đến nhà hàng, hãy đến quầy tiếp tân và đọc tên: ${assignResponse.metadata.name
+          } và số điện thoại: ${assignResponse.metadata.phone
+          } để được nhân viên sắp xếp bàn cho bạn.
 Trân trọng,
 Nhà hàng Tomato`,
       };
@@ -187,6 +185,25 @@ Nhà hàng Tomato`,
     }
   };
 
+  const handleDeleteReservation = async (reservationId) => {
+    if (window.confirm("Bạn có chắc muốn xóa đặt bàn này?")) {
+      try {
+        setLoading(true);
+        await apiFetch(`http://localhost:3056/api/reservations/${reservationId}`, {
+          method: "DELETE",
+        });
+        toast.success("Xóa đặt bàn thành công!");
+        setReservations((prev) =>
+          prev.filter((reservation) => reservation._id !== reservationId)
+        );
+      } catch (err) {
+        toast.error("Không thể xóa đặt bàn: " + err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   const formatTime = (time) => {
     const date = new Date(time);
     return `${date.getHours().toString().padStart(2, "0")}:${date
@@ -229,7 +246,7 @@ Nhà hàng Tomato`,
               <th>Name</th>
               <th>Phone</th>
               <th>Status</th>
-              <th>Edit</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -249,6 +266,13 @@ Nhà hàng Tomato`,
                       onClick={() => handleEditClick(reservation)}
                     >
                       ✏️
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDeleteReservation(reservation._id)}
+                      style={{ marginLeft: "8px" }}
+                    >
+                      ❌
                     </button>
                   </td>
                 </tr>

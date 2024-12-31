@@ -13,6 +13,15 @@ function ListView() {
   const [selectedTable, setSelectedTable] = useState("");
   const [duration, setDuration] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState(""); // Thêm state tìm kiếm
+  const recordsPerPage = 8;
+
+  const totalPages = Math.ceil(reservations.length / recordsPerPage);
+  const currentReservations = reservations.slice(
+    (currentPage - 1) * recordsPerPage,
+    currentPage * recordsPerPage
+  );
 
   const apiFetch = useCallback(async (url, options = {}) => {
     try {
@@ -32,11 +41,19 @@ function ListView() {
     try {
       const data = await apiFetch("http://localhost:3056/api/reservations/all");
       const sortedReservations =
-        data.metadata?.sort((a, b) => {
-          const dateA = new Date(a.startTime).getTime();
-          const dateB = new Date(b.startTime).getTime();
-          return dateB - dateA;
-        }) || [];
+        data.metadata
+          ?.filter((reservation) => {
+            const queryLowerCase = searchQuery.toLowerCase();
+            return (
+              reservation.name.toLowerCase().includes(queryLowerCase) ||
+              reservation.phone.includes(searchQuery)
+            );
+          })
+          .sort((a, b) => {
+            const dateA = new Date(a.startTime).getTime();
+            const dateB = new Date(b.startTime).getTime();
+            return dateB - dateA;
+          }) || [];
 
       setReservations(sortedReservations);
     } catch (err) {
@@ -44,7 +61,7 @@ function ListView() {
     } finally {
       setLoading(false);
     }
-  }, [apiFetch]);
+  }, [apiFetch, searchQuery]);
 
   const fetchTables = useCallback(async () => {
     try {
@@ -73,8 +90,6 @@ function ListView() {
     setDuration(1);
   };
 
-
-
   const handleConfirmEdit = async () => {
     if (selectedTable === "") {
       toast.error("Please select a table.");
@@ -89,26 +104,35 @@ function ListView() {
         duration: duration,
       };
 
-      const assignResponse = await apiFetch("http://localhost:3056/api/reservations/assign-table", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const assignResponse = await apiFetch(
+        "http://localhost:3056/api/reservations/assign-table",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
 
       const mailOptions = {
         to: assignResponse.metadata.email,
         subject: "Xác nhận đặt bàn",
         text: `Xin chào,
 Bạn đã đặt bàn thành công,
-Thông tin đặt bàn của bạn : ${formatTime(assignResponse.metadata.startTime)} - ${formatTime(assignResponse.metadata.endTime)} . ${assignResponse.metadata.tableAssigned.name}.
-Khi đến nhà hàng, hãy đến quầy tiếp tân và đọc thông tin ${assignResponse.metadata.name} và ${assignResponse.metadata.phone} để được nhân viên sắp xếp bàn cho bạn.
+Thông tin đặt bàn của bạn : ${formatTime(
+          assignResponse.metadata.startTime
+        )} - ${formatTime(assignResponse.metadata.endTime)} . ${
+          assignResponse.metadata.tableAssigned.name
+        }.
+Khi đến nhà hàng, hãy đến quầy tiếp tân và đọc thông tin ${
+          assignResponse.metadata.name
+        } và ${
+          assignResponse.metadata.phone
+        } để được nhân viên sắp xếp bàn cho bạn.
 Trân trọng,
 Nhà hàng Cà Chua`,
       };
-
-
 
       toast.success("Table assigned successfully!");
       await fetchReservations();
@@ -116,7 +140,7 @@ Nhà hàng Cà Chua`,
       setEditingReservation(null);
       setSelectedTable("");
       setIsSubmitting(false);
-      await axios.post('http://localhost:3056/api/send-mail', {
+      await axios.post("http://localhost:3056/api/send-mail", {
         to: mailOptions.to,
         subject: mailOptions.subject,
         text: mailOptions.text,
@@ -126,6 +150,7 @@ Nhà hàng Cà Chua`,
       setIsSubmitting(false);
     }
   };
+
   const handleCancelEdit = async () => {
     if (!editingReservation) {
       toast.error("No reservation selected.");
@@ -171,6 +196,15 @@ Nhà hàng Cà Chua`,
 
   return (
     <div className="list-view">
+      <div className="custom-search-container">
+        <input
+          type="text"
+          placeholder="Search by name or phone number..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="custom-search-input"
+        />
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
@@ -190,10 +224,10 @@ Nhà hàng Cà Chua`,
             </tr>
           </thead>
           <tbody>
-            {reservations.length > 0 ? (
-              reservations.map((reservation, index) => (
+            {currentReservations.length > 0 ? (
+              currentReservations.map((reservation, index) => (
                 <tr key={reservation._id}>
-                  <td>{index + 1}</td>
+                  <td>{index + 1 + (currentPage - 1) * recordsPerPage}</td>
                   <td>{new Date(reservation.date).toLocaleDateString()}</td>
                   <td>{formatTime(reservation.startTime) || "N/A"}</td>
                   <td>{reservation.tableAssigned?.name || "N/A"}</td>
@@ -212,9 +246,7 @@ Nhà hàng Cà Chua`,
               ))
             ) : (
               <tr>
-                <td colSpan="8">
-                  No reservations found for the selected date.
-                </td>
+                <td colSpan="8">No reservations found.</td>
               </tr>
             )}
           </tbody>
@@ -271,7 +303,11 @@ Nhà hàng Cà Chua`,
       )}
 
       <div className="pagination-container">
-        <Pagination currentPage={1} totalPages={1} setCurrentPage={() => { }} />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
       <ToastContainer />
     </div>

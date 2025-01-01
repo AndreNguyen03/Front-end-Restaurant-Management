@@ -36,9 +36,9 @@ const Orders = ({ url }) => {
   };
 
   return (
-    <div className="orders-list whole-table-format flex-col">
-      <div className="list-table">
-        <div className="list-table-format title">
+    <div className="orders-list table-layout">
+      <div>
+        <div className="menu-table-header">
           <b>Thời gian đặt hàng</b>
           <b>Tên khách hàng</b>
           <b>Số điện thoại</b>
@@ -46,14 +46,14 @@ const Orders = ({ url }) => {
           <b>Hành động</b>
         </div>
         {orders.map((order, index) => (
-          <div key={index} className="list-table-format">
+          <div key={index} className="menu-table-row">
             <p>{new Date(order.createdAt).toLocaleString()}</p>
             <p>{order.customer.name}</p>
             <p>{order.customer.phone}</p>
             <p>{order.status}</p>
-            <div className="action">
+            <div className="menu-item-actions">
               <FontAwesomeIcon
-                className="icon"
+                className="menu-action-icon"
                 icon={faEye}
                 onClick={() => viewOrderDetails(order)}
               />
@@ -62,20 +62,36 @@ const Orders = ({ url }) => {
         ))}
       </div>
       {selectedOrder && (
-        <div className="order-details-modal">
+        <div className="modal">
           <div className="order-details-content">
             <h2>Chi tiết đơn hàng</h2>
-            <p><strong>Thời gian đặt hàng:</strong> {new Date(selectedOrder.createdAt).toLocaleString()}</p>
-            <p><strong>Tên khách hàng:</strong> {selectedOrder.customer.name}</p>
-            <p><strong>Số điện thoại:</strong> {selectedOrder.customer.phone}</p>
-            <p><strong>Địa chỉ:</strong> {`${selectedOrder.exactAddress}, ${selectedOrder.ward}, ${selectedOrder.district}`}</p>
-            <p><strong>Tổng tiền:</strong> {formatNumber(selectedOrder.amount)} VND</p>
-            <p><strong>Trạng thái:</strong> {selectedOrder.status}</p>
+            <p>
+              <strong>Thời gian đặt hàng:</strong>{" "}
+              {new Date(selectedOrder.createdAt).toLocaleString()}
+            </p>
+            <p>
+              <strong>Tên khách hàng:</strong> {selectedOrder.customer.name}
+            </p>
+            <p>
+              <strong>Số điện thoại:</strong> {selectedOrder.customer.phone}
+            </p>
+            <p>
+              <strong>Địa chỉ:</strong>{" "}
+              {`${selectedOrder.exactAddress}, ${selectedOrder.ward}, ${selectedOrder.district}`}
+            </p>
+            <p>
+              <strong>Tổng tiền:</strong> {formatNumber(selectedOrder.amount)}{" "}
+              VND
+            </p>
+            <p>
+              <strong>Trạng thái:</strong> {selectedOrder.status}
+            </p>
             <h3>Món ăn</h3>
             <ul>
               {selectedOrder.items.map((item, index) => (
                 <li key={index}>
-                  {item.name} - Số lượng: {item.quantity} - Giá: {formatNumber(item.price)} VND
+                  {item.name} - Số lượng: {item.quantity} - Giá:{" "}
+                  {formatNumber(item.price)} VND
                 </li>
               ))}
             </ul>

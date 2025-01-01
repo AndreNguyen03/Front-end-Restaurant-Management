@@ -1,56 +1,61 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./FoodItem.css";
-import { assets } from "../../assets/frontend_assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 
 const FoodItem = ({ id, name, price, description, image }) => {
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
   const { isAuthenticated } = useContext(AuthContext);
+  const [isInCart, setIsInCart] = useState(false);
+  const { fetchCartData, addToCart, removeFromCart } = useContext(StoreContext);
 
-  const handleAddToCart = () => {
+  useEffect(() => {
+    const checkCartStatus = async () => {
+      if (isAuthenticated) {
+        const cartData = await fetchCartData();
+        setIsInCart(cartData[id] > 0);
+      }
+    };
+
+    checkCartStatus();
+  }, [isAuthenticated, fetchCartData, id]);
+
+  const handleAddToCart = async () => {
     if (!isAuthenticated) {
       toast.error("Please log in to add items to the cart.");
       return;
     }
-    addToCart(id);
+
+    if (isInCart) {
+      await removeFromCart(id);
+      toast.info("Removed from cart");
+      setIsInCart(false);
+    } else {
+      await addToCart(id);
+      toast.success("Added to cart!");
+      setIsInCart(true);
+    }
   };
+
+  const imageUrl = `http://localhost:3056/images/${image}`;
 
   return (
     <div className="food-item">
       <div className="food-item-img-container">
-        <img className="food-item-image" src={image} alt="" />
-        {!cartItems[id] ? (
-          <img
-            className="add"
-            onClick={handleAddToCart}
-            src={assets.add_icon_white}
-            alt="Add to cart"
-          />
-        ) : (
-          <div className="food-item-counter">
-            <img 
-              onClick={() => removeFromCart(id)} 
-              src={assets.remove_icon_red} 
-              alt="Remove from cart" 
-            />
-            <p>{cartItems[id]}</p>
-            <img 
-              onClick={handleAddToCart} 
-              src={assets.add_icon_green} 
-              alt="Add more to cart" 
-            />
-          </div>
-        )}
+        <img className="food-item-image" src={imageUrl} alt="" />
+        <button
+          className={`add-to-cart-btn ${isInCart ? "in-cart" : ""}`}
+          onClick={handleAddToCart}
+        >
+          {isInCart ? "✓ In Cart" : "Add to Cart"}
+        </button>
       </div>
       <div className="food-item-info">
         <div className="food-item-name-rating">
           <p>{name}</p>
-          <img src={assets.rating_starts} alt="Rating" />
         </div>
         <p className="food-item-desc">{description}</p>
-        <p className="food-item-price">${price}</p>
+        <p className="food-item-price">{price} VND</p>
       </div>
     </div>
   );

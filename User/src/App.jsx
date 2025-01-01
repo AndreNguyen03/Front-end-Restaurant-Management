@@ -15,6 +15,7 @@ import StoreContextProvider from "./context/StoreContext";
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import UpdateProfile from "./pages/UpdateProfile/UpdateProfile";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import UpdateAddress from "./pages/UpdateAddress/UpdateAddress";
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 
@@ -53,6 +54,14 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <UpdateProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/update-address"
+              element={
+                <ProtectedRoute>
+                  <UpdateAddress />
                 </ProtectedRoute>
               }
             />

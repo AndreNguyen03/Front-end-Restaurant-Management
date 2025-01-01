@@ -172,7 +172,7 @@ const EditEmployee = ({ onEmployeeEdited, employeeId }) => {
     <div className="add-employee-popup">
       <div className="add">
         <form className="flex-col" onSubmit={handleSubmit}>
-          <p onClick={() => onEmployeeEdited()} className="close-button">X</p>
+          <p onClick={() => onEmployeeEdited()} className="emp-close-button">X</p>
           <div className="add-employee-name flex-col">
             <p>Full Name</p>
             <input

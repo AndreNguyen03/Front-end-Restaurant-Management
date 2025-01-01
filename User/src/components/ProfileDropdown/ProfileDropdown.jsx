@@ -20,12 +20,18 @@ const ProfileDropdown = ({ setShowLogin }) => {
     navigate('/update-profile');
   }
 
+  const handleUpdateAddress = () => {
+    navigate('/update-address');
+  }
+
+  
   return (
     <div className="profile-dropdown">
       <ul>
-        <li onClick={handleLogout}>Logout</li>
-        <li onClick={handleChangePasswordClick}>Change Password</li>
-        <li onClick={handleUpdateUserInfoClick}>Update User Information</li>
+        <li onClick={handleLogout}>Đăng Xuất</li>
+        <li onClick={handleChangePasswordClick}>Đối Mật Khẩu</li>
+        <li onClick={handleUpdateUserInfoClick}>Cập nhật thông tin</li>
+        <li onClick={handleUpdateAddress}>Cập nhật địa chỉ</li>
       </ul>
     </div>
   );

@@ -13,11 +13,12 @@
 }
 
 .cart-items-item {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    align-items: center;
     margin: 10px 0;
     color: black;
-
 }
-
 
 .cart-items-item img {
     width: 100px;
@@ -29,45 +30,47 @@
     background-color: #e2e2e2;
 }
 
-.cart-items-item .cross{
+.cart-items-item .cross {
     cursor: pointer;
 }
 
-.cart-bottom{
+.cart-bottom {
     margin-top: 80px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: max(12vw, 20px);
 }
 
-.cart-total{
+.cart-total {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-width: 300px;
+    text-align: center;
 }
 
-.cart-total-details{
+.cart-total-details {
     display: flex;
     justify-content: space-between;
     color: #555;
 }
 
-.cart-total hr{
+.cart-total hr {
     margin: 10px 0;
 }
 
-.cart-total button{
+.cart-total button {
     border: none;
     color: white;
     background-color: tomato;
-    width: max(15vw, 200px);
+    width: 100%;
     padding: 12px 0px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.cart-promocode{
+.cart-promocode {
     flex: 1;
 }
 
@@ -75,8 +78,7 @@
     color: #555;
 }
 
-
-.cart-promocode-input{
+.cart-promocode-input {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
@@ -85,14 +87,14 @@
     border-radius: 4px;
 }
 
-.cart-promocode-input input{
+.cart-promocode-input input {
     background: transparent;
     border: none;
     outline: none;
     padding-left: 10px;
 }
 
-.cart-promocode-input button{
+.cart-promocode-input button {
     width: max(10vw, 150px);
     padding: 12px 5px;
     background-color: black;
@@ -101,11 +103,31 @@
     border-radius: 4px;
 }
 
-@media (max-width: 750px){
-    .cart-bottom{
+@media (max-width: 750px) {
+    .cart-bottom {
         flex-direction: column-reverse;
     }
-    .cart-promocode{
+    .cart-promocode {
         justify-content: start;
     }
+}
+
+.quantity-input {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    justify-self: center;
+}
+
+.quantity-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.cross {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
 }

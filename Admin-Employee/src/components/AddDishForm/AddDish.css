@@ -7,7 +7,7 @@
 }
 
 .add {
-    width: 40%;
+    width: 50%;
     margin-right: 50px;
     color: #6d6d6d;
     font-size: 16px;
@@ -78,7 +78,7 @@
     background-color: #333;
 }
 
-.close-button{
+.dish-close-button{
     align-self: self-end;
     cursor: pointer;
 

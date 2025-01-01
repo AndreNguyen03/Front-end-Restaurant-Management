@@ -5,10 +5,14 @@ import FoodItem from "../FoodItem/FoodItem";
 import SearchBar from "../SearchBar/SearchBar";
 
 const FoodDisplay = ({ category, setCategory }) => {
-  const { food_list } = useContext(StoreContext);
+  const { foodList } = useContext(StoreContext);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredFoodList = food_list.filter((item) => {
+  if (!foodList) {
+    return <div>Loading...</div>;
+  }
+
+  const filteredFoodList = foodList.filter((item) => {
     const isCategoryMatch = category === "All" || category === item.category;
     const isSearchMatch = item.name
       .toLowerCase()

@@ -1,0 +1,86 @@
+.update-address {
+  padding: 20px;
+}
+
+.add-address,
+.address-list {
+  margin-bottom: 20px;
+}
+
+.add-address {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align the add address section */
+}
+
+.add-address select,
+.add-address input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-address button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: tomato;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.add-address button:hover {
+  background-color: #e04e4e;
+}
+
+.address-list .address-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.address-list .address-item p {
+  margin: 5px 0;
+}
+
+.address-list .address-item button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.address-list .address-item button:nth-child(1) {
+  background-color: #007bff;
+  color: white;
+}
+
+.address-list .address-item button:nth-child(1):hover {
+  background-color: #0056b3;
+}
+
+.address-list .address-item button:nth-child(2) {
+  background-color: #ffc107;
+  color: white;
+}
+
+.address-list .address-item button:nth-child(2):hover {
+  background-color: #e0a800;
+}
+
+.address-list .address-item button:nth-child(3) {
+  background-color: #dc3545;
+  color: white;
+}
+
+.address-list .address-item button:nth-child(3):hover {
+  background-color: #c82333;
+}

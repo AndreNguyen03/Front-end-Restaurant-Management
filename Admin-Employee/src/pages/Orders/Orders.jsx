@@ -9,6 +9,7 @@ import formatNumber from "../../utils/formatNumber";
 const Orders = ({ url }) => {
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [status, setStatus] = useState("");
 
   const fetchOrders = async () => {
     try {
@@ -29,10 +30,28 @@ const Orders = ({ url }) => {
 
   const viewOrderDetails = (order) => {
     setSelectedOrder(order);
+    setStatus(order.status);
   };
 
   const closeOrderDetails = () => {
     setSelectedOrder(null);
+    fetchOrders();
+  };
+
+  const handleStatusChange = async (e) => {
+    const newStatus = e.target.value;
+    setStatus(newStatus);
+
+    try {
+      await axios.post(`${url}/api/order/update`, {
+        orderId: selectedOrder._id,
+        status: newStatus,
+      });
+      toast.success("Cập nhật trạng thái đơn hàng thành công");
+      fetchOrders(); // Refresh the order list
+    } catch (error) {
+      toast.error("Không thể cập nhật trạng thái đơn hàng");
+    }
   };
 
   return (
@@ -84,7 +103,12 @@ const Orders = ({ url }) => {
               VND
             </p>
             <p>
-              <strong>Trạng thái:</strong> {selectedOrder.status}
+              <strong>Trạng thái:</strong>
+              <select value={status} onChange={handleStatusChange}>
+                <option value="confirmed">Xác nhận</option>
+                <option value="Đang Vận Chuyển">Đang Vận Chuyển</option>
+                <option value="Hoàn Thành">Hoàn Thành</option>
+              </select>
             </p>
             <h3>Món ăn</h3>
             <ul>

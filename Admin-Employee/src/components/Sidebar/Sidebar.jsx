@@ -9,6 +9,7 @@ const Sidebar = () => {
 
   const links = {
     admin: [
+      { to: "/revenue", label: "Revenue", icon: assets.revenue_icon },
       { to: "/list", label: "Dishes", icon: assets.order_icon },
       { to: "/table", label: "Tables", icon: assets.table_icon },
       {
@@ -17,9 +18,14 @@ const Sidebar = () => {
         icon: assets.ingredient_icon,
       },
       { to: "/employees", label: "employee", icon: assets.order_icon },
-      { to: "/purchases", label: "Purchases", icon: assets.order_icon },
+      { to: "/purchases", label: "Purchases", icon: assets.purchase_icon },
     ],
-    employee: [{ to: "/orders", label: "Orders", icon: assets.order_icon }],
+    employee: [
+      { to: '/orders', label: 'Orders', icon: assets.order_icon },
+      { to: '/tableservice', label: 'Table', icon: assets.order_icon },
+      { to: '/invoice', label: 'Invoice', icon: assets.order_icon },
+      { to: '/reservation', label: 'Reservation', icon: assets.order_icon },
+    ],
   };
 
   return (

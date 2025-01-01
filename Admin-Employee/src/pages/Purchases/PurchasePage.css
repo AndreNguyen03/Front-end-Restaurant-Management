@@ -1,0 +1,55 @@
+.whole-table-format {
+  padding: 20px;
+  width: 100%;
+}
+
+.actions {
+  margin-bottom: 20px;
+}
+
+.add-purchase {
+  background-color: tomato;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.add-purchase:hover {
+  background-color: tomato;
+}
+
+.list-table {
+  width: 100%;
+}
+
+.list-table-format {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr; /* Điều chỉnh theo số cột */
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.list-table-format.title {
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+
+.action {
+  text-align: center;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 18px;
+  color: blue;
+  margin-left: 10px;
+}
+
+.icon:hover {
+  color: darkblue;
+}

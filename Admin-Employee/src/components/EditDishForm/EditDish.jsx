@@ -74,7 +74,7 @@ const EditDish = ({ url, onDishEdited, dishId}) => {
     <div className="add-dish-popup">
       <div className="add ">
         <form className="flex-col" onSubmit={onSubmitHandler}>
-          <p onClick={() => onDishEdited()} className="close-button">X</p>
+          <p onClick={() => onDishEdited()} className="dish-close-button">X</p>
           <div className="add-img-upload flex-col">
             <p>Upload Image</p>
             <label htmlFor="image">

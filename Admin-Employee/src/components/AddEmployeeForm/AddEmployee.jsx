@@ -153,7 +153,7 @@ const AddEmployee = ({ onEmployeeAdded }) => {
     <div className="add-employee-popup">
       <div className="add">
         <form className="flex-col" onSubmit={handleSubmit}>
-          <p onClick={() => onEmployeeAdded()} className="close-button">X</p>
+          <p onClick={() => onEmployeeAdded()} className="emp-close-button">X</p>
           <div className="add-employee-name flex-col">
             <p>Full Name</p>
             <input

@@ -54,7 +54,7 @@ const DishList = ({ url }) => {
   const handleDishEdited = () => {
     setShowEditDish(false);
     fetchList();
-  }
+  };
 
   return (
     <div className="list whole-table-format flex-col">
@@ -79,17 +79,45 @@ const DishList = ({ url }) => {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>{item.price}</p>
-              <div className="action">
-                <FontAwesomeIcon onClick={() => {setShowConfirmationForm(true); setSelectedDishId(item._id)} } className="icon" icon={faTrash} />
-                <FontAwesomeIcon onClick={() => {setShowEditDish(true); setSelectedDishId(item._id);  }}  className="icon" icon={faEdit} />
+              <div className="dish-action">
+                <FontAwesomeIcon
+                  onClick={() => {
+                    setShowConfirmationForm(true);
+                    setSelectedDishId(item._id);
+                  }}
+                  className="dish-icon"
+                  icon={faTrash}
+                />
+                <FontAwesomeIcon
+                  onClick={() => {
+                    setShowEditDish(true);
+                    setSelectedDishId(item._id);
+                  }}
+                  className="dish-icon"
+                  icon={faEdit}
+                />
               </div>
             </div>
           );
         })}
       </div>
-      {showConfirmationForm && <ConfirmationForm onConfirm={() => {removeFood(selectedDishId); setShowConfirmationForm(false);}} onCancel={() => setShowConfirmationForm(false)  }/>}
+      {showConfirmationForm && (
+        <ConfirmationForm
+          onConfirm={() => {
+            removeFood(selectedDishId);
+            setShowConfirmationForm(false);
+          }}
+          onCancel={() => setShowConfirmationForm(false)}
+        />
+      )}
       {showAddDish && <AddDish onDishAdded={handleDishAdded} />}
-      {showEditDish && <EditDish url={url} onDishEdited = {handleDishEdited} dishId = {selectedDishId}/>}
+      {showEditDish && (
+        <EditDish
+          url={url}
+          onDishEdited={handleDishEdited}
+          dishId={selectedDishId}
+        />
+      )}
     </div>
   );
 };

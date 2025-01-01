@@ -56,27 +56,27 @@ const TableList = ({ url }) => {
   };
 
   return (
-    <div className="table-list-container">
-      <div className="actions">
-        <button className="add-table" onClick={() => setShowAddTable(true)}>
+    <div className="tables-container">
+      <div className="tables-actions">
+        <button className="btn-add-table" onClick={() => setShowAddTable(true)}>
           Add New Table
         </button>
       </div>
-      <div className="table-cards">
+      <div className="cards-wrapper">
         {tables.map((table) => (
-          <div key={table._id} className="table-card">
-            <div className="table-header">
+          <div key={table._id} className="card-item">
+            <div className="card-header">
               <h3>{table.name}</h3>
             </div>
             <p>{table.capacity} seats</p>
-            <div className="divider"></div>
-            <div className="table-actions">
+            <div className="card-divider"></div>
+            <div className="card-actions">
               <FontAwesomeIcon
                 onClick={() => {
                   setShowEditTable(true);
                   setSelectedTableId(table._id);
                 }}
-                className="icon-table edit-icon"
+                className="icon-action edit-action"
                 icon={faEdit}
               />
               <FontAwesomeIcon
@@ -84,7 +84,7 @@ const TableList = ({ url }) => {
                   setShowConfirmationForm(true);
                   setSelectedTableId(table._id);
                 }}
-                className="icon-table delete-icon"
+                className="icon-action delete-action"
                 icon={faTrash}
               />
             </div>

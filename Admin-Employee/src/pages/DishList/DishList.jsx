@@ -57,15 +57,18 @@ const DishList = ({ url }) => {
   };
 
   return (
-    <div className="list whole-table-format flex-col">
-      <div className="actions">
-        <button className="add-dish" onClick={() => setShowAddDish(true)}>
+    <div className="menu-container table-layout flex-col">
+      <div className="menu-actions">
+        <button
+          className="menu-add-button"
+          onClick={() => setShowAddDish(true)}
+        >
           Add New Dish
         </button>
       </div>
 
-      <div className="list-table">
-        <div className="list-table-format title">
+      <div className="menu-table">
+        <div className="menu-table-header">
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
@@ -74,18 +77,18 @@ const DishList = ({ url }) => {
         </div>
         {list.map((item, index) => {
           return (
-            <div key={index} className="list-table-format">
-              <img src={`${url}/images/` + item.image} alt="" />
+            <div key={index} className="menu-table-row">
+              <img src={`${url}/images/${item.image}`} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>{item.price}</p>
-              <div className="dish-action">
+              <div className="menu-item-actions">
                 <FontAwesomeIcon
                   onClick={() => {
                     setShowConfirmationForm(true);
                     setSelectedDishId(item._id);
                   }}
-                  className="dish-icon"
+                  className="menu-action-icon"
                   icon={faTrash}
                 />
                 <FontAwesomeIcon
@@ -93,7 +96,7 @@ const DishList = ({ url }) => {
                     setShowEditDish(true);
                     setSelectedDishId(item._id);
                   }}
-                  className="dish-icon"
+                  className="menu-action-icon"
                   icon={faEdit}
                 />
               </div>

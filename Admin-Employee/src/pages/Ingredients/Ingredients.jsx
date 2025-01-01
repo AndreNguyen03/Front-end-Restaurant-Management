@@ -14,10 +14,8 @@ const IngredientList = ({ url }) => {
   const [showEditIngredient, setShowEditIngredient] = useState(false);
   const [showConfirmationForm, setShowConfirmationForm] = useState(false);
   const [selectedIngredientId, setSelectedIngredientId] = useState(null);
-  
 
   const fetchList = async () => {
-
     const response = await axios.get(`${url}/api/ingredient/list`);
     console.log(response);
     if (!response.data.success) {
@@ -27,13 +25,11 @@ const IngredientList = ({ url }) => {
     setList(response.data.data);
   };
 
-
-
-
-
   const removeIngredient = async (ingredientId) => {
     try {
-      const response = await axios.post(`${url}/api/ingredient/delete`, { id: ingredientId });
+      const response = await axios.post(`${url}/api/ingredient/delete`, {
+        id: ingredientId,
+      });
       console.log(response);
       if (response.data.success) {
         toast.success("Ingredient removed successfully");
@@ -41,7 +37,6 @@ const IngredientList = ({ url }) => {
       } else {
         toast.error("Failed to remove Ingredient");
       }
-
     } catch (error) {
       toast.error("Error removing Ingredient");
       console.error(error);
@@ -61,18 +56,18 @@ const IngredientList = ({ url }) => {
   };
 
   return (
-    <div className="list whole-table-format flex-col">
-      <div className="actions">
+    <div className="ingredient-list-container flex-col">
+      <div className="ingredient-actions">
         <button
-          className="add-ingredient"
+          className="add-ingredient-button"
           onClick={() => setShowAddIngredient(true)}
         >
           Add New Ingredient
         </button>
       </div>
 
-      <div className="list-table">
-        <div className="list-table-format title">
+      <div className="ingredient-list">
+        <div className="ingredient-list-header">
           <b>Name</b>
           <b>Unit Price</b>
           <b>Quantity</b>
@@ -80,14 +75,14 @@ const IngredientList = ({ url }) => {
           <b>Action</b>
         </div>
         {list.map((item, index) => (
-          <div key={index} className="list-table-format">
+          <div key={index} className="ingredient-list-row">
             <p>{item.name}</p>
             <p>{item.unitprice} vnđ</p>
             <p>{item.quantity}</p>
             <p>{item.unit}</p>
-            <div className="action">
+            <div className="ingredient-actions-icons">
               <FontAwesomeIcon
-                className="icon"
+                className="action-icon"
                 icon={faTrash}
                 onClick={() => {
                   setShowConfirmationForm(true);
@@ -97,22 +92,34 @@ const IngredientList = ({ url }) => {
               <FontAwesomeIcon
                 onClick={() => {
                   console.log("Editing Ingredient:", item); // Log item ra để kiểm tra
-                  setSelectedIngredientId(item._id);            
+                  setSelectedIngredientId(item._id);
                   setShowEditIngredient(true);
                 }}
-                className="icon"
+                className="action-icon"
                 icon={faEdit}
               />
-
             </div>
           </div>
         ))}
       </div>
-      {showConfirmationForm && <ConfirmationForm onConfirm={() => { removeIngredient(selectedIngredientId); setShowConfirmationForm(false); }} onCancel={() => setShowConfirmationForm(false)} />}
-
-      {showAddIngredient && <AddIngredient onIngredientAdded={handleAfterAdd} />}
-      {showEditIngredient && <EditIngredient onIngredientEdited={handleAfterEdit} ingredientId={selectedIngredientId} />}
-
+      {showConfirmationForm && (
+        <ConfirmationForm
+          onConfirm={() => {
+            removeIngredient(selectedIngredientId);
+            setShowConfirmationForm(false);
+          }}
+          onCancel={() => setShowConfirmationForm(false)}
+        />
+      )}
+      {showAddIngredient && (
+        <AddIngredient onIngredientAdded={handleAfterAdd} />
+      )}
+      {showEditIngredient && (
+        <EditIngredient
+          onIngredientEdited={handleAfterEdit}
+          ingredientId={selectedIngredientId}
+        />
+      )}
     </div>
   );
 };

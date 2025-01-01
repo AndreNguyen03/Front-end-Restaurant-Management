@@ -1,69 +1,75 @@
-.whole-table-format {
-    margin-top: 10px;
-    width: 70%;
-    margin-left: max(5vw, 25px);
-    color: #6d6d6d;
-    font-size: 16px;
+.ingredient-list-container {
+  margin-top: 10px;
+  width: 70%;
+  margin-left: max(5vw, 25px);
+  color: #6d6d6d;
+  font-size: 16px;
+}
+
+.add-ingredient-button {
+  border: none;
+  padding: 10px 30px;
+  color: white;
+  background-color: tomato;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.ingredient-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredient-list-header,
+.ingredient-list-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border: 1px solid #cacaca;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.ingredient-list-header {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+.ingredient-actions-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.action-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 760px) {
+  .ingredient-list-row {
+    font-size: 0.9rem;
   }
-  
-  .add-ingredient {
-    border: none;
-    padding: 10px 30px;
-    color: white;
-    background-color: tomato;
-    border-radius: 30px;
-    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .ingredient-list-row {
+    font-size: 0.8rem;
   }
-  
-  .list-table-format {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 15px;
-    border: 1px solid #cacaca;
-    font-size: 1rem;
-    text-align: center;
-  }
-  
-  .list-table-format.title {
-    background-color: #f9f9f9;
-    font-weight: bold;
-  }
-  
-  .action {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
-  
-  .action .icon {
-    cursor: pointer;
-    font-size: 1.2rem;
-  }
-  
-  @media (max-width: 760px) {
-    .list-table-format {
-      font-size: 0.9rem;
-    }
-  }
-  
-  @media (max-width: 600px) {
-    .list-table-format {
-      font-size: 0.8rem;
-    }
-  }
-  
-  .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}

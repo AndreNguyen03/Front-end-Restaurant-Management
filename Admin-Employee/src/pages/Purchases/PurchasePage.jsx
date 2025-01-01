@@ -13,8 +13,6 @@ const PurchasePage = ({ url }) => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
-  
-
   useEffect(() => {
     fetchPurchases();
   }, []);
@@ -30,13 +28,12 @@ const PurchasePage = ({ url }) => {
     setPurchases(response.data.data);
   };
 
-  
-  const handleViewDetails = async(purchase) => {
+  const handleViewDetails = async (purchase) => {
     try {
       const response = await axios.post(`${url}/api/purchase/specificList`, {
         id: purchase._id,
       });
-  
+
       if (response.data.success) {
         setSelectedPurchase(response.data.data);
         setShowDetails(true);
@@ -49,25 +46,26 @@ const PurchasePage = ({ url }) => {
     }
   };
 
- 
-
   const handleAfterAdd = () => {
     setShowAddForm(false);
     fetchPurchases();
   };
 
   return (
-    <div className="list whole-table-format flex-col">
+    <div className="purchase-container table-format flex-column">
       {/* Actions */}
-      <div className="actions">
-        <button className="add-purchase" onClick={() => setShowAddForm(true)}>
+      <div className="purchase-actions-container">
+        <button
+          className="new-purchase-btn"
+          onClick={() => setShowAddForm(true)}
+        >
           Add New Purchase
         </button>
       </div>
 
       {/* Purchases List */}
-      <div className="list-table">
-        <div className="list-table-format title">
+      <div className="purchases-table">
+        <div className="table-header">
           <b>STT</b>
           <b>Date</b>
           <b>Total Amount</b>
@@ -75,7 +73,7 @@ const PurchasePage = ({ url }) => {
         </div>
         {purchases.length > 0 ? (
           purchases.map((purchase, index) => (
-            <div key={index} className="list-table-format">
+            <div key={index} className="table-row">
               <p>{index + 1}</p>
               <p>
                 {purchase.purchaseDate
@@ -85,11 +83,12 @@ const PurchasePage = ({ url }) => {
               <p>
                 {Number.isFinite(purchase.totalAmount)
                   ? purchase.totalAmount.toFixed(0)
-                  : "0"} vnđ
+                  : "0"}{" "}
+                vnđ
               </p>
-              <div className="action">
+              <div className="action-container">
                 <FontAwesomeIcon
-                  className="icon"
+                  className="action-icon"
                   icon={faEye}
                   onClick={() => handleViewDetails(purchase)}
                 />
@@ -97,7 +96,7 @@ const PurchasePage = ({ url }) => {
             </div>
           ))
         ) : (
-          <p className="no-data-message">No purchases available.</p>
+          <p className="no-purchases-message">No purchases available.</p>
         )}
       </div>
 

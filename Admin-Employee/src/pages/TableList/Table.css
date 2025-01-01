@@ -1,20 +1,20 @@
-.table-list-container {
+.tables-container {
   margin-top: 20px;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Căn trái các phần tử */
+  align-items: flex-start;
 }
 
-.actions {
+.tables-actions {
   margin-bottom: 20px;
   display: flex;
-  justify-content: flex-start; /* Căn trái nút */
+  justify-content: flex-start;
   width: 100%;
-  padding-left: 20px; /* Thụt vào từ bên trái */
+  padding-left: 20px;
 }
 
-.add-table {
+.btn-add-table {
   border: none;
   padding: 10px 30px;
   color: white;
@@ -23,18 +23,18 @@
   cursor: pointer;
 }
 
-.table-cards {
-  display: flex; /* Hiển thị theo chiều ngang */
-  flex-wrap: nowrap; /* Không cho các item xuống dòng, luôn xếp hàng */
+.cards-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
   gap: 20px;
-  justify-content: flex-start; /* Căn trái các card */
+  justify-content: flex-start;
   width: 100%;
-  padding-left: 20px; /* Thụt vào từ bên trái */
-  overflow-x: auto; /* Thêm thanh cuộn ngang nếu có nhiều card */
+  padding-left: 20px;
+  overflow-x: auto;
 }
 
-.table-card {
-  background-color: #f87e00; /* Màu nền cam */
+.card-item {
+  background-color: #f87e00;
   color: white;
   border-radius: 10px;
   padding: 20px;
@@ -43,55 +43,55 @@
   justify-content: space-between;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 170px; /* Đảm bảo các card có chiều rộng cố định */
-  min-width: 100px; /* Đảm bảo các card không quá nhỏ */
+  width: 170px;
+  min-width: 100px;
 }
 
-.table-header {
-  margin-bottom: 10px; /* Khoảng cách giữa tên và capacity */
+.card-header {
+  margin-bottom: 10px;
 }
 
-.table-card h3 {
+.card-item h3 {
   font-size: 1.8rem;
   margin: 0;
 }
 
-.table-card p {
+.card-item p {
   font-size: 1.2rem;
   margin: 10px 0;
 }
 
-.divider {
-  border-bottom: 2px solid #fff; /* Đường kẻ ngăn cách */
-  margin: 10px 0; /* Khoảng cách từ capacity đến các nút */
+.card-divider {
+  border-bottom: 2px solid #fff;
+  margin: 10px 0;
 }
 
-.table-actions {
+.card-actions {
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
 
-.icon-table {
+.icon-action {
   cursor: pointer;
   font-size: 1.5rem;
   color: white;
 }
 
-.edit-icon {
+.edit-action {
   font-size: 1.5rem;
 }
 
-.delete-icon {
+.delete-action {
   font-size: 1.5rem;
 }
 
 @media (max-width: 600px) {
-  .table-card {
+  .card-item {
     padding: 15px;
   }
 
-  .icon {
+  .icon-action {
     font-size: 1.2rem;
   }
 }

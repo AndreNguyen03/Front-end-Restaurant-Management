@@ -12,14 +12,14 @@ import ConfirmationForm from "../../components/ConfirmationForm/ConfirmationForm
 
 const Employees = ({ url }) => {
   const [list, setList] = useState([]);
-  const [showAddEmployee, setShowAddEmployee] = useState(false);  
-  const [showEditEmployee, setShowEditEmployee] = useState(false);  
+  const [showAddEmployee, setShowAddEmployee] = useState(false);
+  const [showEditEmployee, setShowEditEmployee] = useState(false);
   const [showConfirmationForm, setShowConfirmationForm] = useState(false);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/employee/list`);
     console.log(response);
-    if(!response.data.success){
+    if (!response.data.success) {
       toast.error("Employee list not found");
       return;
     }
@@ -32,62 +32,87 @@ const Employees = ({ url }) => {
   const handleAfterAdd = () => {
     setShowAddEmployee(false);
     fetchList();
-  }
+  };
 
   const handleAfterEdit = () => {
     setShowEditEmployee(false);
     fetchList();
-  }
+  };
 
   const removeEmployee = async (id) => {
-    const response = await axios.post(`${url}/api/employee/delete`, {id});
-    if(!response.data.success){
-      toast.fail('Employee deleted failed');
+    const response = await axios.post(`${url}/api/employee/delete`, { id });
+    if (!response.data.success) {
+      toast.fail("Employee deleted failed");
       return;
     }
-    toast.success('Employee deleted successfully');
+    toast.success("Employee deleted successfully");
     fetchList();
-    
-  }
-  
+  };
+
   return (
-    <div className="list whole-table-format flex-col">
-      <div className="actions">
-        <button onClick={() => setShowAddEmployee(true)} className="add-dish">Add New Employee</button>
+    <div className="employee-list-container flex-col">
+      <div className="employee-actions">
+        <button
+          onClick={() => setShowAddEmployee(true)}
+          className="add-employee-button"
+        >
+          Add New Employee
+        </button>
       </div>
 
-      <div className="list-table">
-        <div className="list-table-format title">
+      <div className="employee-list">
+        <div className="employee-list-header">
           <b>Full Name</b>
           <b>Phone Number</b>
-          <b>SocialID</b>
+          <b>Social ID</b>
           <b>Role</b>
           <b>Action</b>
         </div>
         {list.map((item, index) => {
           return (
-            <div key={index} className="list-table-format">
+            <div key={index} className="employee-list-row">
               <p>{item.full_name}</p>
               <p>{item.phone_number}</p>
               <p>{item.socialId}</p>
-              <p>{item.employee_role}</p> 
-              <div className="action">
-                <FontAwesomeIcon className="icon" icon={faTrash} onClick={() =>  {
-                  setShowConfirmationForm(true);
-                  setSelectedEmployeeId(item._id);
-                }}/>
-                <FontAwesomeIcon className="icon" icon={faEdit} onClick={() => {
-                  setShowEditEmployee(true);
-                  setSelectedEmployeeId(item._id);
-                }} />
+              <p>{item.employee_role}</p>
+              <div className="employee-actions-icons">
+                <FontAwesomeIcon
+                  className="action-icon"
+                  icon={faTrash}
+                  onClick={() => {
+                    setShowConfirmationForm(true);
+                    setSelectedEmployeeId(item._id);
+                  }}
+                />
+                <FontAwesomeIcon
+                  className="action-icon"
+                  icon={faEdit}
+                  onClick={() => {
+                    setShowEditEmployee(true);
+                    setSelectedEmployeeId(item._id);
+                  }}
+                />
               </div>
             </div>
           );
         })}
       </div>
-      {showConfirmationForm && <ConfirmationForm onConfirm={() => {removeEmployee(selectedEmployeeId); setShowConfirmationForm(false);}} onCancel={() => setShowConfirmationForm(false)  }/>}
+      {showConfirmationForm && (
+        <ConfirmationForm
+          onConfirm={() => {
+            removeEmployee(selectedEmployeeId);
+            setShowConfirmationForm(false);
+          }}
+          onCancel={() => setShowConfirmationForm(false)}
+        />
+      )}
       {showAddEmployee && <AddEmployee onEmployeeAdded={handleAfterAdd} />}
-      {showEditEmployee && <EditEmployee onEmployeeEdited = {handleAfterEdit} employeeId = {selectedEmployeeId}/>}
+      {showEditEmployee && (
+        <EditEmployee
+          onEmployeeEdited={handleAfterEdit}
+          employeeId={selectedEmployeeId}
+        />
+      )}
     </div>
   );
 };

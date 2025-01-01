@@ -75,7 +75,7 @@ const Revenue = () => {
     labels: data.chartData.map((item) => item.week),
     datasets: [
       {
-        label: `Revenue in ${month || 'Current Month'}`,
+        label: `Doanh thu trong ${month || 'tháng này'}`,
         data: data.chartData.map((item) => item.revenue),
         fill: true,
         backgroundColor: 'rgba(75,192,192,0.2)',
@@ -88,26 +88,26 @@ const Revenue = () => {
     <div className="revenue-page">
       <div className="revenue-header">
         <div className="revenue-box-total">
-          <h3>Total Revenue</h3>
+          <h3>Tổng doanh thu</h3>
           <p>{data.totalRevenue.toFixed(0)} vnđ</p>
         </div>
         <div className="revenue-box today">
-          <h3>Today's Revenue</h3>
+          <h3>Doanh thu hôm nay</h3>
           <p>{data.todayRevenue.toFixed(0)} vnđ</p>
         </div>
         <div className="revenue-box weekly">
-          <h3>Weekly Revenue</h3>
+          <h3>Doanh thu tuần này</h3>
           <p>{data.weeklyRevenue.toFixed(0)} vnđ</p>
         </div>
         <div className="revenue-box monthly">
-          <h3>Monthly Revenue</h3>
+          <h3>Doanh thu tháng này</h3>
           <p>{data.monthlyRevenue.toFixed(0)} vnđ</p>
         </div>
       </div>
 
       <div className="revenue-graph">
         <div className="month-picker">
-          <label htmlFor="month">Month:</label>
+          <label htmlFor="month">Tháng:</label>
           <input
             type="month"
             id="month"

@@ -9,16 +9,16 @@ const Sidebar = () => {
 
   const links = {
     admin: [
-      { to: "/revenue", label: "Revenue", icon: assets.revenue_icon },
-      { to: "/list", label: "Dishes", icon: assets.dish_icon },
-      { to: "/table", label: "Tables", icon: assets.table_icon },
+      { to: "/revenue", label: "Doanh thu", icon: assets.revenue_icon },
+      { to: "/list", label: "Món ăn", icon: assets.dish_icon },
+      { to: "/table", label: "Bàn ăn", icon: assets.table_icon },
       {
         to: "/ingredients",
-        label: "Ingredients",
+        label: "Nguyên liệu",
         icon: assets.ingredient_icon,
       },
-      { to: "/employees", label: "employee", icon: assets.employee_icon },
-      { to: "/purchases", label: "Purchases", icon: assets.purchase_icon },
+      { to: "/employees", label: "Nhân viên", icon: assets.employee_icon },
+      { to: "/purchases", label: "Mua sắm", icon: assets.purchase_icon },
     ],
     employee: [
       { to: "/orders", label: "Orders", icon: assets.order_icon },

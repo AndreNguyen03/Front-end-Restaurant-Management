@@ -59,6 +59,17 @@
   font-weight: bold;
 }
 
+.revenue-box-total h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: whitesmoke;
+}
+
+.revenue-box-total p {
+  font-size: 28px;
+  font-weight: bold;
+}
+
 .revenue-graph {
   text-align: center;
   width: 1200px;

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 const FoodItem = ({ id, name, price, description, image }) => {
   const { isAuthenticated } = useContext(AuthContext);
   const [isInCart, setIsInCart] = useState(false);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const { fetchCartData, addToCart, removeFromCart } = useContext(StoreContext);
 
   useEffect(() => {
@@ -37,6 +38,14 @@ const FoodItem = ({ id, name, price, description, image }) => {
     }
   };
 
+  const handleViewDetails = () => {
+    setIsPopupVisible(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupVisible(false);
+  };
+
   const imageUrl = `http://localhost:3056/images/${image}`;
 
   return (
@@ -49,6 +58,9 @@ const FoodItem = ({ id, name, price, description, image }) => {
         >
           {isInCart ? "✓ In Cart" : "Add to Cart"}
         </button>
+        <button className="view-details-btn" onClick={handleViewDetails}>
+          View
+        </button>
       </div>
       <div className="food-item-info">
         <div className="food-item-name-rating">
@@ -57,6 +69,22 @@ const FoodItem = ({ id, name, price, description, image }) => {
         <p className="food-item-desc">{description}</p>
         <p className="food-item-price">{price} VND</p>
       </div>
+
+      {isPopupVisible && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <button className="close-popup-btn" onClick={handleClosePopup}>
+              X
+            </button>
+            <img src={imageUrl} alt={name} className="popup-image" />
+            <h2 className="popup-name">{name}</h2>
+            <hr className="line-under-name" />
+            <p className="popup-description">{description}</p>
+            <hr className="line-under-description" />
+            <p className="popup-price">{price} VND</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

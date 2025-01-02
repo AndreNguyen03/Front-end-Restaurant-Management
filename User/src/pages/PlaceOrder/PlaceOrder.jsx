@@ -48,9 +48,12 @@ const PlaceOrder = () => {
 
   useEffect(() => {
     const fetchDistricts = async () => {
-      const response = await axios.get("https://provinces.open-api.vn/api/p/79?depth=2", {
-        withCredentials: false,
-      });
+      const response = await axios.get(
+        "https://provinces.open-api.vn/api/p/79?depth=2",
+        {
+          withCredentials: false,
+        }
+      );
       setDistricts(response.data.districts);
     };
 
@@ -59,14 +62,20 @@ const PlaceOrder = () => {
 
   const fetchAddresses = async (customerId) => {
     try {
-      const response = await axios.post(`http://localhost:3056/api/address/fetchList`, { customerId });
+      const response = await axios.post(
+        `http://localhost:3056/api/address/fetchList`,
+        { customerId }
+      );
       if (response.data.success && response.data.data.length > 0) {
         setAddresses(response.data.data);
+        const defaultAddress =
+          response.data.data.find((address) => address.isDefault) ||
+          response.data.data[0];
         setDeliveryInfo((prevInfo) => ({
           ...prevInfo,
-          district: response.data.data[0].district,
-          ward: response.data.data[0].ward,
-          exactAddress: response.data.data[0].exactAddress,
+          district: defaultAddress.district,
+          ward: defaultAddress.ward,
+          exactAddress: defaultAddress.exactAddress,
         }));
       } else {
         fetchDefaultAddress(customerId);
@@ -78,7 +87,10 @@ const PlaceOrder = () => {
 
   const fetchDefaultAddress = async (customerId) => {
     try {
-      const response = await axios.post(`http://localhost:3056/api/address/getDefault`, { customerId });
+      const response = await axios.post(
+        `http://localhost:3056/api/address/getDefault`,
+        { customerId }
+      );
       if (response.data.success && response.data.data) {
         setDeliveryInfo((prevInfo) => ({
           ...prevInfo,
@@ -86,9 +98,12 @@ const PlaceOrder = () => {
           ward: response.data.data.ward,
           exactAddress: response.data.data.exactAddress,
         }));
-        const districtResponse = await axios.get(`https://provinces.open-api.vn/api/d/${response.data.data.district}?depth=2`, {
-          withCredentials: false,
-        });
+        const districtResponse = await axios.get(
+          `https://provinces.open-api.vn/api/d/${response.data.data.district}?depth=2`,
+          {
+            withCredentials: false,
+          }
+        );
         setWards(districtResponse.data.wards);
       }
     } catch (error) {
@@ -97,7 +112,9 @@ const PlaceOrder = () => {
   };
 
   const handleAddressChange = (e) => {
-    const selectedAddress = addresses.find(address => address._id === e.target.value);
+    const selectedAddress = addresses.find(
+      (address) => address._id === e.target.value
+    );
     if (selectedAddress) {
       setDeliveryInfo({
         ...deliveryInfo,
@@ -115,9 +132,12 @@ const PlaceOrder = () => {
       district: districtCode,
       ward: "",
     }));
-    const response = await axios.get(`https://provinces.open-api.vn/api/d/${districtCode}?depth=2`, {
-      withCredentials: false,
-    });
+    const response = await axios.get(
+      `https://provinces.open-api.vn/api/d/${districtCode}?depth=2`,
+      {
+        withCredentials: false,
+      }
+    );
     setWards(response.data.wards);
   };
 
@@ -129,33 +149,63 @@ const PlaceOrder = () => {
     }));
   };
 
+  const getDistrictName = async (districtCode) => {
+    axios.defaults.withCredentials = false;
+    const response = await axios.get(
+      `https://provinces.open-api.vn/api/d/${districtCode}`
+    );
+    return response.data.name;
+  };
+
+  const getWardName = async (wardCode) => {
+    axios.defaults.withCredentials = false;
+    const response = await axios.get(
+      `https://provinces.open-api.vn/api/w/${wardCode}`
+    );
+    return response.data.name;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const items = Object.keys(cartItems).map((itemId) => {
       return {
-        dishId: itemId,
+        _id: itemId,
         quantity: cartItems[itemId],
       };
     });
     const amount = getTotalPrice();
-  
+
+    let districtName = deliveryInfo.district;
+    let wardName = deliveryInfo.ward;
+
+    if (districts.length > 0) {
+      districtName = await getDistrictName(deliveryInfo.district);
+    }
+
+    if (wards.length > 0) {
+      wardName = await getWardName(deliveryInfo.ward);
+    }
+
     try {
-      const response = await axios.post("http://localhost:3056/api/payment/create-order", {
-        customerId: user.customerId,
-        fullName: deliveryInfo.fullName,
-        email: deliveryInfo.email,
-        phoneNumber: deliveryInfo.phoneNumber,
-        city: deliveryInfo.city,
-        district: deliveryInfo.district,
-        ward: deliveryInfo.ward,
-        exactAddress: deliveryInfo.exactAddress,
-        items,
-        amount,
-      });
+      const response = await axios.post(
+        "http://localhost:3056/api/payment/create-order",
+        {
+          customerId: user.customerId,
+          fullName: deliveryInfo.fullName,
+          email: deliveryInfo.email,
+          phoneNumber: deliveryInfo.phoneNumber,
+          city: deliveryInfo.city,
+          district: districtName,
+          ward: wardName,
+          exactAddress: deliveryInfo.exactAddress,
+          items,
+          amount,
+        }
+      );
       // Handle the order creation response
       console.log("Order created:", response.data);
       // Redirect to a confirmation page or show a success message
-      window.location.href= response.data.data.order_url;
+      window.location.href = response.data.data.order_url;
     } catch (error) {
       console.error("Lỗi khi tạo đơn hàng:", error);
     }
@@ -201,7 +251,12 @@ const PlaceOrder = () => {
           </select>
         ) : (
           <>
-            <select name="district" value={deliveryInfo.district} onChange={handleDistrictChange} required>
+            <select
+              name="district"
+              value={deliveryInfo.district}
+              onChange={handleDistrictChange}
+              required
+            >
               <option value="">Chọn Quận/Huyện</option>
               {districts.map((district) => (
                 <option key={district.code} value={district.code}>
@@ -209,7 +264,12 @@ const PlaceOrder = () => {
                 </option>
               ))}
             </select>
-            <select name="ward" value={deliveryInfo.ward} onChange={handleChange} required>
+            <select
+              name="ward"
+              value={deliveryInfo.ward}
+              onChange={handleChange}
+              required
+            >
               <option value="">Chọn Phường/Xã</option>
               {wards.map((ward) => (
                 <option key={ward.code} value={ward.code}>

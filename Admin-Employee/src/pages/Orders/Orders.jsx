@@ -4,13 +4,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import formatNumber from "../../utils/FormatNumber";
-
+import formatNumber from "../../utils/formatNumber";
+import socket, { connectSocket, disconnectSocket } from "../../socket";
+import notificationSsound from "../../assets/admin_assets/notification-22-270130.mp3";
+const notificationAudio = new Audio(notificationSsound);
 
 const Orders = ({ url }) => {
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [status, setStatus] = useState("");
+
 
   const fetchOrders = async () => {
     try {
@@ -24,6 +27,25 @@ const Orders = ({ url }) => {
       toast.error("Không thể lấy danh sách đơn hàng");
     }
   };
+
+  useEffect(() => {
+    connectSocket();
+
+    const handleNewOrder = () => {
+      fetchOrders();
+      toast.info("Có đơn hàng mới");
+      notificationAudio.play().catch((error) => {
+        console.error("Audio play failed:", error);
+      });
+    };
+
+    socket.on("new_order", handleNewOrder);
+
+    return () => {
+      socket.off("new_order", handleNewOrder);
+      disconnectSocket();
+    };
+  }, []);
 
   useEffect(() => {
     fetchOrders();
@@ -106,7 +128,7 @@ const Orders = ({ url }) => {
             <p>
               <strong>Trạng thái:</strong>
               <select value={status} onChange={handleStatusChange}>
-                <option value="confirmed">Xác nhận</option>
+                <option value="confirmed">Đã Xác nhận</option>
                 <option value="Đang Vận Chuyển">Đang Vận Chuyển</option>
                 <option value="Hoàn Thành">Hoàn Thành</option>
               </select>

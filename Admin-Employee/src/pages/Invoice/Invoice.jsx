@@ -45,6 +45,7 @@ function Invoice() {
     )
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+
   const pageCount = Math.ceil(filteredInvoices.length / itemsPerPage);
   const offset = currentPage * itemsPerPage;
   const currentItems = filteredInvoices.slice(offset, offset + itemsPerPage);
@@ -61,6 +62,8 @@ function Invoice() {
   const closeModal = () => setIsModalOpen(false);
   const closeInvoiceModal = () => setIsInvoiceModalOpen(false);
 
+
+
   return (
     <div className="container">
       <header className="header">
@@ -75,7 +78,9 @@ function Invoice() {
           />
           <DatePicker
             selected={selectedDate}
-            onChange={(date) => setSelectedDate(date || new Date())}
+            onChange={(date) => {
+              setSelectedDate(date || new Date());
+            }}
             dateFormat="yyyy-MM-dd"
             className="date-picker"
             popperPlacement="bottom-start"

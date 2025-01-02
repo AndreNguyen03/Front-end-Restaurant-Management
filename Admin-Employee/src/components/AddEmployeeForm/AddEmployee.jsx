@@ -155,50 +155,50 @@ const AddEmployee = ({ onEmployeeAdded }) => {
         <form className="flex-col" onSubmit={handleSubmit}>
           <p onClick={() => onEmployeeAdded()} className="emp-close-button">X</p>
           <div className="add-employee-name flex-col">
-            <p>Full Name</p>
+            <p>Họ và tên</p>
             <input
               onChange={handleChange}
               value={data.fullName}
               type="text"
               name="fullName"
-              placeholder="Type here"
+              placeholder="Nhập tên nhân viên"
               required
             />
             {errors.fullName && <p className="error">{errors.fullName}</p>}
           </div>
           <div className="add-employee-phone flex-col">
-            <p>Phone Number</p>
+            <p>Số điện thoại</p>
             <input
               onChange={handleChange}
               value={data.phoneNumber}
               type="text"
               name="phoneNumber"
-              placeholder="Type here"
+              placeholder="Nhập số điện thoại"
               required
             />
             {errors.phoneNumber && <p className="error">{errors.phoneNumber}</p>}
           </div>
           <div className="add-employee-address flex-col">
-            <p>Address</p>
+            <p>Địa chỉ</p>
             <input
               onChange={handleChange}
               value={data.address}
               type="text"
               name="address"
-              placeholder="Type here"
+              placeholder="Nhập địa chỉ"
               required
             />
             {errors.address && <p className="error">{errors.address}</p>}
           </div>
           <div className="add-employee-role flex-col">
-            <p>Employee Role</p>
+            <p>Vai trò</p>
             <select
               name="employeeRole"
               onChange={handleChange}
               value={data.employeeRole}
               required
             >
-              <option value="">Select Role</option>
+              <option value="">Chọn vai trò</option>
               <option value="Chef">Chef</option>
               <option value="Receptionist">Receptionist</option>
               <option value="Chef Assistant">Chef Assistant</option>
@@ -206,41 +206,41 @@ const AddEmployee = ({ onEmployeeAdded }) => {
             {errors.employeeRole && <p className="error">{errors.employeeRole}</p>}
           </div>
           <div className="add-employee-socialId flex-col">
-            <p>Social ID</p>
+            <p>Số định danh</p>
             <input
               onChange={handleChange}
               value={data.socialId}
               type="text"
               name="socialId"
-              placeholder="Type here"
+              placeholder="Nhập số định danh"
               required
             />
             {errors.socialId && <p className="error">{errors.socialId}</p>}
           </div>
           <div className="add-employee-username flex-col">
-            <p>Username</p>
+            <p>Tên người dùng</p>
             <input
               onChange={handleChange}
               value={data.username}
               type="text"
               name="username"
-              placeholder="Type here"
+              placeholder="Nhập tên người dùng"
             />
             {errors.username && <p className="error">{errors.username}</p>}
           </div>
           <div className="add-employee-password flex-col">
-            <p>Password</p>
+            <p>Mật khẩu</p>
             <input
               onChange={handleChange}
               value={data.password}
               type="password"
               name="password"
-              placeholder="Type here"
+              placeholder="Nhập mật khẩu"
             />
             {errors.password && <p className="error">{errors.password}</p>}
           </div>
           <button type="submit" className="add-btn">
-            Add
+            Thêm nhân viên
           </button>
         </form>
       </div>

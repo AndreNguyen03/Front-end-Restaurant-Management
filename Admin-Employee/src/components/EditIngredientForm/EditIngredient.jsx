@@ -87,43 +87,43 @@ const EditIngredient = ({ onIngredientEdited, ingredientId }) => {
           <p onClick={onIngredientEdited} className="close-icon">
             X
           </p>
-          <h3 className="ingredient-edit-title">Edit Ingredients</h3>
+          <h3 className="ingredient-edit-title">Cập nhật nguyên liệu</h3>
 
           <div className="ingredient-name-input-group">
-            <p>Ingredient Name</p>
+            <p>Tên nguyên liệu</p>
             <input
               onChange={onChangeHandler}
               value={data.name}
               type="text"
               name="name"
-              placeholder="Enter ingredient name"
+              placeholder="Nhập tên nguyên liệu"
               required
             />
           </div>
           <div className="ingredient-unitprice-input-group">
-            <p>Unit Price</p>
+            <p>Đơn giá</p>
             <input
               onChange={onChangeHandler}
               value={data.unitprice}
               type="number"
               name="unitprice"
-              placeholder="Enter unit price"
+              placeholder="Nhập đơn giá"
               required
             />
           </div>
           <div className="ingredient-quantity-input-group">
-            <p>Quantity</p>
+            <p>Số lượng</p>
             <input
               onChange={onChangeHandler}
               value={data.quantity}
               type="number"
               name="quantity"
-              placeholder="Enter quantity"
+              placeholder="Nhập số lượng"
               required
             />
           </div>
           <div className="ingredient-unit-selector">
-            <p>Unit</p>
+            <p>Đơn vị</p>
             <select value={data.unit} name="unit" onChange={onChangeHandler}>
               <option value="kg">kg</option>
               <option value="g">g</option>
@@ -132,7 +132,7 @@ const EditIngredient = ({ onIngredientEdited, ingredientId }) => {
             </select>
           </div>
           <button type="submit" className="save-button">
-            Save
+            Lưu thay đổi
           </button>
         </form>
       </div>

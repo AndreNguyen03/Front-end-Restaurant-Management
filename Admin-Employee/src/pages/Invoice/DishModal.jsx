@@ -127,20 +127,20 @@ function DishModal({ onClose,updateInvoices }) {
                         </div>
                         <div className="cart-container">
                             <div className="button-component">
-                                <button className="button" onClick={() => resetCart()}>Reset</button>
-                                <button className="button" onClick={() => handleInvoiceClick()}>Invoice</button>
+                                <button className="button" onClick={() => resetCart()}>Đặt lại</button>
+                                <button className="button" onClick={() => handleInvoiceClick()}>Hóa đơn</button>
                             </div>
                             <div className="cart">
                                 <div>
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th>Items</th>
-                                                <th>Title</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
-                                                <th>Total</th>
-                                                <th></th>
+                                                <th>Hình ảnh</th>
+                                                <th>Tên món</th>
+                                                <th>Giá</th>
+                                                <th>Số lượng</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Hành động</th>                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -148,7 +148,7 @@ function DishModal({ onClose,updateInvoices }) {
                                                 <tr key={item._id}>
                                                     <td><img className='cartdish-img' src={`${url}/images/${item.image}`} alt={item.name} /></td>
                                                     <td>{item.name}</td>
-                                                    <td>${item.price}</td>
+                                                    <td>{item.price} vnđ</td>
                                                     <td>
                                                         <input
                                                             className="quantity-input"
@@ -158,7 +158,7 @@ function DishModal({ onClose,updateInvoices }) {
                                                             onChange={(e) => updateQuantity(item._id, e.target.value)}
                                                         />
                                                     </td>
-                                                    <td>${item.price * item.quantity}</td>
+                                                    <td>{item.price * item.quantity} vnđ</td>
                                                     <td><button onClick={() => removeFromCart(item._id)}>X</button></td>
                                                 </tr>
                                             ))}
@@ -166,7 +166,7 @@ function DishModal({ onClose,updateInvoices }) {
                                     </table>
                                 </div>
                             </div>
-                            <p className="total-amount">Total Amount: ${totalAmount}</p>
+                            <p className="total-amount">Tổng tiền hóa đơn: {totalAmount} vnđ</p>
                         </div>
                     </div>
                 </div>

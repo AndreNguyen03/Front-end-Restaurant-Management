@@ -45,6 +45,7 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
           unitPrice: ingredient.unitprice,
           quantity: 1,
           totalPrice: ingredient.unitprice,
+          unit: ingredient.unit,
         },
       ]);
       calculateTotal([...selectedDetails, { ...ingredient, quantity: 1, totalPrice: ingredient.unitprice }]);
@@ -96,7 +97,7 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
           quantity: detail.quantity,
           unitPrice: detail.unitPrice,
           totalPrice: detail.quantity * detail.unitPrice,
-          unit: "kg", // Thay đổi nếu cần
+          unit: detail.unit, // Thay đổi nếu cần
         })),
       };
   
@@ -130,23 +131,23 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
         </button>
         {/* Left Panel */}
         <div className="form-left">
-          <h3>Ingredients List</h3>
+          <h3>Danh sách nguyên liệu</h3>
           <table className="ingredients-table">
             <thead>
               <tr>
-                <th><b>Name</b></th>
-                <th><b>Unit Price</b></th>
-                <th><b>Action</b></th>
+                <th><b>Tên</b></th>
+                <th><b>Đơn giá</b></th>
+                <th><b>Hành động</b></th>
               </tr>
             </thead>
             <tbody>
               {ingredients.map((ingredient) => (
                 <tr key={ingredient._id}>
                   <td><p>{ingredient.name}</p></td>
-                  <td><p>{ingredient.unitprice.toFixed(0)} vnđ</p></td>
+                  <td><p>{ingredient.unitprice.toFixed(0)} vnđ/{ingredient.unit}</p></td>
                   <td>
                     <button onClick={() => handleAddIngredient(ingredient)}>
-                      Add
+                      +
                     </button>
                   </td>
                 </tr>
@@ -157,14 +158,14 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
   
         {/* Right Panel */}
         <div className="form-right">
-          <h3>Selected Ingredients</h3>
+          <h3>Nguyên liệu đã chọn</h3>
           <table className="selected-table">
             <thead>
               <tr>
-                <th><b>Name</b></th>
-                <th><b>Quantity</b></th>
-                <th><b>Total</b></th>
-                <th><b>Action</b></th>
+                <th><b>Tên</b></th>
+                <th><b>Số lượng</b></th>
+                <th><b>Tổng tiền</b></th>
+                <th><b>Hành động</b></th>
               </tr>
             </thead>
             <tbody>
@@ -195,14 +196,14 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
             </tbody>
           </table>
           <div className="total-amount">
-            <h3>Total Amount: {totalAmount.toFixed(0)} vnđ</h3>
+            <h3>Tổng tiền đơn hàng: {totalAmount.toFixed(0)} vnđ</h3>
           </div>
           <div className="form-actions">
             <button onClick={handleSubmit} className="submit-btn">
-              Add Purchase
+              Thêm đơn hàng
             </button>
             <button onClick={onClose} className="cancel-btn">
-              Cancel
+              Hủy
             </button>
           </div>
         </div>

@@ -12,20 +12,20 @@ const PurchaseDetails = ({ purchase, onClose }) => {
         </button>
         <h2 className="title">Tomato</h2>
         <p className="purchase-id">
-          <strong>Purchase ID:</strong> {purchase._id}
+          <strong>ID Đơn hàng:</strong> {purchase._id}
         </p>
         <p className="purchase-date">
-          <strong>Date:</strong> {new Date(purchase.purchaseDate).toLocaleString()}
+          <strong>Ngày:</strong> {new Date(purchase.purchaseDate).toLocaleString()}
         </p>
 
         <table className="details-table">
           <thead>
             <tr>
-              <th>Ingredient</th>
-              <th>Quantity</th>
-              <th>Unit</th>
-              <th>Price</th>
-              <th>Amount</th>
+              <th>Nguyên liệu</th>
+              <th>Số lượng</th>
+              <th>Đơn vị</th>
+              <th>Đơn giá</th>
+              <th>Tổng tiền</th>
             </tr>
           </thead>
           <tbody>
@@ -34,7 +34,7 @@ const PurchaseDetails = ({ purchase, onClose }) => {
                 <td>{item.name}</td>
                 <td>{item.quantity}</td>
                 <td>{item.unit}</td>
-                <td>{item.unitPrice.toFixed(0)} vnđ</td>
+                <td>{item.unitPrice.toFixed(0)} vnđ/{item.unit}</td>
                 <td>{item.totalPrice.toFixed(0)} vnđ</td>
               </tr>
             ))}
@@ -42,7 +42,7 @@ const PurchaseDetails = ({ purchase, onClose }) => {
         </table>
 
         <div className="total-amount">
-          <h3>Total Amount: {purchase.totalAmount.toFixed(0)} vnđ</h3>
+          <h3>Tổng tiền đơn hàng: {purchase.totalAmount.toFixed(0)} vnđ</h3>
         </div>
       </div>
     </div>

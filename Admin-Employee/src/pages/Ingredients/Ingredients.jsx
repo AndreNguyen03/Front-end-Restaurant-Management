@@ -62,17 +62,17 @@ const IngredientList = ({ url }) => {
           className="add-ingredient-button"
           onClick={() => setShowAddIngredient(true)}
         >
-          Add New Ingredient
+          Thêm nguyên liệu
         </button>
       </div>
 
       <div className="ingredient-list">
         <div className="ingredient-list-header">
-          <b>Name</b>
-          <b>Unit Price</b>
-          <b>Quantity</b>
-          <b>Unit</b>
-          <b>Action</b>
+          <b>Tên</b>
+          <b>Đơn giá</b>
+          <b>Số lượng</b>
+          <b>Đơn vị</b>
+          <b>Hành động</b>
         </div>
         {list.map((item, index) => (
           <div key={index} className="ingredient-list-row">

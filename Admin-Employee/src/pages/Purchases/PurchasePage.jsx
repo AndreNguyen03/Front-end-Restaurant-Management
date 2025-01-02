@@ -59,7 +59,7 @@ const PurchasePage = ({ url }) => {
           className="new-purchase-btn"
           onClick={() => setShowAddForm(true)}
         >
-          Add New Purchase
+          Thêm đơn mua hàng
         </button>
       </div>
 
@@ -67,9 +67,9 @@ const PurchasePage = ({ url }) => {
       <div className="purchases-table">
         <div className="table-header">
           <b>STT</b>
-          <b>Date</b>
-          <b>Total Amount</b>
-          <b>Action</b>
+          <b>Ngày</b>
+          <b>Tổng tiền</b>
+          <b>Hành động</b>
         </div>
         {purchases.length > 0 ? (
           purchases.map((purchase, index) => (
@@ -96,7 +96,7 @@ const PurchasePage = ({ url }) => {
             </div>
           ))
         ) : (
-          <p className="no-purchases-message">No purchases available.</p>
+          <p className="no-purchases-message">Không có đơn mua hàng nào.</p>
         )}
       </div>
 

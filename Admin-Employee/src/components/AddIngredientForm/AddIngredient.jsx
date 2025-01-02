@@ -40,40 +40,40 @@ const AddIngredient = ({ onIngredientAdded }) => {
         <form className="flex-col" onSubmit={onSubmitHandler}>
           <p onClick={onIngredientAdded} className="close-button">X</p>
           <div className="add-ingredient-name flex-col">
-            <p>Ingredient Name</p>
+            <p>Tên nguyên liệu</p>
             <input
               onChange={onChangeHandler}
               value={data.name}
               type="text"
               name="name"
-              placeholder="Enter ingredient name"
+              placeholder="Nhập tên nguyên liệu"
               required
             />
           </div>
           <div className="add-ingredient-unitprice flex-col">
-            <p>Unit Price</p>
+            <p>Đơn giá</p>
             <input
               onChange={onChangeHandler}
               value={data.unitprice}
               type="number"
               name="unitprice"
-              placeholder="Enter unit price"
+              placeholder="Nhập đơn giá"
               required
             />
           </div>
           <div className="add-ingredient-quantity flex-col">
-            <p>Quantity</p>
+            <p>Số lượng</p>
             <input
               onChange={onChangeHandler}
               value={data.quantity}
               type="number"
               name="quantity"
-              placeholder="Enter quantity"
+              placeholder="Nhập số lượng"
               required
             />
           </div>
           <div className="add-ingredient-unit flex-col">
-            <p>Unit</p>
+            <p>Đơn vị</p>
             <select
               value={data.unit}
               name="unit"
@@ -85,7 +85,7 @@ const AddIngredient = ({ onIngredientAdded }) => {
               <option value="l">l</option>
             </select>
           </div>
-          <button type="submit" className="add-btn">Add</button>
+          <button type="submit" className="add-btn">Thêm nguyên liệu</button>
         </form>
       </div>
     </div>

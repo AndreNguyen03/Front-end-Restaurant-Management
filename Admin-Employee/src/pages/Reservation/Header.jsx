@@ -26,13 +26,13 @@ function Header({
           className={viewMode === "list" ? "btn active" : "btn"}
           onClick={() => setViewMode("list")}
         >
-          List
+          Danh sách
         </button>
         <button
           className={viewMode === "table" ? "btn active" : "btn"}
           onClick={() => setViewMode("table")}
         >
-          Table
+          Bảng
         </button>
       </div>
 

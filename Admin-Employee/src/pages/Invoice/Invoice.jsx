@@ -65,10 +65,10 @@ function Invoice() {
     <div className="container">
       <header className="header">
         <div className='left-header-component'>
-          <h1>Invoices</h1>
+          <h1>Hóa đơn</h1>
           <input
             type="text"
-            placeholder="Search by ID or Table..."
+            placeholder="Tìm kiếm bằng ID hoặc bàn..."
             className="search-input"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -82,18 +82,18 @@ function Invoice() {
           />
         </div>
         <button className="create-button" onClick={() => setIsModalOpen(true)}>
-          Create Invoice
+          Tạo hóa đơn
         </button>
       </header>
 
       <table className="invoice-table">
         <thead>
           <tr>
-            <th>#</th>
+            <th>STT</th>
             <th>ID</th>
-            <th>Table</th>
-            <th>Date Time</th>
-            <th>Total</th>
+            <th>Bàn</th>
+            <th>Ngày</th>
+            <th>Tổng tiền</th>
           </tr>
         </thead>
         <tbody>
@@ -103,15 +103,15 @@ function Invoice() {
               <td>{invoice.customId}</td>
               <td>{invoice.table || "none"}</td>
               <td>{convertToVietnamTime(invoice.createdAt)}</td>
-              <td style={{ color: `#65A425` }}>{invoice.total} đ</td>
+              <td style={{ color: `tomato` }}>{invoice.total} vnđ</td>
             </tr>
           ))}
         </tbody>
       </table>
 
       <ReactPaginate
-        previousLabel={"Prev"}
-        nextLabel={"Next"}
+        previousLabel={"Trước"}
+        nextLabel={"Sau"}
         breakLabel={"..."}
         pageCount={pageCount}
         marginPagesDisplayed={2}

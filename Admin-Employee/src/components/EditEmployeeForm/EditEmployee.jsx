@@ -174,50 +174,50 @@ const EditEmployee = ({ onEmployeeEdited, employeeId }) => {
         <form className="flex-col" onSubmit={handleSubmit}>
           <p onClick={() => onEmployeeEdited()} className="emp-close-button">X</p>
           <div className="add-employee-name flex-col">
-            <p>Full Name</p>
+            <p>Họ và tên</p>
             <input
               onChange={handleChange}
               value={data.fullName}
               type="text"
               name="fullName"
-              placeholder="Type here"
+              placeholder="Nhập tên nhân viên"
               required
             />
             {errors.fullName && <p className="error">{errors.fullName}</p>}
           </div>
           <div className="add-employee-phone flex-col">
-            <p>Phone Number</p>
+            <p>Số điện thoại</p>
             <input
               onChange={handleChange}
               value={data.phoneNumber}
               type="text"
               name="phoneNumber"
-              placeholder="Type here"
+              placeholder="Nhập số điện thoại"
               required
             />
             {errors.phoneNumber && <p className="error">{errors.phoneNumber}</p>}
           </div>
           <div className="add-employee-address flex-col">
-            <p>Address</p>
+            <p>Địa chỉ</p>
             <input
               onChange={handleChange}
               value={data.address}
               type="text"
               name="address"
-              placeholder="Type here"
+              placeholder="Nhập địa chỉ"
               required
             />
             {errors.address && <p className="error">{errors.address}</p>}
           </div>
           <div className="add-employee-role flex-col">
-            <p>Employee Role</p>
+            <p>Vai trò</p>
             <select
               name="employeeRole"
               onChange={handleChange}
               value={data.employeeRole}
               required
             >
-              <option value="">Select Role</option>
+              <option value="">Chọn vai trò</option>
               <option value="Chef">Chef</option>
               <option value="Receptionist">Receptionist</option>
               <option value="Chef Assistant">Chef Assistant</option>
@@ -225,7 +225,7 @@ const EditEmployee = ({ onEmployeeEdited, employeeId }) => {
             {errors.employeeRole && <p className="error">{errors.employeeRole}</p>}
           </div>
           <div className="add-employee-socialId flex-col">
-            <p>Social ID</p>
+            <p>Số định danh</p>
             <input
               onChange={handleChange}
               value={data.socialId}
@@ -237,7 +237,7 @@ const EditEmployee = ({ onEmployeeEdited, employeeId }) => {
             {errors.socialId && <p className="error">{errors.socialId}</p>}
           </div>
           <button type="submit" className="add-btn" disabled={!isFormValid()}>
-            Edit
+            Cập nhật thông tin nhân viên
           </button>
         </form>
       </div>

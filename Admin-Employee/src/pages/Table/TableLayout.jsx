@@ -41,9 +41,9 @@ function TableLayout() {
             className="table-btn"
             onClick={() => handleTableClick(table._id, table.name)}
           >
-            {table.name}
+            Bàn: {table.name}
             <br />
-            {table.capacity} seats
+            {table.capacity} chỗ
           </button>
         </div>
       ))}

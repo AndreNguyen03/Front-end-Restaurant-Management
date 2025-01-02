@@ -63,17 +63,17 @@ const DishList = ({ url }) => {
           className="menu-add-button"
           onClick={() => setShowAddDish(true)}
         >
-          Add New Dish
+          Thêm món ăn
         </button>
       </div>
 
       <div className="menu-table">
         <div className="menu-table-header">
-          <b>Image</b>
-          <b>Name</b>
-          <b>Category</b>
-          <b>Price</b>
-          <b>Action</b>
+          <b>Hình ảnh</b>
+          <b>Tên</b>
+          <b>Loại</b>
+          <b>Giá</b>
+          <b>Hành động</b>
         </div>
         {list.map((item, index) => {
           return (

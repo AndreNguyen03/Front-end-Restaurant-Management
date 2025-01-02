@@ -17,20 +17,20 @@ function InvoiceView({ onClose, invoiceData }) {
                             <button className='btn-close' onClick={onClose}>X</button>
                         </div>
                         <h2 className='header'>Tomato</h2>
-                        <h3>INVOICE NUMBER: {invoiceData.customId}</h3>
+                        <h3>ID Hóa đơn: {invoiceData.customId}</h3>
                         <div className='invoice-info'>
-                            <p>Table: {invoiceData.table}</p>
-                            <p>Date: {convertToVietnamTime(invoiceData.createdAt)}</p>
+                            <p>Bàn: {invoiceData.table}</p>
+                            <p>Ngày: {convertToVietnamTime(invoiceData.createdAt)}</p>
                         </div>
                     </div>
                     <div className='separate-line'></div>
                     <table>
                         <thead>
                             <tr>
-                                <th>Dish</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Amount</th>
+                                <th>Món ăn</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                                <th>Tổng tiền</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,14 +38,14 @@ function InvoiceView({ onClose, invoiceData }) {
                                 <tr key={dish._id}>
                                     <td>{dish.name}</td>
                                     <td>{dish.quantity}</td>
-                                    <td>{dish.price}đ</td>
-                                    <td>{dish.totalPrice}đ</td>
+                                    <td>{dish.price} vnđ</td>
+                                    <td>{dish.totalPrice} vnđ</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                     <div className='separate-line'></div>
-                    <h3>Total Amount: {invoiceData.total} đ</h3>
+                    <h3>Tổng tiền hóa đơn: {invoiceData.total} vnđ</h3>
                 </div>
             </div>
         </div>

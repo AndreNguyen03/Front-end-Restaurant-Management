@@ -21,10 +21,10 @@ const Sidebar = () => {
       { to: "/purchases", label: "Mua sắm", icon: assets.purchase_icon },
     ],
     employee: [
-      { to: "/orders", label: "Orders", icon: assets.order_icon },
-      { to: "/tableservice", label: "Table", icon: assets.table_icon },
-      { to: "/invoice", label: "Invoice", icon: assets.payment_icon },
-      { to: "/reservation", label: "Reservation", icon: assets.reser_icon },
+      { to: "/orders", label: "Đơn hàng", icon: assets.order_icon },
+      { to: "/tableservice", label: "Bàn ăn", icon: assets.table_icon },
+      { to: "/invoice", label: "Hóa đơn", icon: assets.payment_icon },
+      { to: "/reservation", label: "Đặt lịch", icon: assets.reser_icon },
     ],
   };
 

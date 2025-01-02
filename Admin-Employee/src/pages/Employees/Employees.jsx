@@ -56,17 +56,17 @@ const Employees = ({ url }) => {
           onClick={() => setShowAddEmployee(true)}
           className="add-employee-button"
         >
-          Add New Employee
+          Thêm nhân viên
         </button>
       </div>
 
       <div className="employee-list">
         <div className="employee-list-header">
-          <b>Full Name</b>
-          <b>Phone Number</b>
-          <b>Social ID</b>
-          <b>Role</b>
-          <b>Action</b>
+          <b>Họ và tên</b>
+          <b>Số điện thoại</b>
+          <b>Số định danh</b>
+          <b>Vai trò</b>
+          <b>Hành động</b>
         </div>
         {list.map((item, index) => {
           return (

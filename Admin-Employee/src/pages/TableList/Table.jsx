@@ -59,16 +59,16 @@ const TableList = ({ url }) => {
     <div className="tables-container">
       <div className="tables-actions">
         <button className="btn-add-table" onClick={() => setShowAddTable(true)}>
-          Add New Table
+          Thêm bàn ăn
         </button>
       </div>
       <div className="cards-wrapper">
         {tables.map((table) => (
           <div key={table._id} className="card-item">
             <div className="card-header">
-              <h3>{table.name}</h3>
+              <h3>Bàn: {table.name}</h3>
             </div>
-            <p>{table.capacity} seats</p>
+            <p>{table.capacity} chỗ</p>
             <div className="card-divider"></div>
             <div className="card-actions">
               <FontAwesomeIcon

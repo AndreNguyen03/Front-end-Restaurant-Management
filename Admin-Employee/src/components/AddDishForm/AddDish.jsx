@@ -49,7 +49,7 @@ const AddDish = ({onDishAdded}) => {
       <form className="flex-col " onSubmit={onSubmitHandler}>
         <p onClick={onDishAdded} className='dish-close-button' >X</p>
         <div className="add-img-upload flex-col">
-          <p>Upload Image</p>
+          <p>Tải hình ảnh lên</p>
           <label htmlFor="image">
             <img 
               src={image ? URL.createObjectURL(image) : assets.upload_area}
@@ -65,7 +65,7 @@ const AddDish = ({onDishAdded}) => {
           />
         </div>
         <div className="add-product-name flex-col">
-          <p>Product Name</p>
+          <p>Tên sản phẩm</p>
           <input
             onChange={onChangeHandler}
             value={data.name}
@@ -75,7 +75,7 @@ const AddDish = ({onDishAdded}) => {
           />
         </div>
         <div className="add-product-description flex-col">
-          <p>Product Description</p>
+          <p>Mô tả sản phẩm</p>
           <textarea
             onChange={onChangeHandler}
             value={data.description}
@@ -87,7 +87,7 @@ const AddDish = ({onDishAdded}) => {
         </div>
         <div className="add-category-price">
           <div className="add-category flex-col">
-            <p>Product Category</p>
+            <p>Loại sản phẩm</p>
             <select name="category" onChange={onChangeHandler}>
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
@@ -100,18 +100,18 @@ const AddDish = ({onDishAdded}) => {
             </select>
           </div>
           <div className="add-price flex-col">
-            <p>Product Price</p>
+            <p>Giá sản phẩm</p>
             <input
               onChange={onChangeHandler}
               value={data.price}
               type="Number"
               name="price"
-              placeholder="$20"
+              placeholder="50000 vnđ"
             />
           </div>
         </div>
         <button type="submit" className="add-btn">
-          Add
+          Thêm món ăn
         </button>
       </form>
     </div>

@@ -225,7 +225,7 @@ Nhà hàng Tomato`,
       <div className="custom-search-container">
         <input
           type="text"
-          placeholder="Search by name or phone number..."
+          placeholder="Tìm kiếm bằng ID hoặc bàn..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="custom-search-input"
@@ -240,13 +240,13 @@ Nhà hàng Tomato`,
           <thead>
             <tr>
               <th>ID</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Table</th>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th>Ngày</th>
+              <th>Thời gian</th>
+              <th>Bàn</th>
+              <th>Tên</th>
+              <th>Số điện thoại</th>
+              <th>Trạng thái</th>
+              <th>Hành động</th>
             </tr>
           </thead>
           <tbody>
@@ -256,7 +256,7 @@ Nhà hàng Tomato`,
                   <td>{index + 1 + (currentPage - 1) * recordsPerPage}</td>
                   <td>{new Date(reservation.date).toLocaleDateString()}</td>
                   <td>{formatTime(reservation.startTime) || "N/A"}</td>
-                  <td>{reservation.tableAssigned?.name || "N/A"}</td>
+                  <td>Bàn: {reservation.tableAssigned?.name || "N/A"}</td>
                   <td>{reservation.name}</td>
                   <td>{reservation.phone}</td>
                   <td>{reservation.status}</td>
@@ -279,7 +279,7 @@ Nhà hàng Tomato`,
               ))
             ) : (
               <tr>
-                <td colSpan="8">No reservations found.</td>
+                <td colSpan="8">Không có đặt bàn nào.</td>
               </tr>
             )}
           </tbody>
@@ -289,7 +289,7 @@ Nhà hàng Tomato`,
       {editingReservation && (
         <div className="edit-form">
           <div className="edit-form-header">
-            <h3>Edit Reservation</h3>
+            <h3>Chỉnh sửa đặt bàn</h3>
             <span
               className="close-icon"
               onClick={() => setEditingReservation(null)}
@@ -302,16 +302,16 @@ Nhà hàng Tomato`,
               value={selectedTable}
               onChange={(e) => setSelectedTable(e.target.value)}
             >
-              <option value="">Select a table</option>
+              <option value="">Chọn bàn</option>
               {tables.map((table) => (
                 <option key={table._id} value={table._id}>
-                  {table.name}
+                  Bàn: {table.name}
                 </option>
               ))}
             </select>
           </label>
           <label>
-            Duration (hours):
+            Thời gian (Giờ):
             <input
               type="number"
               value={duration}
@@ -326,10 +326,10 @@ Nhà hàng Tomato`,
               onClick={handleConfirmEdit}
               disabled={selectedTable === "Select a table" || isSubmitting}
             >
-              {isSubmitting ? "Submitting..." : "Confirm"}
+              {isSubmitting ? "Submitting..." : "Xác nhận"}
             </button>
             <button onClick={handleCancelEdit} disabled={isSubmitting}>
-              {isSubmitting ? "Cancelling..." : "Cancel"}
+              {isSubmitting ? "Cancelling..." : "Hủy"}
             </button>
           </div>
         </div>

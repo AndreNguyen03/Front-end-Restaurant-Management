@@ -58,23 +58,23 @@ const EditTable = ({ url, onTableEdited, tableId }) => {
           X
         </button>
         <form className="edit-table-form" onSubmit={onSubmitHandler}>
-          <h2>Edit Table</h2>
+          <h2>Sửa thông tin bàn</h2>
 
           <div className="form-group">
-            <label htmlFor="name">Table Name</label>
+            <label htmlFor="name">Tên bàn</label>
             <input
               id="name"
               name="name"
               type="text"
               value={data.name}
               onChange={onChangeHandler}
-              placeholder="Enter table name"
+              placeholder="Nhập tên bàn"
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="capacity">Table Capacity</label>
+            <label htmlFor="capacity">Số chỗ ngồi</label>
             <select
               id="capacity"
               name="capacity"
@@ -90,7 +90,7 @@ const EditTable = ({ url, onTableEdited, tableId }) => {
           </div>
 
           <button type="submit" className="submit-button">
-            Edit Table
+            Cập nhật thông tin bàn
           </button>
         </form>
       </div>

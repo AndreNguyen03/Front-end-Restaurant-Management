@@ -8,10 +8,10 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
             >
-                Previous
+                Trước
             </button>
             <span>
-                Page {currentPage} of {totalPages}
+                Trang {currentPage} - {totalPages}
             </span>
             <button
                 onClick={() =>
@@ -19,7 +19,7 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
                 }
                 disabled={currentPage === totalPages}
             >
-                Next
+                Sau
             </button>
         </div>
     );

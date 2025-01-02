@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Pagination from "./Pagination";
 import "./ListView.css";
 import axios from "axios";
+import socket, { connectSocket, disconnectSocket } from "../../socket.js";
 
 function ListView() {
   const [reservations, setReservations] = useState([]);
@@ -73,6 +74,18 @@ function ListView() {
       setError("Failed to fetch tables.");
     }
   }, [apiFetch]);
+
+  useEffect(() => {
+    connectSocket();
+
+    socket.on("new_reservation", () => {
+      fetchReservations();
+    });
+
+    return () => {
+      disconnectSocket();
+    };
+  }, []);
 
   useEffect(() => {
     fetchReservations();

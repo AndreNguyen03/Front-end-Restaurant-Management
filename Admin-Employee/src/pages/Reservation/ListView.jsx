@@ -4,6 +4,8 @@ import Pagination from "./Pagination";
 import "./ListView.css";
 import axios from "axios";
 import socket, { connectSocket, disconnectSocket } from "../../socket.js";
+import notificationSsound from "../../assets/admin_assets/notification-22-270130.mp3";
+const notificationAudio = new Audio(notificationSsound);
 
 function ListView() {
   const [reservations, setReservations] = useState([]);
@@ -78,11 +80,19 @@ function ListView() {
   useEffect(() => {
     connectSocket();
 
-    socket.on("new_reservation", () => {
-      fetchReservations();
-    });
+    const handleNewReservation = () => {
+          fetchReservations();
+          toast.info("Có đơn hàng mới");
+          notificationAudio.play().catch((error) => {
+            console.error("Audio play failed:", error);
+          });
+        };
+
+
+    socket.on("new_reservation", handleNewReservation);
 
     return () => {
+      socket.off("new_reservation", handleNewReservation);
       disconnectSocket();
     };
   }, []);

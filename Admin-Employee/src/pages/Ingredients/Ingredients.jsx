@@ -7,6 +7,7 @@ import EditIngredient from "../../components/EditIngredientForm/EditIngredient";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import ConfirmationForm from "../../components/ConfirmationForm/ConfirmationForm";
+import formatNumber from "../../utils/FormatNumber";
 
 const IngredientList = ({ url }) => {
   const [list, setList] = useState([]);
@@ -77,7 +78,7 @@ const IngredientList = ({ url }) => {
         {list.map((item, index) => (
           <div key={index} className="ingredient-list-row">
             <p>{item.name}</p>
-            <p>{item.unitprice} vnđ</p>
+            <p>{formatNumber(item.unitprice)} vnđ</p>
             <p>{item.quantity}</p>
             <p>{item.unit}</p>
             <div className="ingredient-actions-icons">

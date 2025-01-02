@@ -6,6 +6,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import AddPurchaseForm from "../../components/AddPurchaseForm/AddPurchaseForm";
 import PurchaseDetails from "../../components/PurchaseDetails/PurchaseDetails";
 import "./PurchasePage.css";
+import formatNumber from "../../utils/FormatNumber";
 
 const PurchasePage = ({ url }) => {
   const [purchases, setPurchases] = useState([]);
@@ -81,9 +82,7 @@ const PurchasePage = ({ url }) => {
                   : "N/A"}
               </p>
               <p>
-                {Number.isFinite(purchase.totalAmount)
-                  ? purchase.totalAmount.toFixed(0)
-                  : "0"}{" "}
+                {formatNumber(Number.isFinite(purchase.totalAmount))}
                 vnđ
               </p>
               <div className="action-container">

@@ -12,6 +12,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import formatNumber from '../../utils/FormatNumber';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -89,19 +90,19 @@ const Revenue = () => {
       <div className="revenue-header">
         <div className="revenue-box-total">
           <h3>Tổng doanh thu</h3>
-          <p>{data.totalRevenue.toFixed(0)} vnđ</p>
+          <p>{formatNumber(data.totalRevenue.toFixed(0))} vnđ</p>
         </div>
         <div className="revenue-box today">
           <h3>Doanh thu hôm nay</h3>
-          <p>{data.todayRevenue.toFixed(0)} vnđ</p>
+          <p>{formatNumber(data.todayRevenue.toFixed(0))} vnđ</p>
         </div>
         <div className="revenue-box weekly">
           <h3>Doanh thu tuần này</h3>
-          <p>{data.weeklyRevenue.toFixed(0)} vnđ</p>
+          <p>{formatNumber(data.weeklyRevenue.toFixed(0))} vnđ</p>
         </div>
         <div className="revenue-box monthly">
           <h3>Doanh thu tháng này</h3>
-          <p>{data.monthlyRevenue.toFixed(0)} vnđ</p>
+          <p>{formatNumber(data.monthlyRevenue.toFixed(0))} vnđ</p>
         </div>
       </div>
 

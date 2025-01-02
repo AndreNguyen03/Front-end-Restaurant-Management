@@ -8,6 +8,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import EditDish from "../../components/EditDishForm/EditDish";
 import ConfirmationForm from "../../components/ConfirmationForm/ConfirmationForm";
+import formatNumber from "../../utils/FormatNumber";
 const DishList = ({ url }) => {
   const [list, setList] = useState([]);
   const [showAddDish, setShowAddDish] = useState(false);
@@ -81,7 +82,7 @@ const DishList = ({ url }) => {
               <img src={`${url}/images/${item.image}`} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>
-              <p>{item.price} vnđ</p>
+              <p>{formatNumber(item.price)} vnđ</p>
               <div className="menu-item-actions">
                 <FontAwesomeIcon
                   onClick={() => {

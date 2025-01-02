@@ -76,7 +76,7 @@ function TableView({ selectedDate }) {
                   const reservation = reservations.find((res) => {
                     const startDate = new Date(res.startTime);
                     const startInHoursFormatted = convertUTCToGMT7InHours(startDate);
-                    return startInHoursFormatted === time && res.status === "confirm" && table.name === res.tableAssigned.name;
+                    return startInHoursFormatted === time && res.status === "Xác nhận" && table.name === res.tableAssigned.name;
                   }
                   );
 

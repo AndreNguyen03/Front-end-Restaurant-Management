@@ -97,7 +97,7 @@ const EditDish = ({ url, onDishEdited, dishId}) => {
               value={data.name}
               type="text"
               name="name"
-              placeholder="Type here"
+              placeholder="Nhập tên sản phẩm"
             />
           </div>
           <div className="add-product-description flex-col">
@@ -107,7 +107,7 @@ const EditDish = ({ url, onDishEdited, dishId}) => {
               value={data.description}
               name="description"
               rows="6"
-              placeholder="Write content here"
+              placeholder="Nhập mô tả sản phẩm"
               required
             ></textarea>
           </div>
@@ -116,13 +116,13 @@ const EditDish = ({ url, onDishEdited, dishId}) => {
               <p>Loại sản phẩm</p>
               <select value={data.category} name="category" onChange={onChangeHandler}>
                 <option value="Salad">Salad</option>
-                <option value="Rolls">Rolls</option>
-                <option value="Deserts">Deserts</option>
+                <option value="Cuộn">Cuộn</option>
+                <option value="Tráng miệng">Tráng miệng</option>
                 <option value="Sandwich">Sandwich</option>
-                <option value="Cake">Cake</option>
-                <option value="Pure Veg">Pure Veg</option>
+                <option value="Bánh ngọt">Bánh ngọt</option>
+                <option value="Rau">Rau</option>
                 <option value="Pasta">Pasta</option>
-                <option value="Noodle">Noodle</option>
+                <option value="Mì">Mì</option>
               </select>
             </div>
             <div className="add-price flex-col">
@@ -137,7 +137,7 @@ const EditDish = ({ url, onDishEdited, dishId}) => {
             </div>
           </div>
           <button type="submit" className="add-btn">
-            Edit
+            Cập nhật
           </button>
         </form>
       </div>

@@ -22,7 +22,7 @@ const CommentCard = ({
             {comment.isEdited && (
               <span className="edited">
                 {" "}
-                (edited at {new Date(comment.updatedAt).toLocaleString()})
+                (Chỉnh sửa vào: {new Date(comment.updatedAt).toLocaleString()})
               </span>
             )}
           </span>

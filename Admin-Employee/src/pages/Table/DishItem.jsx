@@ -1,5 +1,6 @@
 import React from 'react'
 import './DishItem.css'
+import formatNumber from '../../utils/FormatNumber'
 
 function DishItem({name,image,description,price,onClick}) {
   return (  
@@ -12,7 +13,7 @@ function DishItem({name,image,description,price,onClick}) {
           <p>{name}</p>
         </div>
         <p className="food-item-desc">{description}</p>
-        <p className="food-item-price">${price}</p>
+        <p className="food-item-price">{formatNumber(price)} vnđ</p>
       </div>
     </div>
   )

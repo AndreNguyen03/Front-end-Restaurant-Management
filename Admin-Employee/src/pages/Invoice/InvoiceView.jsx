@@ -1,5 +1,6 @@
 import React from 'react'
 import './InvoiceView.css'
+import formatNumber from '../../utils/FormatNumber';
 
 function InvoiceView({ onClose, invoiceData }) {
 
@@ -38,14 +39,14 @@ function InvoiceView({ onClose, invoiceData }) {
                                 <tr key={dish._id}>
                                     <td>{dish.name}</td>
                                     <td>{dish.quantity}</td>
-                                    <td>{dish.price} vnđ</td>
-                                    <td>{dish.totalPrice} vnđ</td>
+                                    <td>{formatNumber(dish.price)} vnđ</td>
+                                    <td>{formatNumber(dish.totalPrice)} vnđ</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                     <div className='separate-line'></div>
-                    <h3>Tổng tiền hóa đơn: {invoiceData.total} vnđ</h3>
+                    <h3>Tổng tiền hóa đơn: {formatNumber(invoiceData.total)} vnđ</h3>
                 </div>
             </div>
         </div>

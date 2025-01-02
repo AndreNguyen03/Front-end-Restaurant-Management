@@ -71,7 +71,7 @@ const AddDish = ({onDishAdded}) => {
             value={data.name}
             type="text"
             name="name"
-            placeholder="Type here"
+            placeholder="Nhập tên sản phẩm"
           />
         </div>
         <div className="add-product-description flex-col">
@@ -81,7 +81,7 @@ const AddDish = ({onDishAdded}) => {
             value={data.description}
             name="description"
             rows="6"
-            placeholder="Write content here"
+            placeholder="Nhap mô tả sản phẩm"
             required
           ></textarea>
         </div>
@@ -89,14 +89,14 @@ const AddDish = ({onDishAdded}) => {
           <div className="add-category flex-col">
             <p>Loại sản phẩm</p>
             <select name="category" onChange={onChangeHandler}>
-              <option value="Salad">Salad</option>
-              <option value="Rolls">Rolls</option>
-              <option value="Deserts">Deserts</option>
-              <option value="Sandwich">Sandwich</option>
-              <option value="Cake">Cake</option>
-              <option value="Pure Veg">Pure Veg</option>
-              <option value="Pasta">Pasta</option>
-              <option value="Noodle">Noodle</option>
+            <option value="Salad">Salad</option>
+                <option value="Cuộn">Cuộn</option>
+                <option value="Tráng miệng">Tráng miệng</option>
+                <option value="Sandwich">Sandwich</option>
+                <option value="Bánh ngọt">Bánh ngọt</option>
+                <option value="Rau">Rau</option>
+                <option value="Pasta">Pasta</option>
+                <option value="Mì">Mì</option>
             </select>
           </div>
           <div className="add-price flex-col">

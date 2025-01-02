@@ -23,7 +23,7 @@ const FoodDisplay = ({ category, setCategory }) => {
   return (
     <div className="food-display" id="food-display">
       <div className="food-display-header">
-        <h2>Top dishes near you</h2>
+        <h2>Những món ăn hàng đầu cho bạn</h2>
         <SearchBar setSearchQuery={setSearchQuery} />
       </div>
       <div className="food-display-list">

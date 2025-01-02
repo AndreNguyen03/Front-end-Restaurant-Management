@@ -42,23 +42,23 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-form">
-        <h2>Login</h2>
+        <h2>Đăng nhập</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
+            placeholder="Tên đăng nhập"
             required
           />
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder="Mật khẩu"
             required
           />
-          <button type="submit">Login</button>
+          <button type="submit">Đăng nhập</button>
           {error && <p className="error">{error}</p>}
         </form>
       </div>

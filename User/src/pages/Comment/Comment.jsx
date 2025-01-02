@@ -186,13 +186,13 @@ const CommentPage = () => {
 
   return (
     <div className="comment-page">
-      <h1>Customer Comments</h1>
+      <h1>Bình luận của khách hàng</h1>
 
       {isAuthenticated ? (
         <div className="add-comment">
           <div className="rate-section">
             <label htmlFor="rate" className="rate-label">
-              Rate this restaurant:
+              Đánh giá nhà hàng này:
             </label>
             <input
               id="rate"
@@ -210,31 +210,31 @@ const CommentPage = () => {
           <div className="content-button-section">
             <textarea
               className="comment-input"
-              placeholder="Write your comment..."
+              placeholder="Nhập bình luận của bạn..."
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
             />
             <button className="post-button" onClick={handleAddComment}>
-              Post Comment
+              Đăng bình luận
             </button>
           </div>
         </div>
       ) : (
-        <p class="login-message-comment">Please log in to post a comment.</p>
+        <p class="login-message-comment">Vui lòng đăng nhập để gửi bình luận.</p>
       )}
 
       {/* Bộ lọc*/}
       <div className="sort-section">
-        <label htmlFor="filterOption">Sort by:</label>
+        <label htmlFor="filterOption">Sắp xếp theo:</label>
         <select
           id="filterOption"
           value={filterOption}
           onChange={handleFilterChange}
         >
-          <option value="rateDesc">Rating: High to Low</option>
-          <option value="rateAsc">Rating: Low to High</option>
-          <option value="dateDesc">Date: Newest First</option>
-          <option value="dateAsc">Date: Oldest First</option>
+          <option value="rateDesc">Đánh giá: Cao đến thấp</option>
+          <option value="rateAsc">Đánh giá: Thấp đến Cao</option>
+          <option value="dateDesc">Ngày: Mới nhất Đầu tiên</option>
+          <option value="dateAsc">Ngày: Cũ nhất Đầu tiên</option>
         </select>
       </div>
 
@@ -254,12 +254,12 @@ const CommentPage = () => {
               />
             ))
         ) : (
-          <p>No comments available.</p>
+          <p>Không có bình luận nào.</p>
         )}
       </div>
       {comments.length > visibleComments && (
         <button className="load-more" onClick={handleLoadMore}>
-          Load More
+          Tải thêm
         </button>
       )}
 
@@ -267,10 +267,10 @@ const CommentPage = () => {
       {editPopupVisible && (
         <div className="edit-popup">
           <div className="edit-popup-content">
-            <h2>Edit Comment</h2>
+            <h2>Chỉnh sửa bình luận</h2>
 
             <div className="rate-section">
-              <label>Rate this restaurant:</label>
+              <label>Đánh giá nhà hàng này:</label>
               <input
                 type="number"
                 min="1"
@@ -291,13 +291,13 @@ const CommentPage = () => {
 
             <div className="edit-popup-buttons">
               <button className="confirm-btn" onClick={handleConfirmEdit}>
-                Confirm
+                Xác nhận
               </button>
               <button
                 className="cancel-btn"
                 onClick={() => setEditPopupVisible(false)}
               >
-                Cancel
+                Hủy
               </button>
             </div>
           </div>

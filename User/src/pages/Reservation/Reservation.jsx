@@ -89,28 +89,28 @@ const Reservation = () => {
 
   return (
     <div className="reservation-container">
-      <h1 className="reservation-title">Table Reservation</h1>
+      <h1 className="reservation-title">Đặt bàn ăn</h1>
       <form className="reservation-form" onSubmit={handleSubmit}>
         <div className="form-section">
           <div className="form-group">
-            <label htmlFor="fullName">Full Name</label>
+            <label htmlFor="fullName">Họ và tên</label>
             <input
               type="text"
               id="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              placeholder="Enter your full name"
+              placeholder="Nhập họ và tên của bạn"
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="phoneNumber">Phone Number</label>
+            <label htmlFor="phoneNumber">Số điện thoại</label>
             <input
               type="tel"
               id="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
-              placeholder="Enter your phone number"
+              placeholder="Nhập số điện thoại của bạn"
               required
             />
           </div>
@@ -121,14 +121,14 @@ const Reservation = () => {
               id="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your email"
+              placeholder="Nhập email của bạn"
               required
             />
           </div>
         </div>
         <div className="form-section">
           <div className="form-group">
-            <label htmlFor="date">Date</label>
+            <label htmlFor="date">Ngày</label>
             <input
               type="date"
               id="date"
@@ -139,14 +139,14 @@ const Reservation = () => {
             />
           </div>
           <div className="form-group-container">
-            <label htmlFor="time">Time</label>
+            <label htmlFor="time">Thời gian</label>
             <select
               id="time"
               value={formData.time}
               onChange={handleChange}
               required
             >
-              <option value="">Select a time</option>
+              <option value="">Chọn thời gian</option>
               {timeOptions.map((time) => (
                 <option key={time} value={time}>
                   {time}
@@ -156,7 +156,7 @@ const Reservation = () => {
           </div>
         </div>
         <button type="submit" className="reservation-button" disabled={loading}>
-          {loading ? "Processing..." : "Make Your Reservation"}
+          {loading ? "Processing..." : "Đặt bàn"}
         </button>
         {responseMessage && (
           <p className="reservation-message">{responseMessage}</p>

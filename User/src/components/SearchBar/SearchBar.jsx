@@ -13,7 +13,7 @@ const SearchBar = ({ setSearchQuery }) => {
     <div className="search-bar">
       <input
         type="text"
-        placeholder="Search for dishes..."
+        placeholder="Tìm kiếm món ăn..."
         value={query}
         onChange={handleChange}
       />

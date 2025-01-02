@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-content-left">
           <img src={assets.logo} alt="" />
-          <p>Lorem Ipsum is simply dummy text of printing and typesetting industry. Lorem ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type of specimen book.</p>
+          <p>Lorem Ipsum chỉ đơn giản là đoạn văn bản giả dùng trong ngành in ấn và dàn trang. Lorem Ipsum đã trở thành tiêu chuẩn văn bản mẫu của ngành này từ những năm 1500, khi một thợ in vô danh sắp xếp các chữ cái và xáo trộn chúng để tạo ra một cuốn sách mẫu.</p>
           <div className="footer-social-icons">
             <img src={assets.facebook_icon} alt="" />
             <img src={assets.twitter_icon} alt="" />
@@ -16,17 +16,17 @@ const Footer = () => {
         </div>
 
         <div className="footer-content-center">
-          <h2>Company</h2>
+          <h2>Công ty</h2>
           <ul>
-            <li>Home</li>
-            <li>About us</li>
-            <li>Delivery</li>
-            <li>Privacy Policy</li>
+            <li>Trang chủ</li>
+            <li>Về chúng tôi</li>
+            <li>Vận chuyển</li>
+            <li>Chính sách bảo mật</li>
           </ul>
         </div>
 
         <div className="footer-content-right">
-          <h2>GET IN TOUCH</h2>
+          <h2>LIÊN HỆ</h2>
           <ul>
             <li>+1-212-456-790</li>
             <li>contact@vietnam.com</li>
@@ -35,7 +35,7 @@ const Footer = () => {
       </div>
       <hr />
       <p className="footer-copy-right">
-        Copyright 2024 &#169; Tomato.com - All Right Reserved.
+      Bản quyền 2024 &#169; Tomato.com - Bảo lưu mọi quyền.
       </p>
     </div>
   );

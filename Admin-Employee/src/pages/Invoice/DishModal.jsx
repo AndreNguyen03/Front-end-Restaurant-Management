@@ -4,6 +4,7 @@ import axios from 'axios';
 import DishItem from "./DishItem";
 import SearchBar from '../../components/SearchBar/SearchBar'
 import InvoiceModal from "./InvoiceModal";
+import formatNumber from '../../utils/FormatNumber'
 
 function DishModal({ onClose,updateInvoices }) {
     const url = 'http://localhost:3056';
@@ -148,7 +149,7 @@ function DishModal({ onClose,updateInvoices }) {
                                                 <tr key={item._id}>
                                                     <td><img className='cartdish-img' src={`${url}/images/${item.image}`} alt={item.name} /></td>
                                                     <td>{item.name}</td>
-                                                    <td>{item.price} vnđ</td>
+                                                    <td>{formatNumber(item.price)} vnđ</td>
                                                     <td>
                                                         <input
                                                             className="quantity-input"
@@ -158,7 +159,7 @@ function DishModal({ onClose,updateInvoices }) {
                                                             onChange={(e) => updateQuantity(item._id, e.target.value)}
                                                         />
                                                     </td>
-                                                    <td>{item.price * item.quantity} vnđ</td>
+                                                    <td>{formatNumber(item.price * item.quantity)} vnđ</td>
                                                     <td><button onClick={() => removeFromCart(item._id)}>X</button></td>
                                                 </tr>
                                             ))}
@@ -166,7 +167,7 @@ function DishModal({ onClose,updateInvoices }) {
                                     </table>
                                 </div>
                             </div>
-                            <p className="total-amount">Tổng tiền hóa đơn: {totalAmount} vnđ</p>
+                            <p className="total-amount">Tổng tiền hóa đơn: {formatNumber(totalAmount)} vnđ</p>
                         </div>
                     </div>
                 </div>

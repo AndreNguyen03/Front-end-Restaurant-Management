@@ -199,9 +199,9 @@ const AddEmployee = ({ onEmployeeAdded }) => {
               required
             >
               <option value="">Chọn vai trò</option>
-              <option value="Chef">Chef</option>
-              <option value="Receptionist">Receptionist</option>
-              <option value="Chef Assistant">Chef Assistant</option>
+              <option value="Đầu bếp">Đầu bếp</option>
+              <option value="Lễ tân">Lễ tân</option>
+              <option value="Phụ bếp">Phụ bếp</option>
             </select>
             {errors.employeeRole && <p className="error">{errors.employeeRole}</p>}
           </div>

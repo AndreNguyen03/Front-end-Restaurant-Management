@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import './InvoiceModal.css'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import formatNumber from '../../utils/FormatNumber';
 
 function InvoiceModal({ onClose, invoiceData }) {
 
@@ -76,14 +77,14 @@ function InvoiceModal({ onClose, invoiceData }) {
                                     <tr key={dish.dish}>
                                         <td>{dish.name}</td>
                                         <td>{dish.quantity}</td>
-                                        <td>{dish.price} vnđ</td>
-                                        <td>{dish.totalPrice} vnđ</td>
+                                        <td>{formatNumber(dish.price)} vnđ</td>
+                                        <td>{formatNumber(dish.totalPrice)} vnđ</td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                         <div className='separate-line'></div>
-                        <h3>Tổng tiền hóa đơn: {invoiceData.metadata.total} vnđ</h3>
+                        <h3>Tổng tiền hóa đơn: {formatNumber(invoiceData.metadata.total)} vnđ</h3>
                     </div>
                     {/* Nút Print */}
                     <button className='btn-print' onClick={handlePrint}>In hóa đơn</button>

@@ -172,7 +172,7 @@ Nhà hàng Tomato`,
       setReservations((prev) =>
         prev.map((res) =>
           res._id === editingReservation._id
-            ? { ...res, status: "cancel" }
+            ? { ...res, status: "Hủy" }
             : res
         )
       );

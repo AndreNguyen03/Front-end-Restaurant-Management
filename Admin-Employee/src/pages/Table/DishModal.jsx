@@ -5,6 +5,7 @@ import DishItem from "./DishItem";
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { useTableCart } from "../../context/TableContext";
 import InvoiceModal from "./InvoiceModal";
+import formatNumber from '../../utils/FormatNumber'
 
 function DishModal({ tableId, onClose,tableName }) {
     const url = 'http://localhost:3056';
@@ -113,7 +114,7 @@ function DishModal({ tableId, onClose,tableName }) {
                                                 <tr key={item._id}>
                                                     <td><img className='cartdish-img' src={`${url}/images/${item.image}`} alt={item.name} /></td>
                                                     <td>{item.name}</td>
-                                                    <td>{item.price} vnđ</td>
+                                                    <td>{formatNumber(item.price)} vnđ</td>
                                                     <td>
                                                         <input
                                                             className="quantity-input"
@@ -123,7 +124,7 @@ function DishModal({ tableId, onClose,tableName }) {
                                                             onChange={(e) => updateQuantity(tableId, item._id, e.target.value)}
                                                         />
                                                     </td>
-                                                    <td>{item.price * item.quantity} vnđ</td>
+                                                    <td>{formatNumber(item.price * item.quantity)} vnđ</td>
                                                     <td><button onClick={() => removeFromCart(tableId, item._id)}>X</button></td>
                                                 </tr>
                                             ))}
@@ -131,7 +132,7 @@ function DishModal({ tableId, onClose,tableName }) {
                                     </table>
                                 </div>
                             </div>
-                            <p className="total-amount">Tổng tiền hóa đơn: {totalAmount} vnđ</p>
+                            <p className="total-amount">Tổng tiền hóa đơn: {formatNumber(totalAmount)} vnđ</p>
                         </div>
                     </div>
                 </div>

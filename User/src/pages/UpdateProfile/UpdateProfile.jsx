@@ -144,10 +144,10 @@ const UpdateProfile = () => {
 
   return (
     <div className="update-profile-container">
-      <h2>Update Profile</h2>
+      <h2>Cập nhật hồ sơ</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-field">
-          <label>Full Name:</label>
+          <label>Họ và tên:</label>
           <input
             type="text"
             name="fullName"
@@ -160,7 +160,7 @@ const UpdateProfile = () => {
         </div>
 
         <div className="input-field">
-          <label>Phone Number:</label>
+          <label>Số điện thoại:</label>
           <input
             type="tel"
             name="phoneNumber"
@@ -188,7 +188,7 @@ const UpdateProfile = () => {
           type="submit"
           className={`update-button ${!isFormDirty ? "disabled" : ""}`}
         >
-          Update Profile
+          Cập nhật
         </button>
       </form>
     </div>

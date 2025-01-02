@@ -88,12 +88,12 @@ const Cart = () => {
     <div className="cart">
       <div className="cart-items">
         <div className="cart-items-title">
-          <p>Items</p>
-          <p>Title</p>
-          <p>Price</p>
-          <p>Quantity</p>
-          <p>Total</p>
-          <p>Remove</p>
+          <p>Hình ảnh</p>
+          <p>Tên</p>
+          <p>Giá</p>
+          <p>Số lượng</p>
+          <p>Tổng tiền</p>
+          <p>Xóa</p>
         </div>
         <br />
         <hr />
@@ -139,27 +139,27 @@ const Cart = () => {
       </div>
       <div className="cart-bottom">
         <div className="cart-total">
-          <h2>Cart Total: </h2>
+          <h2>Tổng tiền giỏ hàng: </h2>
           <div>
             <div className="cart-total-details">
-              <p>Subtotal</p>
+              <p>Tổng tiền</p>
               <p>{formatNumber(getTotalCartAmount())} VND</p>
             </div>
             <hr />
             <div className="cart-total-details">
-              <p>Delivery Fee</p>
+              <p>Phí vận chuẩn</p>
               <p>
                 {formatNumber(getTotalCartAmount() === 0 ? 0 : deliveryFee)} VND
               </p>
             </div>
             <hr />
             <div className="cart-total-details">
-              <p>Total</p>
+              <p>Tổng chi phí</p>
               <p>{formatNumber(getTotalCartAmount() + deliveryFee)} VND</p>
             </div>
           </div>
           <button onClick={() => navigate("/order")}>
-            PROCEED TO CHECKOUT
+            Tiến hành thanh toán
           </button>
         </div>
         

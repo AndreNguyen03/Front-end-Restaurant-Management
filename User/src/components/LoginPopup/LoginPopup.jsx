@@ -6,7 +6,7 @@ import { assets } from "../../assets/frontend_assets/assets";
 import { AuthContext } from "../../context/AuthContext";
 
 const LoginPopup = ({ setShowLogin }) => {
-  const [currState, setCurrState] = useState("Login");
+  const [currState, setCurrState] = useState("Đăng nhập");
   const reg_url = "http://localhost:3056/api/cAuth/register";
   const otp_url = "http://localhost:3056/api/cAuth/getOTP";
   const [formData, setFormData] = useState({
@@ -82,14 +82,14 @@ const LoginPopup = ({ setShowLogin }) => {
       [name]: value,
     });
 
-    if (currState === "Sign Up") {
+    if (currState === "Đăng ký") {
       validateField(name, value);
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    if (currState === "Sign Up") {
+    if (currState === "Đăng ký") {
       if (!formData.name) newErrors.name = "Name is required.";
       if (!formData.email) {
         newErrors.email = "Email is required.";
@@ -191,7 +191,7 @@ const LoginPopup = ({ setShowLogin }) => {
     <div className="login-popup">
       <form
         className="login-popup-container"
-        onSubmit={currState === "Sign Up" ? handleRegister : handleLogin}
+        onSubmit={currState === "Đăng ký" ? handleRegister : handleLogin}
       >
         <div className="login-popup-title">
           <h2>{currState}</h2>
@@ -202,12 +202,12 @@ const LoginPopup = ({ setShowLogin }) => {
           />
         </div>
         <div className="login-popup-inputs">
-          {currState === "Sign Up" ? (
+          {currState === "Đăng ký" ? (
             <>
               <input
                 type="text"
                 name="name"
-                placeholder="Your name"
+                placeholder="Họ và tên"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -217,7 +217,7 @@ const LoginPopup = ({ setShowLogin }) => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Your email"
+                  placeholder="Email"
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -227,14 +227,14 @@ const LoginPopup = ({ setShowLogin }) => {
                   className="otp-button"
                   onClick={handleSendOtp}
                 >
-                  Send OTP
+                  Gửi OTP
                 </button>
               </div>
               {errors.email && <p className="error">{errors.email}</p>}
               <input
                 type="text"
                 name="otp"
-                placeholder="Enter OTP"
+                placeholder="Nhập mã OTP"
                 value={formData.otp}
                 onChange={handleChange}
                 required
@@ -243,7 +243,7 @@ const LoginPopup = ({ setShowLogin }) => {
               <input
                 type="tel"
                 name="phoneNumber"
-                placeholder="Your phone number"
+                placeholder="Số điện thoại"
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 required
@@ -257,7 +257,7 @@ const LoginPopup = ({ setShowLogin }) => {
           <input
             type="text"
             name="username"
-            placeholder="Username"
+            placeholder="Tên người dùng"
             value={formData.username}
             onChange={handleChange}
             required
@@ -266,7 +266,7 @@ const LoginPopup = ({ setShowLogin }) => {
           <input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="Mật khẩu"
             value={formData.password}
             onChange={handleChange}
             required
@@ -274,9 +274,9 @@ const LoginPopup = ({ setShowLogin }) => {
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
         <button type="submit">
-          {currState === "Sign Up" ? "Create Account" : "Login"}
+          {currState === "Đăng ký" ? "Tạo tài khoản" : "Đăng nhập"}
         </button>
-        {currState === "Sign Up" && (
+        {currState === "Đăng ký" && (
           <div className="login-popup-condition">
             <input
               type="checkbox"
@@ -284,19 +284,19 @@ const LoginPopup = ({ setShowLogin }) => {
               onChange={() => setTermsChecked(!termsChecked)}
               required
             />
-            <p>By continuing, I agree to the terms of use & privacy policy</p>
+            <p>Tôi đồng ý với các điều khoản sử dụng và chính sách quyền riêng tư</p>
             {errors.terms && <p className="error">{errors.terms}</p>}
           </div>
         )}
-        {currState === "Login" ? (
+        {currState === "Đăng nhập" ? (
           <p>
-            Create a new account?{" "}
-            <span onClick={() => setCurrState("Sign Up")}>Click here</span>
+            Tạo tài khoản mới?{" "}
+            <span onClick={() => setCurrState("Đăng ký")}>Đăng ký</span>
           </p>
         ) : (
           <p>
-            Already have an account?{" "}
-            <span onClick={() => setCurrState("Login")}>Login Here</span>
+            Đã có tài khoản?{" "}
+            <span onClick={() => setCurrState("Đăng nhập")}>Đăng nhập</span>
           </p>
         )}
       </form>

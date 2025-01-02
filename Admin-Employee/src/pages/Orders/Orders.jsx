@@ -4,7 +4,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import formatNumber from "../../utils/formatNumber";
+import formatNumber from "../../utils/FormatNumber";
+
 
 const Orders = ({ url }) => {
   const [orders, setOrders] = useState([]);

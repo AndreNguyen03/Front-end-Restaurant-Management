@@ -3,6 +3,7 @@ import "./FoodItem.css";
 import { StoreContext } from "../../context/StoreContext";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
+import formatNumber from "../../utils/FormatNumber";
 
 const FoodItem = ({ id, name, price, description, image }) => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -23,17 +24,17 @@ const FoodItem = ({ id, name, price, description, image }) => {
 
   const handleAddToCart = async () => {
     if (!isAuthenticated) {
-      toast.error("Please log in to add items to the cart.");
+      toast.error("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.");
       return;
     }
 
     if (isInCart) {
       await removeFromCart(id);
-      toast.info("Removed from cart");
+      toast.info("Đã xóa khỏi giỏ hàng");
       setIsInCart(false);
     } else {
       await addToCart(id);
-      toast.success("Added to cart!");
+      toast.success("Đã thêm vào giỏ hàng!");
       setIsInCart(true);
     }
   };
@@ -56,10 +57,10 @@ const FoodItem = ({ id, name, price, description, image }) => {
           className={`add-to-cart-btn ${isInCart ? "in-cart" : ""}`}
           onClick={handleAddToCart}
         >
-          {isInCart ? "✓ In Cart" : "Add to Cart"}
+          {isInCart ? "✓ Có trong giỏ hàng" : "Thêm vào giỏ hàng"}
         </button>
         <button className="view-details-btn" onClick={handleViewDetails}>
-          View
+          Chi tiết
         </button>
       </div>
       <div className="food-item-info">
@@ -67,7 +68,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
           <p>{name}</p>
         </div>
         <p className="food-item-desc">{description}</p>
-        <p className="food-item-price">{price} VND</p>
+        <p className="food-item-price">{formatNumber(price)} VNĐ</p>
       </div>
 
       {isPopupVisible && (
@@ -81,7 +82,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
             <hr className="line-under-name" />
             <p className="popup-description">{description}</p>
             <hr className="line-under-description" />
-            <p className="popup-price">{price} VND</p>
+            <p className="popup-price">{formatNumber(price)} VNĐ</p>
           </div>
         </div>
       )}

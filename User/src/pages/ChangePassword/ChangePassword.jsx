@@ -109,7 +109,7 @@ const ChangePassword = () => {
 
   return (
     <div className="change-password-container">
-      <h2>Change Password</h2>
+      <h2>Đổi mật khẩu</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-field">
           <label>
@@ -126,7 +126,7 @@ const ChangePassword = () => {
         </div>
         <div className="input-field">
           <label>
-            New Password:
+            Mật khẩu mới:
             <input
               type="password"
               name="newPassword"
@@ -139,7 +139,7 @@ const ChangePassword = () => {
         </div>
         <div className="input-field">
           <label>
-            Confirm Password:
+            Xác nhận mật khẩu:
             <input
               type="password"
               name="confirmPassword"
@@ -150,7 +150,7 @@ const ChangePassword = () => {
           </label>
           {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
         </div>
-        <button className='submit-button' type="submit">Change Password</button>
+        <button className='submit-button' type="submit">Đổi mật khẩu</button>
       </form>
     </div>
   );

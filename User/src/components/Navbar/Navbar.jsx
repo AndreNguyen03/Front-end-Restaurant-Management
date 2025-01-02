@@ -40,21 +40,21 @@ const Navbar = ({ setShowLogin }) => {
           onClick={() => setMenu("home")}
           className={menu === "home" ? "active" : ""}
         >
-          home
+          Trang chủ
         </Link>
         <a
           href="#"
           onClick={() => handleNavigation("/comment")}
           className={menu === "comment" ? "active" : ""}
         >
-          comment
+          Bình luận
         </a>
         <a
           href="#"
           onClick={() => handleNavigation("/reservation")}
           className={menu === "reservation" ? "active" : ""}
         >
-          reservation
+          Đặt bàn
         </a>
       </ul>
 
@@ -76,7 +76,7 @@ const Navbar = ({ setShowLogin }) => {
             {showDropdown && <ProfileDropdown setShowLogin={setShowLogin} />}
           </div>
         ) : (
-          <button onClick={() => setShowLogin(true)}>sign in</button>
+          <button onClick={() => setShowLogin(true)}>Đăng nhập</button>
         )}
       </div>
     </div>

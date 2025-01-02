@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import InvoiceView from './InvoiceView';
 import ReactPaginate from 'react-paginate';
+import formatNumber from '../../utils/FormatNumber';
 
 function Invoice() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -103,7 +104,7 @@ function Invoice() {
               <td>{invoice.customId}</td>
               <td>{invoice.table || "none"}</td>
               <td>{convertToVietnamTime(invoice.createdAt)}</td>
-              <td style={{ color: `tomato` }}>{invoice.total} vnđ</td>
+              <td style={{ color: `tomato` }}>{formatNumber(invoice.total)} vnđ</td>
             </tr>
           ))}
         </tbody>

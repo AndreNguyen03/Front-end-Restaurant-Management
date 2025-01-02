@@ -98,6 +98,7 @@ const PlaceOrder = () => {
           ward: response.data.data.ward,
           exactAddress: response.data.data.exactAddress,
         }));
+        axios.defaults.withCredentials = false;
         const districtResponse = await axios.get(
           `https://provinces.open-api.vn/api/d/${response.data.data.district}?depth=2`,
           {
@@ -178,11 +179,11 @@ const PlaceOrder = () => {
     let districtName = deliveryInfo.district;
     let wardName = deliveryInfo.ward;
 
-    if (districts.length > 0) {
+    if (districts.length > 0 && !isNaN(districtName)) {
       districtName = await getDistrictName(deliveryInfo.district);
     }
 
-    if (wards.length > 0) {
+    if (wards.length > 0 && !isNaN(wardName)) {
       wardName = await getWardName(deliveryInfo.ward);
     }
 

@@ -33,7 +33,7 @@ const IngredientList = ({ url }) => {
       });
       console.log(response);
       if (response.data.success) {
-        toast.success("Ingredient removed successfully");
+        toast.success("Xóa nguyên liệu thành công");
         await fetchList();
       } else {
         toast.error("Failed to remove Ingredient");

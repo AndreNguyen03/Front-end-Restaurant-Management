@@ -24,7 +24,7 @@ const AddTable = ({ url = "http://localhost:3056", onTableAdded }) => {
           name: "",
           capacity: "2",
         });
-        toast.success("Table added successfully!");
+        toast.success("Thêm bàn mới thành công");
         onTableAdded();
       } else {
         toast.error(response.data.message);

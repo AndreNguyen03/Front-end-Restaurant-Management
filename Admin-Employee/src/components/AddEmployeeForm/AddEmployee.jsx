@@ -34,22 +34,22 @@ const AddEmployee = ({ onEmployeeAdded }) => {
     switch (name) {
       case "phoneNumber":
         if (!/^\d{10}$/.test(value)) {
-          error = "Phone number must be exactly 10 digits.";
+          error = "Số điện thoại phải có đúng 10 chữ số.";
         }
         break;
       case "socialId":
         if (!/^\d{12}$/.test(value)) {
-          error = "Social ID must be exactly 12 digits.";
+          error = "Số định danh phải có đúng 12 chữ số.";
         }
         break;
       case "username":
         if (value.length > 0 && value.length < 8) {
-          error = "Username must be at least 8 characters long.";
+          error = "Tên người dùng phải có ít nhất 8 ký tự.";
         }
         break;
       case "password":
         if (value.length > 0 && value.length < 8) {
-          error = "Password must be at least 8 characters long.";
+          error = "Mật khẩu phải có ít nhất 8 ký tự.";
         }
         break;
       default:
@@ -94,20 +94,20 @@ const AddEmployee = ({ onEmployeeAdded }) => {
             username: "",
             password: "",
           });
-          toast.success(response.data.message);
+          toast.success("Thêm nhân viên mới thành công");
         } else {
           toast.error(response.data.message);
         }
       } catch (error) {
         if (error.response) {
           console.error("Error response:", error.response.data);
-          toast.error(error.response.data.message || "An error occurred");
+          toast.error(error.response.data.message || "Đã xảy ra lỗi");
         } else if (error.request) {
           console.error("Error request:", error.request);
-          toast.error("No response from server");
+          toast.error("Không có phản hồi từ máy chủ");
         } else {
           console.error("Error message:", error.message);
-          toast.error("An error occurred");
+          toast.error("Đã xảy ra lỗi");
         }
       }
     } else {
@@ -119,31 +119,31 @@ const AddEmployee = ({ onEmployeeAdded }) => {
     const errors = {};
 
     if (!data.fullName) {
-      errors.fullName = "Full name is required.";
+      errors.fullName = "Họ và tên là bắt buộc.";
     }
 
     if (!data.address) {
-      errors.address = "Address is required.";
+      errors.address = "Địa chỉ là bắt buộc.";
     }
 
     if (!data.employeeRole) {
-      errors.employeeRole = "Employee role is required.";
+      errors.employeeRole = "Vai trò là bắt buộc.";
     }
 
     if (!/^\d{10}$/.test(data.phoneNumber)) {
-      errors.phoneNumber = "Phone number must be exactly 10 digits.";
+      errors.phoneNumber = "Số điện thoại phải có đúng 10 chữ số.";
     }
 
     if (!/^\d{12}$/.test(data.socialId)) {
-      errors.socialId = "Social ID must be exactly 12 digits.";
+      errors.socialId = "Số định danh phải có đúng 12 chữ số.";
     }
 
     if (data.username && data.username.length < 8) {
-      errors.username = "Username must be at least 8 characters long.";
+      errors.username = "Tên người dùng phải có ít nhất 8 ký tự.";
     }
 
     if (data.password && data.password.length < 8) {
-      errors.password = "Password must be at least 8 characters long.";
+      errors.password = "Mật khẩu phải có ít nhất 8 ký tự.";
     }
 
     return errors;

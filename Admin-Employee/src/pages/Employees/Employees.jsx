@@ -45,7 +45,7 @@ const Employees = ({ url }) => {
       toast.fail("Employee deleted failed");
       return;
     }
-    toast.success("Employee deleted successfully");
+    toast.success("Xóa nhân viên thành công");
     fetchList();
   };
 

@@ -24,7 +24,7 @@ const EditTable = ({ url, onTableEdited, tableId }) => {
         capacity: data.capacity,
       });
       if (response.data.success) {
-        toast.success("Table edited successfully!");
+        toast.success("Cập nhật thông tin thành công");
         onTableEdited(); // Callback to refresh table list
       } else {
         toast.error(response.data.message);

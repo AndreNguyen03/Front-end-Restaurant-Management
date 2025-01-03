@@ -50,10 +50,10 @@ const EditIngredient = ({ onIngredientEdited, ingredientId }) => {
           quantity: 0,
           unit: "",
         });
-        toast.success(response.data.message);
+        toast.success("Thay đổi thông tin nguyên liệu thành công");
         onIngredientEdited(); // Gọi callback khi cập nhật thành công
       } else {
-        toast.error(response.data.message);
+        toast.error("Có lỗi xảy ra khi cập nhật nguyên liệu");
       }
     } catch (error) {
       toast.error("There was an error updating the ingredient");

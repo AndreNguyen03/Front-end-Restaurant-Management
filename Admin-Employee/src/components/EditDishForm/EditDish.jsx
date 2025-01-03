@@ -42,9 +42,9 @@ const EditDish = ({ url, onDishEdited, dishId}) => {
         category: "Salad",
       });
       setImage(false);
-      toast.success(response.data.message);
+      toast.success("Chỉnh sửa món ăn thành công");
     } else {
-      toast.error(response.data.message);
+      toast.error("Có lỗi xảy ra khi chỉnh sửa món ăn");
     }
   };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./AddPurchaseForm.css";
-
+import formatNumber from "../../utils/FormatNumber";
 const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
   const [ingredients, setIngredients] = useState([]);
   const [selectedDetails, setSelectedDetails] = useState([]);
@@ -105,7 +105,7 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
   
       const response = await axios.post(`${url}/api/purchase/add`, purchaseData);
   
-      toast.success("Purchase added successfully");
+      toast.success("Thêm đơn hàng mới thành công");
       onAddPurchase(response.data);
       onClose();
     } catch (error) {
@@ -144,7 +144,7 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
               {ingredients.map((ingredient) => (
                 <tr key={ingredient._id}>
                   <td><p>{ingredient.name}</p></td>
-                  <td><p>{ingredient.unitprice.toFixed(0)} vnđ/{ingredient.unit}</p></td>
+                  <td><p>{formatNumber(ingredient.unitprice.toFixed(0))} vnđ/{ingredient.unit}</p></td>
                   <td>
                     <button onClick={() => handleAddIngredient(ingredient)}>
                       +
@@ -185,7 +185,7 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
                       min="0"
                     />
                   </td>
-                  <td><p>{detail.totalPrice.toFixed(0)} vnđ</p></td>
+                  <td><p>{formatNumber(detail.totalPrice.toFixed(0))} vnđ</p></td>
                   <td>
                     <button onClick={() => handleRemoveIngredient(detail.ingredient)}>
                       X
@@ -196,7 +196,7 @@ const AddPurchaseForm = ({ onClose, onAddPurchase }) => {
             </tbody>
           </table>
           <div className="total-amount">
-            <h3>Tổng tiền đơn hàng: {totalAmount.toFixed(0)} vnđ</h3>
+            <h3>Tổng tiền đơn hàng: {formatNumber(totalAmount.toFixed(0))} vnđ</h3>
           </div>
           <div className="form-actions">
             <button onClick={handleSubmit} className="submit-btn">

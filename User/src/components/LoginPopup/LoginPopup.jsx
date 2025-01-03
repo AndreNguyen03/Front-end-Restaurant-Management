@@ -29,37 +29,37 @@ const LoginPopup = ({ setShowLogin }) => {
     switch (name) {
       case "email":
         if (!value) {
-          error = "Email is required.";
+          error = "Email là bắt buộc.";
         } else if (!/\S+@\S+\.\S+/.test(value)) {
-          error = "Email is invalid.";
+          error = "Email không hợp lệ.";
         }
         break;
       case "phoneNumber":
         if (!value) {
-          error = "Phone number is required.";
+          error = "Số điện thoại là bắt buộc.";
         } else if (!/^\d+$/.test(value)) {
-          error = "Phone number must contain only digits.";
+          error = "Số điện thoại chỉ được chứa chữ số.";
         } else if (value.length !== 10) {
-          error = "Phone number must be exactly 10 digits.";
+          error = "Số điện thoại phải có đúng 10 chữ số.";
         }
         break;
       case "username":
         if (!value) {
-          error = "Username is required.";
+          error = "Tên người dùng là bắt buộc.";
         } else if (value.length < 8) {
-          error = "Username must be at least 8 characters long.";
+          error = "Tên người dùng phải có ít nhất 8 ký tự.";
         }
         break;
       case "password":
         if (!value) {
-          error = "Password is required.";
+          error = "Mật khẩu là bắt buộc.";
         } else if (value.length < 8) {
-          error = "Password must be at least 8 characters long.";
+          error = "Mật khẩu phải có ít nhất 8 ký tự.";
         }
         break;
       case "name":
         if (!value) {
-          error = "Name is required.";
+          error = "Họ và tên là bắt buộc.";
         }
         break;
       default:
@@ -90,29 +90,29 @@ const LoginPopup = ({ setShowLogin }) => {
   const validateForm = () => {
     const newErrors = {};
     if (currState === "Đăng ký") {
-      if (!formData.name) newErrors.name = "Name is required.";
+      if (!formData.name) newErrors.name = "Họ và tên là bắt buộc.";
       if (!formData.email) {
-        newErrors.email = "Email is required.";
+        newErrors.email = "Email là bắt buộc.";
       } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-        newErrors.email = "Email is invalid.";
+        newErrors.email = "Email không hợp lệ.";
       }
       if (!formData.phoneNumber) {
-        newErrors.phoneNumber = "Phone number is required.";
+        newErrors.phoneNumber = "Số điện thoại là bắt buộc.";
       } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
-        newErrors.phoneNumber = "Phone number must be exactly 10 digits.";
+        newErrors.phoneNumber = "Số điện thoại phải có đúng 10 chữ số.";
       }
       if (!formData.username) {
-        newErrors.username = "Username is required.";
+        newErrors.username = "Tên người dùng là bắt buộc.";
       } else if (formData.username.length < 8) {
-        newErrors.username = "Username must be at least 8 characters long.";
+        newErrors.username = "Tên người dùng phải có ít nhất 8 ký tự.";
       }
       if (!formData.password) {
-        newErrors.password = "Password is required.";
+        newErrors.password = "Mật khẩu là bắt buộc.";
       } else if (formData.password.length < 8) {
-        newErrors.password = "Password must be at least 8 characters long.";
+        newErrors.password = "Mật khẩu phải có ít nhất 8 ký tự.";
       }
       if (!termsChecked) {
-        newErrors.terms = "You must agree to the terms and conditions.";
+        newErrors.terms = "Bạn phải đồng ý với các điều khoản và điều kiện.";
       }
     }
     return newErrors;
@@ -120,7 +120,7 @@ const LoginPopup = ({ setShowLogin }) => {
 
   const handleSendOtp = async () => {
     if (!formData.email) {
-      toast.error("Please enter your email");
+      toast.error("Vui lòng nhập email của bạn");
       return;
     }
 
@@ -139,7 +139,7 @@ const LoginPopup = ({ setShowLogin }) => {
       if (error.response) {
         toast.error(error.response.data.message);
       } else {
-        toast.error("Failed to send OTP");
+        toast.error("Gửi OTP thất bại");
       }
     }
 };
@@ -168,11 +168,11 @@ const LoginPopup = ({ setShowLogin }) => {
       }
     } catch (error) {
       if (error.response) {
-        toast.error(error.response.data.message || "An error occurred");
+        toast.error(error.response.data.message || "Đã xảy ra lỗi");
       } else if (error.request) {
-        toast.error("No response from server");
+        toast.error("Không có phản hồi từ máy chủ");
       } else {
-        toast.error("An error occurred");
+        toast.error("Đã xảy ra lỗi");
       }
     }
   };

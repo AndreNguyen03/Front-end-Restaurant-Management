@@ -94,10 +94,10 @@ const EditEmployee = ({ onEmployeeEdited, employeeId }) => {
             employeeRole: "",
             socialId: "",
           });
-          toast.success(response.data.message);
+          toast.success("Cập nhật thông tin nhân viên thành công");
           onEmployeeEdited();
         } else {
-          toast.error(response.data.message);
+          toast.error("Lỗi khi cập nhật thông tin nhân viên");
         }
       } catch (error) {
         if (error.response) {

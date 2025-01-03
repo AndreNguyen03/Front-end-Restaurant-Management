@@ -37,9 +37,9 @@ const AddDish = ({onDishAdded}) => {
         category: "Salad",
       });
       setImage(false);
-      toast.success(response.data.message);
+      toast.success("Thêm món ăn mới thành công");
     } else {
-      toast.error(response.data.message);
+      toast.error("Có lỗi xảy ra khi thêm món ăn mới");
     }
   };
 

@@ -32,7 +32,7 @@ const DishList = ({ url }) => {
       });
       console.log(response);
       if (response.data.success) {
-        toast.success("Dish removed successfully");
+        toast.success("Xóa món ăn thành công");
         await fetchList();
       } else {
         toast.error("Failed to remove dish");

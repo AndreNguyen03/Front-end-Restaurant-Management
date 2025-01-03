@@ -28,7 +28,7 @@ const AddIngredient = ({ onIngredientAdded }) => {
         quantity: "",
         unit: "kg",
       });
-      toast.success(response.data.message);
+      toast.success("Thêm nguyên liệu mới thành công");
     } else {
       toast.error(response.data.message);
     }
@@ -38,7 +38,7 @@ const AddIngredient = ({ onIngredientAdded }) => {
     <div className="add-ingredient-popup">
       <div className="add">
         <form className="flex-col" onSubmit={onSubmitHandler}>
-          <p onClick={onIngredientAdded} className="close-button">X</p>
+          <p onClick={onIngredientAdded} className="ing-close-button">X</p>
           <div className="add-ingredient-name flex-col">
             <p>Tên nguyên liệu</p>
             <input

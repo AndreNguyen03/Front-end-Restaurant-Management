@@ -30,7 +30,7 @@ const TableList = ({ url }) => {
         id: tableId,
       });
       if (response.data.success) {
-        toast.success("Table removed successfully");
+        toast.success("Xóa bàn thành công");
         await fetchTables();
       } else {
         toast.error("Failed to remove table");

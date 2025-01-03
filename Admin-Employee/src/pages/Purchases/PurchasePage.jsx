@@ -82,7 +82,7 @@ const PurchasePage = ({ url }) => {
                   : "N/A"}
               </p>
               <p>
-                {formatNumber(Number.isFinite(purchase.totalAmount))}
+                {formatNumber(purchase.totalAmount)}
                 vnđ
               </p>
               <div className="action-container">

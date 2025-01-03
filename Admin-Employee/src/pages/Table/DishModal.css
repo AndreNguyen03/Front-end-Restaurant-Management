@@ -16,6 +16,7 @@
     border-radius: 10px;
     width: 80%;
     max-width: 1600px;
+    max-height: 95vh; /* Ensure the modal content fits within the viewport */
     height: 900px;
     padding: 20px;
     display: flex;
@@ -332,3 +333,4 @@ table tbody tr:hover {
 .btn-save-to-table:active {
     transform: scale(0.95);
 }
+

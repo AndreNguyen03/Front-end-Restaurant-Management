@@ -49,7 +49,8 @@
 
 ## 🛠 Framework và công nghệ
 
-![Tech Stack](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/tech.jpg?raw=true)
+![Tech Stack](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/tech.jpg?raw=true)
+
 
 - **Kiến trúc:** MVC (Model – View – Controller)  
 - **Frontend:** ReactJS (RESTful API, Socket.IO để nhận notify DB update)  
@@ -70,43 +71,44 @@
 ## 📸 Demo (Screenshots)
 
 ### Đăng nhập
-![Login](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/login.jpg?raw=true)
+![Login](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/login.jpg?raw=true)
 
 ### Đăng ký
-![Signup](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/signup.jpg?raw=true)
+![Signup](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/signup.jpg?raw=true)
 
 ### Trang chủ
-![Home](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/homescreen.png?raw=true)
+![Home](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/homescreen.png?raw=true)
 
 ### Món ăn
-![Dish](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/dish.jpg?raw=true)
+![Dish](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/dish.jpg?raw=true)
 
 ### Bình luận
-![Comment](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/comment.png?raw=true)
+![Comment](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/comment.png?raw=true)
 
 ### Đặt bàn
-![Reservation List](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/reservationlist.jpg?raw=true)  
-![Reservation Calendar](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/reservationcalendar.png?raw=true)
+![Reservation List](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/reservationlist.jpg?raw=true)  
+![Reservation Calendar](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/reservationcalendar.png?raw=true)
 
 ### Đặt món / Order
-![Order](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/order.png?raw=true)  
-![Checkout](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/checkout.jpg?raw=true)
+![Order](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/order.png?raw=true)  
+![Checkout](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/checkout.jpg?raw=true)
 
 ### Quản lý bàn & Phục vụ bàn
-![Table](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/table.png?raw=true)  
-![Table Service](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/tableservice.png?raw=true)
+![Table](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/table.png?raw=true)  
+![Table Service](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/tableservice.png?raw=true)
 
 ### Quản lý nhân viên
-![Employee](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/employee.jpg?raw=true)
+![Employee](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/employee.jpg?raw=true)
 
 ### Quản lý nguyên liệu & Nhập hàng
-![Ingredient](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/ingredient.png?raw=true)  
-![Purchase](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/purchase.png?raw=true)
+![Ingredient](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/ingredient.png?raw=true)  
+![Purchase](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/purchase.png?raw=true)
 
 ### Hóa đơn
-![Invoice](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/invoice.jpg?raw=true)
+![Invoice](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/invoice.jpg?raw=true)
 
 ### Báo cáo doanh thu
-![Report](https://github.com/AndreNguyen03/SE104-Pharmacy-Clinic/blob/main/assets/report.png?raw=true)
+![Report](https://github.com/AndreNguyen03/Front-end-Restaurant-Management/blob/main/assets/report.png?raw=true)
+
 
 
